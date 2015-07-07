@@ -62,6 +62,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T> The node type.
          * @return This node.
          */
+        @Nonnull
         default <T extends INode> IObjectNode forEach (@Nonnull Class<T> nodeType, @Nonnull Consumer<? super T> consumer) {
                 this.children (nodeType).forEach (consumer::accept);
                 return this;
