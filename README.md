@@ -111,6 +111,7 @@ public class Configuration {
                 return mapper.construct (file);
         }
 }
+```
 
 Issues
 ------
