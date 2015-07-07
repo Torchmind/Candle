@@ -41,6 +41,7 @@ public enum NodeType {
 
         /**
          * Represents an object.
+         * Nodes that identify themselves as object nodes implement {@link com.torchmind.candle.api.IObjectNode}.
          */
         OBJECT,
 
