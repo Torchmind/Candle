@@ -46,6 +46,7 @@ public class BooleanPropertyNode extends AbstractPropertyNode {
          * @param value The value.
          * @return The node.
          */
+        @Nonnull
         public BooleanPropertyNode value (boolean value) {
                 this.value = value;
                 return this;
