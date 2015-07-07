@@ -25,6 +25,14 @@ import javax.annotation.Nonnull;
 public interface IPropertyNode extends INamedNode {
 
         /**
+         * Ensures that a node value consists of a certain type.
+         * @param valueType The value type.
+         * @return The node.
+         * @throws java.lang.IllegalStateException when the expected value type differs.
+         */
+        IPropertyNode ensureValueType (@Nonnull NodeValueType valueType) throws IllegalStateException;
+
+        /**
          * {@inheritDoc}
          */
         @Nonnull
