@@ -17,7 +17,6 @@
 package com.torchmind.candle.api;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Represents a named node.
