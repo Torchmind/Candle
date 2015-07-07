@@ -65,6 +65,12 @@
                                 <artifactId>maven-jar-plugin</artifactId>
                         </plugin>
 
+                        <!-- ANTLR4 -->
+                        <plugin>
+                                <groupId>org.antlr</groupId>
+                                <artifactId>antlr4-maven-plugin</artifactId>
+                        </plugin>
+
                         <!-- Findbugs -->
                         <plugin>
                                 <groupId>org.codehaus.mojo</groupId>
