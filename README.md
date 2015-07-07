@@ -44,6 +44,74 @@ When running maven you may simply add a new dependency along with our repository
 </dependencies>
 ```
 
+Loading a configuration file by using the Candle implementation:
+```java
+Candle candle = new Candle ();
+candle.read (new File("configuration.cndl"));
+
+if (candle.getBoolean ("some.test.node")) {
+        System.out.println ("I'm doing things!");
+}
+```
+
+Creating a configuration file by using the Candle implementation:
+```java
+Candle candle = new Candle ();
+
+ContainerNode container1 = new ContainerNode ("some");
+ContainerNode container2 = new ContainerNode ("test");
+
+container1.append (container2);
+candle.append (container1);
+
+CommentNode comment = new CommentNode ("This is a test configuration file!");
+container2.append (comment);
+
+BooleanNode value = new BooleanNode ("node", true);
+container2.append (value);
+
+candle.write (new File ("configuration.cndl"));
+```
+
+Above examples would load/produce the following configuration file:
+```candle
+some {
+        test {
+                // This is a test configuration file!
+                node = true
+        }
+}
+```
+
+Reading/Writing a configuration file by using the Candle Object Mapper:
+```java
+public class Configuration {
+        private final CandleMapper mapper = new CandleMapper (this);
+
+        @Property
+        @Comment ("First root-level test variable")
+        private boolean value = true;
+        
+        @Property ("some.test.node")
+        @Comment ("First lower-level test variable")
+        private int value = 42;
+        
+        // Injection Method
+        public void load (File file) throws CandleException, IOException {
+                this.mapper.inject (file);
+        }
+        
+        public void save (File file) throws CandleException, IOException {
+                this.mapper.write (file);
+        }
+        
+        // Construction Method
+        public static Configuration load (File file) {
+                CandleMapper mapper = new CandleMapper (Configuration.class);
+                return mapper.construct (file);
+        }
+}
+
 Issues
 ------
 
