@@ -29,8 +29,10 @@ import javax.annotation.Nonnull;
 public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
         private boolean[] array;
 
-        public BooleanArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
+        public BooleanArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull boolean[] array) {
                 super (documentNode, name);
+
+                this.array (array);
         }
 
         /**
