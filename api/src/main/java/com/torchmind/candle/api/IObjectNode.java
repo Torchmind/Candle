@@ -290,19 +290,6 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          *
          * @param name         The node name.
          * @param defaultValue The default array.
-         * @param <T>          The enum type.
-         * @return The enum array.
-         *
-         * @throws java.lang.IllegalStateException when the node type differs from the expected type or one or more values were not found within the enum type.
-         */
-        @Nullable
-        <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nonnull T[] defaultValue) throws IllegalStateException;
-
-        /**
-         * Retrieves an enum array from within the tree.
-         *
-         * @param name         The node name.
-         * @param defaultValue The default array.
          * @param enumType     The enum type.
          * @param <T>          The enum type.
          * @return The enum array.
