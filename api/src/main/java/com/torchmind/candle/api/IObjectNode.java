@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
@@ -107,6 +109,31 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          */
         @Nonnull
         IPropertyNode getProperty (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
+
+        /**
+         * Retrieves a property value.
+         * @param name The node name.
+         * @param nodeType The node type.
+         * @param ifPresent The function to execute if the node value is present.
+         * @param <T> The node type.
+         * @param <R> The return type.
+         * @return The produced value.
+         */
+        @Nullable
+        <T extends IPropertyNode, R> R getPropertyValue (@Nonnull String name, @Nonnull Class<T> nodeType, @Nonnull Function<T, R> ifPresent);
+
+        /**
+         * Retrieves a property value.
+         * @param name The node name.
+         * @param nodeType The node type.
+         * @param ifPresent The function to execute if the node value is present.
+         * @param ifNull The function to execute if the node value is null.
+         * @param <T> The node type.
+         * @param <R> The return type.
+         * @return The produced value.
+         */
+        @Nonnull
+        <T extends IPropertyNode, R> R getPropertyValue (@Nonnull String name, @Nonnull Class<T> nodeType, @Nonnull Function<T, R> ifPresent, @Nonnull Supplier<R> ifNull);
 
         /**
          * Retrieves a boolean value from within the tree.
