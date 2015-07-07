@@ -58,7 +58,7 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Nonnull
         @SuppressWarnings ("unchecked")
-        <T extends Enum> T[] array (@Nonnull Class<T> enumType) {
+        public <T extends Enum> T[] array (@Nonnull Class<T> enumType) {
                 try {
                         T[] array = ((T[]) Array.newInstance (enumType, this.length ()));
                         for (int i = 0; i < this.length (); i++) array[i] = (this.array ()[i] != null ? Enum.valueOf (enumType, this.array ()[i]) : null);
