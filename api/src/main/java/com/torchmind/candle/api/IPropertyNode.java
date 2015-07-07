@@ -30,6 +30,7 @@ public interface IPropertyNode extends INamedNode {
          * @return The node.
          * @throws java.lang.IllegalStateException when the expected value type differs.
          */
+        @Nonnull
         IPropertyNode ensureValueType (@Nonnull NodeValueType valueType) throws IllegalStateException;
 
         /**
