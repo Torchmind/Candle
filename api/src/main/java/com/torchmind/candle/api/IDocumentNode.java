@@ -25,6 +25,7 @@ import javax.annotation.Nullable;
  * @author Johannes Donath
  */
 public interface IDocumentNode extends IObjectNode {
+        String NAME = "###ROOT###";
 
         /**
          * {@inheritDoc}
@@ -49,7 +50,7 @@ public interface IDocumentNode extends IObjectNode {
         @Nonnull
         @Override
         default String name () {
-                return "###ROOT###";
+                return NAME;
         }
 
         /**
