@@ -49,11 +49,10 @@ EQUALS: '=';
 SEMICOLON: ';';
 
 // Numbers and identifiers
-NUMBER: ('-'? (NUMBER_INTEGER | NUMBER_FLOAT)) | NUMBER_HEX_PREFIX NUMBER_HEX;
 IDENTIFIER: [A-Za-z] [A-Za-z0-9_]*;
 
-fragment NUMBER_INTEGER: '0' | [1-9] [0-9]*;
-fragment NUMBER_FLOAT: NUMBER_INTEGER '.' [0-9]+ NUMBER_EXPRESSION?;
+NUMBER_INTEGER: '-' ('0' | [1-9] [0-9]*);
+NUMBER_FLOAT: NUMBER_INTEGER '.' [0-9]+ NUMBER_EXPRESSION?;
 fragment NUMBER_EXPRESSION: [Ee] [+\-]? NUMBER_INTEGER;
 fragment NUMBER_HEX: [0-9A-Fa-f]+;
 
