@@ -35,6 +35,8 @@ public abstract class AbstractNode implements INode {
                 this.documentNode = documentNode;
         }
 
+        protected AbstractNode () { }
+
         /**
          * {@inheritDoc}
          */

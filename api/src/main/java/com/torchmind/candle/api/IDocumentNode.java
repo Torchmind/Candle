@@ -30,6 +30,15 @@ public interface IDocumentNode extends IObjectNode {
         /**
          * {@inheritDoc}
          */
+        @Nonnull
+        @Override
+        default IDocumentNode document () {
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         default boolean isDocumentRoot () {
                 return true;

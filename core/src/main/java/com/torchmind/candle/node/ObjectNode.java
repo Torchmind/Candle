@@ -39,6 +39,10 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                 super (documentNode, name);
         }
 
+        protected ObjectNode () {
+                super ();
+        }
+
         /**
          * {@inheritDoc}
          */

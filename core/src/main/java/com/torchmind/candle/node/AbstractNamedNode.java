@@ -36,6 +36,10 @@ public abstract class AbstractNamedNode extends AbstractNode implements INamedNo
                 this.name (name);
         }
 
+        protected AbstractNamedNode () {
+                super ();
+        }
+
         /**
          * {@inheritDoc}
          */
