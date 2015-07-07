@@ -99,6 +99,16 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
         <T extends INode> T get (@Nonnull String name, @Nonnull Class<T> nodeType) throws IllegalStateException, NoSuchElementException;
 
         /**
+         * Retrieves a property node.
+         * @param name The name of the node.
+         * @return The node.
+         * @throws java.lang.IllegalStateException  when the node type differs from the expected type.
+         * @throws java.util.NoSuchElementException when the node is not present within the tree.
+         */
+        @Nonnull
+        IPropertyNode getProperty (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
+
+        /**
          * Retrieves a boolean value from within the tree.
          *
          * @param name The node name.
