@@ -29,8 +29,16 @@ import java.lang.reflect.Array;
 public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
         private String[] array;
 
-        public EnumArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
+        public EnumArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull String[] array) {
                 super (documentNode, name);
+
+                this.array (array);
+        }
+
+        public <T extends Enum> EnumArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull T[] array) {
+                super (documentNode, name);
+
+                this.array (array);
         }
 
         /**
