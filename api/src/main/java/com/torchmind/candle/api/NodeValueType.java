@@ -21,11 +21,38 @@ package com.torchmind.candle.api;
  * @author Johannes Donath
  */
 public enum NodeValueType {
+        /**
+         * Represents an array of a certain type of element.
+         */
         ARRAY,
+
+        /**
+         * Represents a binary value (0 = false, 1 = true).
+         */
         BOOLEAN,
+
+        /**
+         * Represents a value within a list of possible values.
+         */
         ENUM,
+
+        /**
+         * Represents a floating point number.
+         */
         FLOAT,
+
+        /**
+         * Represents an integer.
+         */
         INTEGER,
+
+        /**
+         * Represents a null (empty) value.
+         */
         NULL,
+
+        /**
+         * Represents a character sequence.
+         */
         STRING
 }
