@@ -47,4 +47,5 @@ propertyValueNull: NULL;
 propertyValueString: STRING;
 
 propertyValueArray: BRACKET_OPEN propertyValueArrayElementList? BRACKET_CLOSE;
-propertyValueArrayElementList: propertyValue (COMMA propertyValueArrayElementList?)?;
+propertyValueArrayElementList: propertyValueArrayElement (COMMA propertyValueArrayElementList?)?;
+propertyValueArrayElement: propertyValueBoolean | propertyValueEnum | propertyValueFloat | propertyValueInteger | propertyValueNull | propertyValueString;
