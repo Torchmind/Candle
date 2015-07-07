@@ -31,7 +31,7 @@ public interface INamedNode extends INode {
          *
          * @return The name.
          */
-        @Nullable
+        @Nonnull
         String name ();
 
         /**
@@ -41,5 +41,5 @@ public interface INamedNode extends INode {
          * @return The node.
          */
         @Nonnull
-        INamedNode name (@Nullable String name);
+        INamedNode name (@Nonnull String name);
 }

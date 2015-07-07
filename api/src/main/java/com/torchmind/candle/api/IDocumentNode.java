@@ -46,10 +46,10 @@ public interface IDocumentNode extends IObjectNode {
         /**
          * {@inheritDoc}
          */
-        @Nullable
+        @Nonnull
         @Override
         default String name () {
-                return null;
+                return "###ROOT###";
         }
 
         /**
