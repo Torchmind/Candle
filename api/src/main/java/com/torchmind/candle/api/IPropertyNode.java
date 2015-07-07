@@ -25,6 +25,15 @@ import javax.annotation.Nonnull;
 public interface IPropertyNode extends INamedNode {
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        default NodeType type () {
+                return NodeType.PROPERTY;
+        }
+
+        /**
          * Retrieves the node value type.
          * @return The type.
          */
