@@ -28,6 +28,8 @@ public enum NodeType {
 
         /**
          * Represents an inclusion.
+         * <strong>Note:</strong> There are no definitions for this node type yet as this type has not been fully documented
+         * in the Candle specification yet.
          */
         INCLUDE,
 
