@@ -50,7 +50,7 @@ public abstract class AbstractNamedNode extends AbstractNode implements INamedNo
          */
         @Nonnull
         @Override
-        public INamedNode name (@Nullable String name) {
+        public INamedNode name (@Nonnull String name) {
                 this.name = name;
                 return this;
         }
