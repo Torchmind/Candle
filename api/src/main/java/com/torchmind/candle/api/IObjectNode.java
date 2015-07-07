@@ -104,7 +104,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The boolean value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         boolean getBoolean (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
@@ -116,7 +116,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default value.
          * @return The boolean value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         boolean getBoolean (@Nonnull String name, boolean defaultValue) throws IllegalStateException;
 
@@ -126,7 +126,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The boolean array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -139,7 +139,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default array.
          * @return The boolean array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         boolean[] getBooleanArray (@Nonnull String name, @Nullable boolean[] defaultValue) throws IllegalStateException;
@@ -150,7 +150,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The raw enum value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -163,7 +163,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The raw default value.
          * @return The raw enum value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         String getEnum (@Nonnull String name, @Nullable String defaultValue) throws IllegalStateException;
@@ -176,7 +176,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T>      The enum type.
          * @return The enum value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type or the value was not found within the enum type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type or the value was not found within the enum type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -190,7 +190,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T>          The enum type.
          * @return The enum value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type or the value was not found within the enum type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type or the value was not found within the enum type.
          */
         @Nullable
         <T extends Enum> T getEnum (@Nonnull String name, @Nonnull T defaultValue) throws IllegalStateException;
@@ -204,7 +204,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T>          The enum type.
          * @return The enum value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type or the value was not found within the enum type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type or the value was not found within the enum type.
          */
         @Nullable
         <T extends Enum> T getEnum (@Nonnull String name, @Nullable T defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException;
@@ -215,7 +215,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The raw enum array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -228,7 +228,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The raw default array.
          * @return The raw enum array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -242,7 +242,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T>      The enum type.
          * @return The enum array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type or one or more values were not found within the enum type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type or one or more values were not found within the enum type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -256,7 +256,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T>          The enum type.
          * @return The enum array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type or one or more values were not found within the enum type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type or one or more values were not found within the enum type.
          */
         @Nullable
         <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nonnull T[] defaultValue) throws IllegalStateException;
@@ -270,7 +270,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param <T>          The enum type.
          * @return The enum array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type or one or more values were not found within the enum type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type or one or more values were not found within the enum type.
          */
         @Nullable
         <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable T[] defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException;
@@ -281,7 +281,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The float value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         float getFloat (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
@@ -293,7 +293,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default value.
          * @return The float value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         float getFloat (@Nonnull String name, float defaultValue) throws IllegalStateException;
 
@@ -303,7 +303,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The float array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -316,7 +316,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default array.
          * @return The float array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         float[] getFloatArray (@Nonnegative String name, @Nullable float[] defaultValue) throws IllegalStateException;
@@ -327,7 +327,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The integer value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         int getInteger (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
@@ -339,7 +339,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default value.
          * @return The integer value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         int getInteger (@Nonnull String name, int defaultValue) throws IllegalStateException;
 
@@ -349,7 +349,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The integer array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -362,7 +362,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default array.
          * @return The integer array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         int[] getIntegerArray (@Nonnull String name, @Nullable int[] defaultValue) throws IllegalStateException;
@@ -373,7 +373,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The string value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -386,7 +386,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default value.
          * @return The string value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         String getString (@Nonnegative String name, @Nullable String defaultValue) throws IllegalStateException;
@@ -397,7 +397,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The string array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -410,7 +410,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default array.
          * @return The string array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         String[] getStringArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException;
@@ -421,7 +421,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The unsigned float value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nonnegative
@@ -434,7 +434,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default value.
          * @return The unsigned float value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nonnegative
         float getUnsignedFloat (@Nonnull String name, @Nonnegative float defaultValue) throws IllegalStateException;
@@ -445,7 +445,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The unsigned float array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -459,7 +459,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default array.
          * @return The unsigned float array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         @Nonnegative
@@ -471,7 +471,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The unsigned integer value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nonnegative
@@ -484,7 +484,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default value.
          * @return The unsigned integer value.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nonnegative
         int getUnsignedInteger (@Nonnegative String name, @Nonnegative int defaultValue) throws IllegalStateException;
@@ -495,7 +495,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return The unsigned integer array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException   when the node is not present within the tree.
          */
         @Nullable
@@ -509,7 +509,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param defaultValue The default array.
          * @return The unsigned integer array.
          *
-         * @throws java.lang.IllegalArgumentException when the node type differs from the expected type.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          */
         @Nullable
         @Nonnegative
