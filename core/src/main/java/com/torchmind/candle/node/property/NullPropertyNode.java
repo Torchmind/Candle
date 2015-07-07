@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IPropertyNode;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -29,6 +30,15 @@ public class NullPropertyNode extends AbstractPropertyNode {
 
         public NullPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
                 super (documentNode, name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public NullPropertyNode ensureValueType (@Nonnull NodeValueType valueType) throws IllegalStateException {
+                return this;
         }
 
         /**
