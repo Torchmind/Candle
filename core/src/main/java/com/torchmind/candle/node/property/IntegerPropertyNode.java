@@ -54,6 +54,7 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
         /**
          * {@inheritDoc}
          */
+        @Nonnull
         public IntegerPropertyNode value (int value) {
                 this.value = value;
                 return this;

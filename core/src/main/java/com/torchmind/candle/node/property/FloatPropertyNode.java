@@ -59,6 +59,7 @@ public class FloatPropertyNode extends AbstractPropertyNode {
          * @param value The value.
          * @return The node.
          */
+        @Nonnull
         public FloatPropertyNode value (float value) {
                 this.value = value;
                 return this;

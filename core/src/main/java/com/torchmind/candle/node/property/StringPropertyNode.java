@@ -48,7 +48,7 @@ public class StringPropertyNode extends AbstractPropertyNode {
          * @return The node.
          */
         @Nonnull
-        public StringPropertyNode value (String value) {
+        public StringPropertyNode value (@Nonnull String value) {
                 this.value = value;
                 return this;
         }
