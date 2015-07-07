@@ -19,6 +19,7 @@ package com.torchmind.candle.node.property.array;
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 /**
@@ -40,6 +41,20 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Nonnull
         public float[] array () {
+                return this.array;
+        }
+
+        /**
+         * Retrieves the unsigned float array.
+         * @return The array.
+         */
+        @Nonnull
+        @Nonnegative
+        public float[] arrayUnsigned () {
+                for (float current : this.array) {
+                        if (current < 0) throw new IllegalStateException ("Expected an unsigned value but got " + current);
+                }
+
                 return this.array;
         }
 
