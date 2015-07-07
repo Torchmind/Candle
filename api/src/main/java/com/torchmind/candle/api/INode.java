@@ -30,6 +30,7 @@ public interface INode {
          * @return The node.
          * @throws java.lang.IllegalStateException when the node type differs.
          */
+        @Nonnull
         INode ensureType (@Nonnull NodeType type) throws IllegalStateException;
 
         /**
