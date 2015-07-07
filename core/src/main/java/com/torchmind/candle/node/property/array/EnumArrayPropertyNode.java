@@ -56,6 +56,7 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
          * @param <T> The enum type.
          * @return The array.
          */
+        @Nonnull
         @SuppressWarnings ("unchecked")
         <T extends Enum> T[] array (@Nonnull Class<T> enumType) {
                 try {
