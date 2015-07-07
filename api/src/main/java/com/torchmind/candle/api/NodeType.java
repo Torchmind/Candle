@@ -35,6 +35,11 @@ public enum NodeType {
         INCLUDE,
 
         /**
+         * Represents a document.
+         */
+        DOCUMENT,
+
+        /**
          * Represents an object.
          */
         OBJECT,
