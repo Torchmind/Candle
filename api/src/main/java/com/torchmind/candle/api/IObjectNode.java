@@ -578,9 +578,10 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @param name The node name.
          * @return True if null.
          *
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
          * @throws java.util.NoSuchElementException when the element is not present within the tree.
          */
-        boolean isNull (@Nonnull String name) throws NoSuchElementException;
+        boolean isNull (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
 
         /**
          * Checks whether a node is present within the tree.
