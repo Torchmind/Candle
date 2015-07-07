@@ -26,6 +26,15 @@ import javax.annotation.Nonnull;
 public interface IArrayPropertyNode extends IPropertyNode {
 
         /**
+         * Ensures the array consists of a certain type of element.
+         * @param valueType The expected value type.
+         * @return The node.
+         * @throws java.lang.IllegalStateException when the expected value type differs.
+         */
+        @Nonnull
+        IArrayPropertyNode ensureItemType (@Nonnull NodeValueType valueType) throws IllegalStateException;
+
+        /**
          * Retrieves the array item type.
          * @return The type.
          */
