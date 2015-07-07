@@ -25,6 +25,13 @@ import javax.annotation.Nonnull;
 public interface INode {
 
         /**
+         * Retrieves the parent document node.
+         * @return The node.
+         */
+        @Nonnull
+        IDocumentNode document ();
+
+        /**
          * Ensures that a node consists of a certain type.
          * @param type The type.
          * @return The node.
