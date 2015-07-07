@@ -36,6 +36,7 @@ public enum NodeType {
 
         /**
          * Represents a document.
+         * Nodes that identify themselves as document nodes implement {@link com.torchmind.candle.api.IDocumentNode}.
          */
         DOCUMENT,
 
