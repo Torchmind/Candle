@@ -28,7 +28,16 @@ public interface ICommentNode extends INode {
          * Retrieves the comment contents.
          * @return The text.
          */
-        String getText ();
+        @Nonnull
+        String text ();
+
+        /**
+         * Sets the comment contents.
+         * @param text The text.
+         * @return The node.
+         */
+        @Nonnull
+        ICommentNode text (@Nonnull String text);
 
         /**
          * Checks whether the node represents a multiline comment.
