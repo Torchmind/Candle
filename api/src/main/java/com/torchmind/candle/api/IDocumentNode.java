@@ -21,9 +21,27 @@ import javax.annotation.Nullable;
 
 /**
  * Represents the root document node.
+ *
  * @author Johannes Donath
  */
 public interface IDocumentNode extends IObjectNode {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        default boolean isDocumentRoot () {
+                return true;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        default INamedNode name (@Nullable String name) {
+                throw new UnsupportedOperationException ("Cannot alter node name of root document node");
+        }
 
         /**
          * {@inheritDoc}
@@ -39,24 +57,7 @@ public interface IDocumentNode extends IObjectNode {
          */
         @Nonnull
         @Override
-        default INamedNode name (@Nullable String name) {
-                throw new UnsupportedOperationException ("Cannot alter node name of root document node");
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nonnull
-        @Override
         default NodeType type () {
                 return NodeType.DOCUMENT;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        default boolean isDocumentRoot () {
-                return true;
         }
 }

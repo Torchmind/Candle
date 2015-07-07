@@ -20,19 +20,21 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a single-line or multi-line comment node.
+ *
  * @author Johannes Donath
  */
 public interface ICommentNode extends INode {
 
         /**
-         * Retrieves the comment contents.
-         * @return The text.
+         * Checks whether the node represents a multiline comment.
+         *
+         * @return The comment.
          */
-        @Nonnull
-        String text ();
+        boolean isMultiline ();
 
         /**
          * Sets the comment contents.
+         *
          * @param text The text.
          * @return The node.
          */
@@ -40,10 +42,12 @@ public interface ICommentNode extends INode {
         ICommentNode text (@Nonnull String text);
 
         /**
-         * Checks whether the node represents a multiline comment.
-         * @return The comment.
+         * Retrieves the comment contents.
+         *
+         * @return The text.
          */
-        boolean isMultiline ();
+        @Nonnull
+        String text ();
 
         /**
          * {@inheritDoc}

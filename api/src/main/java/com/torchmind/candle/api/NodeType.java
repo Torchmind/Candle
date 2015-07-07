@@ -18,6 +18,7 @@ package com.torchmind.candle.api;
 
 /**
  * Provides a list of valid node types.
+ *
  * @author Johannes Donath
  */
 public enum NodeType {

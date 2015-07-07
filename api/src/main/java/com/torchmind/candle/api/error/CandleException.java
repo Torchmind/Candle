@@ -18,9 +18,14 @@ package com.torchmind.candle.api.error;
 
 /**
  * Provides an {@link java.lang.Exception} for candle error cases.
+ *
  * @author Johannes Donath
  */
 public abstract class CandleException extends Exception {
+
+        protected CandleException (String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+                super (message, cause, enableSuppression, writableStackTrace);
+        }
 
         public CandleException () {
                 super ();
@@ -36,9 +41,5 @@ public abstract class CandleException extends Exception {
 
         public CandleException (Throwable cause) {
                 super (cause);
-        }
-
-        protected CandleException (String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-                super (message, cause, enableSuppression, writableStackTrace);
         }
 }

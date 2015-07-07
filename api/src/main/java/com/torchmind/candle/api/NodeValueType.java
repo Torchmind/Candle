@@ -18,6 +18,7 @@ package com.torchmind.candle.api;
 
 /**
  * Provides a list of valid value types.
+ *
  * @author Johannes Donath
  */
 public enum NodeValueType {

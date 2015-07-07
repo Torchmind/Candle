@@ -21,14 +21,17 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a property assignment node that uses array values.
+ *
  * @author Johannes Donath
  */
 public interface IArrayPropertyNode extends IPropertyNode {
 
         /**
          * Ensures the array consists of a certain type of element.
+         *
          * @param valueType The expected value type.
          * @return The node.
+         *
          * @throws java.lang.IllegalStateException when the expected value type differs.
          */
         @Nonnull
@@ -36,6 +39,7 @@ public interface IArrayPropertyNode extends IPropertyNode {
 
         /**
          * Retrieves the array item type.
+         *
          * @return The type.
          */
         @Nonnull
@@ -43,6 +47,7 @@ public interface IArrayPropertyNode extends IPropertyNode {
 
         /**
          * Retrieves the array length.
+         *
          * @return The length.
          */
         @Nonnegative

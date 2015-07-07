@@ -21,12 +21,14 @@ import javax.annotation.Nullable;
 
 /**
  * Represents a named node.
+ *
  * @author Johannes Donath
  */
 public interface INamedNode extends INode {
 
         /**
          * Retrieves the node name.
+         *
          * @return The name.
          */
         @Nullable
@@ -34,6 +36,7 @@ public interface INamedNode extends INode {
 
         /**
          * Sets the node name.
+         *
          * @param name The name.
          * @return The node.
          */

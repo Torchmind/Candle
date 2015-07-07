@@ -20,12 +20,14 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a node within the document tree.
+ *
  * @author Johannes Donath
  */
 public interface INode {
 
         /**
          * Retrieves the parent document node.
+         *
          * @return The node.
          */
         @Nonnull
@@ -33,8 +35,10 @@ public interface INode {
 
         /**
          * Ensures that a node consists of a certain type.
+         *
          * @param type The type.
          * @return The node.
+         *
          * @throws java.lang.IllegalStateException when the node type differs.
          */
         @Nonnull
@@ -42,6 +46,7 @@ public interface INode {
 
         /**
          * Retrieves the node type.
+         *
          * @return The type.
          */
         @Nonnull

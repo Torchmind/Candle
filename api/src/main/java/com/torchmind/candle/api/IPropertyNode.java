@@ -20,14 +20,17 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a property assignment node.
+ *
  * @author Johannes Donath
  */
 public interface IPropertyNode extends INamedNode {
 
         /**
          * Ensures that a node value consists of a certain type.
+         *
          * @param valueType The value type.
          * @return The node.
+         *
          * @throws java.lang.IllegalStateException when the expected value type differs.
          */
         @Nonnull
@@ -44,6 +47,7 @@ public interface IPropertyNode extends INamedNode {
 
         /**
          * Retrieves the node value type.
+         *
          * @return The type.
          */
         @Nonnull
