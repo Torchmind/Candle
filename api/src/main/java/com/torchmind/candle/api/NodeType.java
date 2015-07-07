@@ -48,6 +48,7 @@ public enum NodeType {
 
         /**
          * Represents a property.
+         * Nodes that identify themselves as property nodes implement {@link com.torchmind.candle.api.IPropertyNode}.
          */
         PROPERTY
 }
