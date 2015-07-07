@@ -31,7 +31,7 @@ public class BooleanPropertyNode extends AbstractPropertyNode {
         public BooleanPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, boolean value) {
                 super (documentNode, name);
 
-                this.value = value;
+                this.value (value);
         }
 
         /**
