@@ -35,6 +35,14 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
                 this.array (array);
         }
 
+        public BooleanArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull Boolean[] array) {
+                super (documentNode, name);
+
+                boolean[] primitiveArray = new boolean[array.length];
+                for (int i = 0; i < primitiveArray.length; i++) primitiveArray[i] = array[i];
+                this.array (primitiveArray);
+        }
+
         /**
          * Retrieves the boolean array.
          * @return The array.

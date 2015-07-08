@@ -35,6 +35,14 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
                 this.array (array);
         }
 
+        public FloatArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull Float[] array) {
+                super (documentNode, name);
+
+                float[] primitiveArray = new float[array.length];
+                for (int i = 0; i < primitiveArray.length; i++) primitiveArray[i] = array[i];
+                this.array (primitiveArray);
+        }
+
         /**
          * Retrieves the float array.
          * @return The array.

@@ -35,6 +35,14 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
                 this.array (array);
         }
 
+        public IntegerArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull Integer[] array) {
+                super (documentNode, name);
+
+                int[] primitiveArray = new int[array.length];
+                for (int i = 0; i < primitiveArray.length; i++) primitiveArray[i] = array[i];
+                this.array (primitiveArray);
+        }
+
         /**
          * Retrieves the integer array.
          * @return The array.
