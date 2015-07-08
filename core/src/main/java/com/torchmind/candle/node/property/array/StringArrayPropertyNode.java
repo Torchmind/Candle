@@ -63,6 +63,6 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
 
         @Override
         public int length () {
-                return 0;
+                return this.array.length;
         }
 }
