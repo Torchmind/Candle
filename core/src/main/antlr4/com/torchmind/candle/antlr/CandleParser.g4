@@ -47,7 +47,7 @@ propertyValueNull: NULL;
 propertyValueString:
         STRING_LITERAL_START (
                 STRING_LITERAL_QUOTE |
-                TRING_LITERAL_BACKSLASH |
+                STRING_LITERAL_BACKSLASH |
                 STRING_LITERAL_BACKSPACE |
                 STRING_LITERAL_FORMFILL |
                 STRING_LITERAL_NEWLINE |
