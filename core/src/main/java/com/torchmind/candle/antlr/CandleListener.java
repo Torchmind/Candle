@@ -64,6 +64,14 @@ public class CandleListener extends CandleParserBaseListener {
          * {@inheritDoc}
          */
         @Override
+        public void exitObject (CandleParser.ObjectContext ctx) {
+                this.objectNodeStack.pop ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
         public void enterObjectIdentifier (CandleParser.ObjectIdentifierContext ctx) {
                 ObjectNode node = new ObjectNode (this.candle, ctx.getText ());
 
