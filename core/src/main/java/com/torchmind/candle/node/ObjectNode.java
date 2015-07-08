@@ -105,7 +105,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                 // @formatter:on
                 if (name.indexOf ('.') == -1) return node;
                 if (!(node instanceof IObjectNode)) throw new NoSuchElementException ("Node with name \"" + closestNode + "\" is not a container node");
-                return ((IObjectNode) node).get (name.substring (closestNode.length ()));
+                return ((IObjectNode) node).get (name.substring ((closestNode.length () + 1)));
         }
 
         /**
