@@ -81,6 +81,16 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nonnull
         @Override
+        public IObjectNode clear () {
+                this.children ().clear ();
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
         public INode get (@Nonnull String name) throws NoSuchElementException {
                 final String closestNode = (name.indexOf ('.') == -1 ? name : name.substring (0, name.indexOf ('.')));
 

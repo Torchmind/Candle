@@ -62,6 +62,13 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
         <T extends INode> List<T> children (@Nonnull Class<T> nodeType);
 
         /**
+         * Clears the node tree.
+         * @return The node.
+         */
+        @Nonnull
+        IObjectNode clear ();
+
+        /**
          * Performs the given action for each child element of a certain type.
          *
          * @param nodeType The node type.
