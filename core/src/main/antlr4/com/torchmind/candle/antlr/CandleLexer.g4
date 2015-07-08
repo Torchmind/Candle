@@ -22,13 +22,15 @@ COMMENT_LINE: '//' ~[\r\n]*;
 
 // String Literals & Numbers
 STRING_LITERAL_START: '"' -> pushMode (String);
-NUMBER_INTEGER: '-' ('0' | [1-9] [0-9]*);
-NUMBER_FLOAT: NUMBER_INTEGER '.' [0-9]+ NUMBER_EXPRESSION?;
-fragment NUMBER_EXPRESSION: [Ee] [+\-]? NUMBER_INTEGER;
-fragment NUMBER_HEX: [0-9A-Fa-f]+;
+
+NUMBER_FLOAT: '-'? NUMBER? '.' [0-9]+ NUMBER_EXP?;
+NUMBER_INTEGER: '0x' NUMBER_HEX+ | '-'? NUMBER;
+
+fragment NUMBER: '0' | [1-9] [0-9]*;
+fragment NUMBER_EXP: [Ee] [+\-]? NUMBER;
+fragment NUMBER_HEX: [0-9A-Fa-f];
 
 // Keywords
-fragment NUMBER_HEX_PREFIX: '0x';
 COPY: 'copy';
 FALSE: 'false';
 INCLUDE: 'include';
