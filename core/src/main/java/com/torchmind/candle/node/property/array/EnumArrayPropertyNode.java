@@ -61,7 +61,12 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
         public <T extends Enum> T[] array (@Nonnull Class<T> enumType) {
                 try {
                         T[] array = ((T[]) Array.newInstance (enumType, this.length ()));
-                        for (int i = 0; i < this.length (); i++) array[i] = (this.array ()[i] != null ? Enum.valueOf (enumType, this.array ()[i]) : null);
+
+                        for (int i = 0; i < this.length (); i++) {
+                                String currentElement = this.array ()[i];
+                                array[i] = (currentElement != null ? ((T) Enum.valueOf (enumType, currentElement)) : null);
+                        }
+
                         return array;
                 } catch (IllegalArgumentException ex) {
                         throw new IllegalStateException ("Enum contains one or more values not listed by type " + enumType.getCanonicalName () + ": " + ex.getMessage (), ex);
