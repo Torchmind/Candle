@@ -20,11 +20,12 @@ lexer grammar CandleLexer;
 COMMENT: '/*' .*? '*/';
 COMMENT_LINE: '//' ~[\r\n]*;
 
-// Quoted string (high priority and thus up here)
-STRING: '"' (ESCAPE_SEQUENCE | ~["\\])* '"';
-
-fragment ESCAPE_SEQUENCE: '\\' (["\\/bfnrt] | UNICODE_ESCAPE_SEQUENCE);
-fragment UNICODE_ESCAPE_SEQUENCE: 'u' NUMBER_HEX NUMBER_HEX NUMBER_HEX NUMBER_HEX;
+// String Literals & Numbers
+STRING_LITERAL_START: '"' -> pushMode (String);
+NUMBER_INTEGER: '-' ('0' | [1-9] [0-9]*);
+NUMBER_FLOAT: NUMBER_INTEGER '.' [0-9]+ NUMBER_EXPRESSION?;
+fragment NUMBER_EXPRESSION: [Ee] [+\-]? NUMBER_INTEGER;
+fragment NUMBER_HEX: [0-9A-Fa-f]+;
 
 // Keywords
 fragment NUMBER_HEX_PREFIX: '0x';
@@ -36,6 +37,7 @@ OBJECT: 'object';
 PROPERTY: 'property';
 TRUE: 'true';
 TRY: 'try';
+IDENTIFIER: [A-Za-z] [A-Za-z0-9_]*;
 
 // Special Characters
 BRACE_OPEN: '{';
@@ -48,13 +50,27 @@ DOT: '.';
 EQUALS: '=';
 SEMICOLON: ';';
 
-// Numbers and identifiers
-IDENTIFIER: [A-Za-z] [A-Za-z0-9_]*;
-
-NUMBER_INTEGER: '-' ('0' | [1-9] [0-9]*);
-NUMBER_FLOAT: NUMBER_INTEGER '.' [0-9]+ NUMBER_EXPRESSION?;
-fragment NUMBER_EXPRESSION: [Ee] [+\-]? NUMBER_INTEGER;
-fragment NUMBER_HEX: [0-9A-Fa-f]+;
-
 // Newlines and other whitespace characters
 WHITESPACE: [ \t\r\n\u000C]+ -> skip;
+
+// String Literal Contents
+mode String;
+        STRING_LITERAL_QUOTE: '\\"' { setText ("\""); };
+        STRING_LITERAL_BACKSLASH: '\\\\' { setText ("\\"); };
+        STRING_LITERAL_BACKSPACE: '\\b' { setText ("\b"); };
+        STRING_LITERAL_FORMFILL: '\\f' { setText ("\f"); };
+        STRING_LITERAL_NEWLINE: '\\n' { setText ("\n"); };
+        STRING_LITERAL_CARRIAGE_RETURN: '\\r' { setText ("\r"); };
+        STRING_LITERAL_HORIZONTAL_TAB: '\\t' { setText ("\t"); };
+
+        STRING_LITERAL_ESCAPE_UNICODE: '\\u' NUMBER_HEX NUMBER_HEX NUMBER_HEX NUMBER_HEX {
+                String code = getText ();
+                code = code.substring (2);
+
+                int unicodeNumber = Integer.decode ("0x" + code).intValue ();
+                setText (Character.toString (((char) unicodeNumber)));
+        };
+
+        STRING_LITERAL_TEXT: ~[\\"];
+
+        STRING_LITERAL_END: '"' -> popMode;

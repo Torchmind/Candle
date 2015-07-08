@@ -44,7 +44,18 @@ propertyValueEnum: IDENTIFIER;
 propertyValueFloat: NUMBER_FLOAT;
 propertyValueInteger: NUMBER_INTEGER;
 propertyValueNull: NULL;
-propertyValueString: STRING;
+propertyValueString:
+        STRING_LITERAL_START (
+                STRING_LITERAL_QUOTE |
+                TRING_LITERAL_BACKSLASH |
+                STRING_LITERAL_BACKSPACE |
+                STRING_LITERAL_FORMFILL |
+                STRING_LITERAL_NEWLINE |
+                STRING_LITERAL_CARRIAGE_RETURN |
+                STRING_LITERAL_HORIZONTAL_TAB |
+                STRING_LITERAL_ESCAPE_UNICODE |
+                STRING_LITERAL_TEXT
+        )* STRING_LITERAL_END;
 
 propertyValueArray: BRACKET_OPEN propertyValueArrayElementList? BRACKET_CLOSE;
 propertyValueArrayElementList: propertyValueArrayElement (COMMA propertyValueArrayElementList?)?;
