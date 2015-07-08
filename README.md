@@ -58,8 +58,8 @@ Creating a configuration file by using the Candle implementation:
 ```java
 Candle candle = new Candle ();
 
-ContainerNode container1 = new ContainerNode ("some");
-ContainerNode container2 = new ContainerNode ("test");
+ContainerNode container1 = new ObjectNode ("some");
+ContainerNode container2 = new ObjectNode ("test");
 
 container1.append (container2);
 candle.append (container1);
@@ -67,7 +67,7 @@ candle.append (container1);
 CommentNode comment = new CommentNode ("This is a test configuration file!");
 container2.append (comment);
 
-BooleanNode value = new BooleanNode ("node", true);
+BooleanNode value = new BooleanPropertyNode ("node", true);
 container2.append (value);
 
 candle.write (new File ("configuration.cndl"));
@@ -91,20 +91,20 @@ public class Configuration {
         @Property
         @Comment ("First root-level test variable")
         private boolean value = true;
-        
+
         @Property ("some.test.node")
         @Comment ("First lower-level test variable")
         private int value = 42;
-        
+
         // Injection Method
         public void load (File file) throws CandleException, IOException {
                 this.mapper.inject (file);
         }
-        
+
         public void save (File file) throws CandleException, IOException {
                 this.mapper.write (file);
         }
-        
+
         // Construction Method
         public static Configuration load (File file) {
                 CandleMapper mapper = new CandleMapper (Configuration.class);
