@@ -675,4 +675,12 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         public Iterator<INode> iterator () {
                 return this.children ().iterator ();
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("ObjectNode{%s,children=[%s]}", super.toString (), this.children ());
+        }
 }

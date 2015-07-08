@@ -21,6 +21,7 @@ import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 /**
  * Represents a float array within the tree.
@@ -92,5 +93,13 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
         @Override
         public int length () {
                 return this.array.length;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("FloatArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
         }
 }

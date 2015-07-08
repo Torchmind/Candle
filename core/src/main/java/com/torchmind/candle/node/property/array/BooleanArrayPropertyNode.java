@@ -21,6 +21,7 @@ import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.node.property.BooleanPropertyNode;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 /**
  * Represents a boolean array property within the tree.
@@ -72,5 +73,13 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
         @Override
         public int length () {
                 return this.array.length;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("BooleanArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
         }
 }

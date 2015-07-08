@@ -96,4 +96,12 @@ public class EnumPropertyNode extends AbstractPropertyNode {
         public NodeValueType valueType () {
                 return NodeValueType.ENUM;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("EnumPropertyNode{%s,value=%s}", super.toString (), this.value ());
+        }
 }

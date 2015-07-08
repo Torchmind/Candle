@@ -56,4 +56,12 @@ public class NullArrayPropertyNode extends AbstractArrayPropertyNode {
         public int length () {
                 return 0;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("NullArrayPropertyNode{%s}", super.toString ());
+        }
 }

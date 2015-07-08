@@ -73,4 +73,12 @@ public class FloatPropertyNode extends AbstractPropertyNode {
         public NodeValueType valueType () {
                 return NodeValueType.FLOAT;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("FloatPropertyNode{%s,value=%f}", super.toString (), this.value ());
+        }
 }

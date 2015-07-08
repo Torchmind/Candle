@@ -62,4 +62,12 @@ public class CommentNode extends AbstractNode implements ICommentNode {
         public String text () {
                 return this.content;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("CommentNode{text=\"%s\",multiline=%b}", this.text (), this.isMultiline ());
+        }
 }

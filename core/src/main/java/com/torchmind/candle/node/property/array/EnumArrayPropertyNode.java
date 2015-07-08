@@ -21,6 +21,7 @@ import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Represents an enum array property within the tree.
@@ -112,5 +113,13 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
         @Override
         public int length () {
                 return this.array.length;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("EnumArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
         }
 }

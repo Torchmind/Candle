@@ -58,4 +58,12 @@ public abstract class AbstractNamedNode extends AbstractNode implements INamedNo
                 this.name = name;
                 return this;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("name=\"%s\"", this.name ());
+        }
 }

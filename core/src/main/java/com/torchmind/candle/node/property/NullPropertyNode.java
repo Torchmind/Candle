@@ -49,4 +49,12 @@ public class NullPropertyNode extends AbstractPropertyNode {
         public NodeValueType valueType () {
                 return NodeValueType.NULL;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("NullPropertyNode{%s}", super.toString ());
+        }
 }

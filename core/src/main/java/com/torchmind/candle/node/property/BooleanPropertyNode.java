@@ -60,4 +60,12 @@ public class BooleanPropertyNode extends AbstractPropertyNode {
         public NodeValueType valueType () {
                 return NodeValueType.BOOLEAN;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("BooleanPropertyNode{%s,value=%b}", super.toString (), this.value ());
+        }
 }

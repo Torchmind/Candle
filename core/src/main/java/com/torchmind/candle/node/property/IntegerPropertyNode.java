@@ -68,4 +68,12 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
         public NodeValueType valueType () {
                 return NodeValueType.INTEGER;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("IntegerPropertyNode{%s,value=%d}", super.toString (), this.value ());
+        }
 }

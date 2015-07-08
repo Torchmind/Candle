@@ -61,4 +61,9 @@ public class StringPropertyNode extends AbstractPropertyNode {
         public NodeValueType valueType () {
                 return NodeValueType.STRING;
         }
+
+        @Override
+        public String toString () {
+                return String.format ("StringPropertyNode{%s,value=\"%s\"}", super.toString (), this.value ());
+        }
 }

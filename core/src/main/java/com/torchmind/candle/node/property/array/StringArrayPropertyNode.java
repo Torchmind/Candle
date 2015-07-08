@@ -20,6 +20,7 @@ import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 /**
  * Represents a string array property within the tree.
@@ -64,5 +65,13 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
         @Override
         public int length () {
                 return this.array.length;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("StringArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
         }
 }

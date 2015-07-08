@@ -42,4 +42,12 @@ public abstract class AbstractArrayPropertyNode extends AbstractPropertyNode imp
                 if (this.itemType () != valueType) throw new IllegalStateException ("Expected value node representing items of type " + valueType + " but found " + this.itemType ());
                 return this;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString () {
+                return String.format ("%s,length=%d", super.toString (), this.length ());
+        }
 }
