@@ -80,6 +80,6 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Override
         public String toString () {
-                return String.format ("BooleanArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
+                return String.format ("BooleanArrayPropertyNode{%s,array=%s}", super.toString (), Arrays.toString (this.array ()));
         }
 }

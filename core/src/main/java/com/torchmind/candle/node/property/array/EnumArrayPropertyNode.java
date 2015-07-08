@@ -120,6 +120,6 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Override
         public String toString () {
-                return String.format ("EnumArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
+                return String.format ("EnumArrayPropertyNode{%s,array=%s}", super.toString (), Arrays.toString (this.array ()));
         }
 }

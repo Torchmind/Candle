@@ -100,6 +100,6 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Override
         public String toString () {
-                return String.format ("IntegerArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
+                return String.format ("IntegerArrayPropertyNode{%s,array=%s}", super.toString (), Arrays.toString (this.array ()));
         }
 }

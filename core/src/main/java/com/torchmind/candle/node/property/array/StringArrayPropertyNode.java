@@ -72,6 +72,6 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Override
         public String toString () {
-                return String.format ("StringArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
+                return String.format ("StringArrayPropertyNode{%s,array=%s}", super.toString (), Arrays.toString (this.array ()));
         }
 }

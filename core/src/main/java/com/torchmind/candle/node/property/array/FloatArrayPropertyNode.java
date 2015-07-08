@@ -100,6 +100,6 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Override
         public String toString () {
-                return String.format ("FloatArrayPropertyNode{%s,array=[%s]}", super.toString (), Arrays.toString (this.array ()));
+                return String.format ("FloatArrayPropertyNode{%s,array=%s}", super.toString (), Arrays.toString (this.array ()));
         }
 }
