@@ -101,7 +101,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                                 return closestNode.equalsIgnoreCase (((INamedNode) n).name ());
                         })
                                  .findFirst ()
-                                        .orElseThrow (() -> new NoSuchElementException ("Could not locate element with name \"" + name + "\""));
+                                        .orElseThrow (() -> new NoSuchElementException ("Could not locate element with name \"" + name + "\"" + (!closestNode.equals (name) ? " (failed to locate closest node \"" + closestNode + "\")" : "")));
                 // @formatter:on
                 if (name.indexOf ('.') == -1) return node;
                 if (!(node instanceof IObjectNode)) throw new NoSuchElementException ("Node with name \"" + closestNode + "\" is not a container node");
