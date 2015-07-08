@@ -70,7 +70,8 @@ public class EnumPropertyNode extends AbstractPropertyNode {
         @Nonnull
         public <T extends Enum> T value (@Nonnull Class<T> enumType) throws IllegalStateException {
                 try {
-                        return Enum.valueOf (enumType, this.value ());
+                        // Looks unneeded, should be unneeded, isn't unneeded ...
+                        return ((T) Enum.valueOf (enumType, this.value ()));
                 } catch (IllegalArgumentException ex) {
                         throw new IllegalStateException ("Enum of type " + enumType.getCanonicalName () + " does not contain possible value \"" + this.value () + "\"", ex);
                 }
