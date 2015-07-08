@@ -82,7 +82,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public IObjectNode clear () {
-                this.children ().clear ();
+                this.children.clear ();
                 return this;
         }
 
