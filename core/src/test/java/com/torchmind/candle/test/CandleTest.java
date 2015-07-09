@@ -235,6 +235,18 @@ public class CandleTest {
         }
 
         /**
+         * Tests property replacement of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
+         */
+        @Test
+        public void testReplace () throws IOException, CandleException {
+                Candle candle = new Candle ();
+                candle.read (CandleTest.class.getResourceAsStream ("/testReplace.cndl"));
+
+                Assert.assertEquals (42, candle.getInteger ("property1"));
+                Assert.assertEquals (4, candle.getInteger ("property2"));
+        }
+
+        /**
          * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
          */
         @Test (expected = CandleLexerException.class)
