@@ -459,7 +459,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public IObjectNode insertAfter (@Nonnull String after, @Nonnull INode node) throws NoSuchElementException {
-                int index = after.lastIndexOf ('.');
+                int index = after.indexOf ('.');
                 if (index != -1) {
                         IObjectNode closestNode = this.get (after.substring (0, index), IObjectNode.class);
                         closestNode.insertAfter (after.substring ((index + 1)), node);
@@ -487,7 +487,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public IObjectNode insertBefore (@Nonnull String before, @Nonnull INode node) throws NoSuchElementException {
-                int index = before.lastIndexOf ('.');
+                int index = before.indexOf ('.');
                 if (index != -1) {
                         IObjectNode closestNode = this.get (before.substring (0, index), IObjectNode.class);
                         closestNode.insertAfter (before.substring ((index + 1)), node);
@@ -526,7 +526,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Override
         public boolean isPresent (@Nonnull String name) {
                 try {
-                        int index = name.lastIndexOf ('.');
+                        int index = name.indexOf ('.');
                         if (index != -1) {
                                 IObjectNode closestNode = this.get (name.substring (0, index), IObjectNode.class);
                                 return closestNode.isPresent (name.substring ((index + 1)));
@@ -553,7 +553,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Override
         public boolean isPresent (@Nonnull String name, @Nonnull Class<? extends INode> nodeType) {
                 try {
-                        int index = name.lastIndexOf ('.');
+                        int index = name.indexOf ('.');
                         if (index != -1) {
                                 IObjectNode closestNode = this.get (name.substring (0, index), IObjectNode.class);
                                 return closestNode.isPresent (name.substring ((index + 1)), nodeType);
@@ -589,7 +589,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public IObjectNode remove (@Nonnull String name) throws NoSuchElementException {
-                int index = name.lastIndexOf ('.');
+                int index = name.indexOf ('.');
                 if (index != -1) {
                         IObjectNode node = this.get (name.substring (0, index), IObjectNode.class);
                         node.remove (name.substring ((index + 1)));
