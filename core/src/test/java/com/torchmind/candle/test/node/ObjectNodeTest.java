@@ -35,7 +35,7 @@ import java.util.Iterator;
 public class ObjectNodeTest {
 
         /**
-         * Tests {@link com.torchmind.candle.Candle#append(com.torchmind.candle.api.INode)}, {@link com.torchmind.candle.Candle#insertBefore(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)} and {@link com.torchmind.candle.Candle#insertAfter(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)}.
+         * Tests {@link com.torchmind.candle.node.ObjectNode#append(com.torchmind.candle.api.INode)}, {@link com.torchmind.candle.node.ObjectNode#insertBefore(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)} and {@link com.torchmind.candle.node.ObjectNode#insertAfter(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)}.
          */
         @Test
         public void testInsert () {
