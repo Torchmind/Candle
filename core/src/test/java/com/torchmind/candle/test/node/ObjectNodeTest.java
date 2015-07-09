@@ -19,7 +19,8 @@ package com.torchmind.candle.test.node;
 import com.torchmind.candle.Candle;
 import com.torchmind.candle.api.INode;
 import com.torchmind.candle.node.CommentNode;
-import com.torchmind.candle.node.property.IntegerPropertyNode;
+import com.torchmind.candle.node.property.*;
+import com.torchmind.candle.node.property.array.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +34,105 @@ import java.util.Iterator;
  */
 @RunWith (MockitoJUnitRunner.class)
 public class ObjectNodeTest {
+
+        /**
+         * Tests {@link com.torchmind.candle.node.ObjectNode#get(String)} and associated type specific methods.
+         */
+        @Test
+        public void testGet () {
+                Candle candle = new Candle ();
+
+                boolean[] testValue1 = new boolean[] { true, false, true, false };
+                String[] testValue2 = new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" };
+                TestEnum[] testValue2Enum = new TestEnum[] { TestEnum.VALUE1, TestEnum.VALUE2, TestEnum.VALUE3, TestEnum.VALUE4 };
+                float[] testValue3 = new float[] { 0.01f, 0.02f, 0.03f, 0.04f };
+                int[] testValue4 = new int[] { 1, 2, 3, 4 };
+                String[] testValue6 = new String[] { "Test 1", "Test 2", "Test 3", "Test 4" };
+                boolean testValue7 = true;
+                String testValue8 = "VALUE1";
+                TestEnum testValue8Enum = TestEnum.VALUE1;
+                float testValue9 = 21.5f;
+                int testValue10 = 42;
+                String testValue12 = "Test 1";
+
+                BooleanArrayPropertyNode node1 = new BooleanArrayPropertyNode (candle, "property1", testValue1);
+                EnumArrayPropertyNode node2 = new EnumArrayPropertyNode (candle, "property2", testValue2Enum);
+                FloatArrayPropertyNode node3 = new FloatArrayPropertyNode (candle, "property3", testValue3);
+                IntegerArrayPropertyNode node4 = new IntegerArrayPropertyNode (candle, "property4", testValue4);
+                NullArrayPropertyNode node5 = new NullArrayPropertyNode (candle, "property5");
+                StringArrayPropertyNode node6 = new StringArrayPropertyNode (candle, "property6", testValue6);
+                BooleanPropertyNode node7 = new BooleanPropertyNode (candle, "property7", testValue7);
+                EnumPropertyNode node8 = new EnumPropertyNode (candle, "property8", testValue8Enum);
+                FloatPropertyNode node9 = new FloatPropertyNode (candle, "property9", testValue9);
+                IntegerPropertyNode node10 = new IntegerPropertyNode (candle, "property10", testValue10);
+                NullPropertyNode node11 = new NullPropertyNode (candle, "property11");
+                StringPropertyNode node12 = new StringPropertyNode (candle, "property12", testValue12);
+
+                candle.append (node1);
+                candle.append (node2);
+                candle.append (node3);
+                candle.append (node4);
+                candle.append (node5);
+                candle.append (node6);
+                candle.append (node7);
+                candle.append (node8);
+                candle.append (node9);
+                candle.append (node10);
+                candle.append (node11);
+                candle.append (node12);
+
+                Assert.assertEquals (node1, candle.get ("property1"));
+                Assert.assertEquals (node1, candle.get ("property1", BooleanArrayPropertyNode.class));
+                Assert.assertArrayEquals (testValue1, candle.getBooleanArray ("property1"));
+
+                Assert.assertEquals (node2, candle.get ("property2"));
+                Assert.assertEquals (node2, candle.get ("property2", EnumArrayPropertyNode.class));
+                Assert.assertArrayEquals (testValue2, candle.getEnumArray ("property2"));
+                Assert.assertArrayEquals (testValue2Enum, candle.getEnumArray ("property2", TestEnum.class));
+
+                Assert.assertEquals (node3, candle.get ("property3"));
+                Assert.assertEquals (node3, candle.get ("property3", FloatArrayPropertyNode.class));
+                Assert.assertArrayEquals (testValue3, candle.getFloatArray ("property3"), 0.001f);
+                Assert.assertArrayEquals (testValue3, candle.getUnsignedFloatArray ("property3"), 0.001f);
+
+                Assert.assertEquals (node4, candle.get ("property4"));
+                Assert.assertEquals (node4, candle.get ("property4", IntegerArrayPropertyNode.class));
+                Assert.assertArrayEquals (testValue4, candle.getIntegerArray ("property4"));
+                Assert.assertArrayEquals (testValue4, candle.getUnsignedIntegerArray ("property4"));
+
+                Assert.assertEquals (node5, candle.get ("property5"));
+                Assert.assertEquals (node5, candle.get ("property5", NullArrayPropertyNode.class));
+
+                Assert.assertEquals (node6, candle.get ("property6"));
+                Assert.assertEquals (node6, candle.get ("property6", StringArrayPropertyNode.class));
+                Assert.assertArrayEquals (testValue6, candle.getStringArray ("property6"));
+
+                Assert.assertEquals (node7, candle.get ("property7"));
+                Assert.assertEquals (node7, candle.get ("property7", BooleanPropertyNode.class));
+                Assert.assertEquals (testValue7, candle.getBoolean ("property7"));
+
+                Assert.assertEquals (node8, candle.get ("property8"));
+                Assert.assertEquals (node8, candle.get ("property8", EnumPropertyNode.class));
+                Assert.assertEquals (testValue8, candle.getEnum ("property8"));
+                Assert.assertEquals (testValue8Enum, candle.getEnum ("property8", TestEnum.class));
+
+                Assert.assertEquals (node9, candle.get ("property9"));
+                Assert.assertEquals (node9, candle.get ("property9", FloatPropertyNode.class));
+                Assert.assertEquals (testValue9, candle.getFloat ("property9"), 0.001f);
+                Assert.assertEquals (testValue9, candle.getUnsignedFloat ("property9"), 0.001f);
+
+                Assert.assertEquals (node10, candle.get ("property10"));
+                Assert.assertEquals (node10, candle.get ("property10", IntegerPropertyNode.class));
+                Assert.assertEquals (testValue10, candle.getInteger ("property10"));
+                Assert.assertEquals (testValue10, candle.getUnsignedInteger ("property10"));
+
+                Assert.assertEquals (node11, candle.get ("property11"));
+                Assert.assertEquals (node11, candle.get ("property11", NullPropertyNode.class));
+
+                Assert.assertEquals (node12, candle.get ("property12"));
+                Assert.assertEquals (node12, candle.get ("property12", StringPropertyNode.class));
+                Assert.assertEquals (testValue12, candle.getString ("property12"));
+        }
 
         /**
          * Tests {@link com.torchmind.candle.node.ObjectNode#append(com.torchmind.candle.api.INode)}, {@link com.torchmind.candle.node.ObjectNode#insertBefore(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)} and {@link com.torchmind.candle.node.ObjectNode#insertAfter(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)}.
@@ -83,5 +183,12 @@ public class ObjectNodeTest {
                 Assert.assertEquals (node2, it.next ());
                 Assert.assertEquals (node3, it.next ());
                 Assert.assertEquals (node1, it.next ());
+        }
+
+        enum TestEnum {
+                VALUE1,
+                VALUE2,
+                VALUE3,
+                VALUE4
         }
 }
