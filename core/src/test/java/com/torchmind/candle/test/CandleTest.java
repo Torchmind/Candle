@@ -19,6 +19,8 @@ package com.torchmind.candle.test;
 import com.torchmind.candle.Candle;
 import com.torchmind.candle.api.IObjectNode;
 import com.torchmind.candle.api.error.CandleException;
+import com.torchmind.candle.api.error.CandleLexerException;
+import com.torchmind.candle.api.error.CandleParserException;
 import com.torchmind.candle.node.property.array.NullArrayPropertyNode;
 import org.junit.Assert;
 import org.junit.Test;
@@ -230,5 +232,23 @@ public class CandleTest {
                         Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, candle.getStringArray ("object1.child2.property27"));
                         Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, candle.getStringArray ("object1.child2.property28"));
                 }
+        }
+
+        /**
+         * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
+         */
+        @Test (expected = CandleLexerException.class)
+        public void testLexerError () throws IOException, CandleException {
+                Candle candle = new Candle ();
+                candle.read (CandleTest.class.getResourceAsStream ("/testLexerError.cndl"));
+        }
+
+        /**
+         * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
+         */
+        @Test (expected = CandleParserException.class)
+        public void testParserError () throws IOException, CandleException {
+                Candle candle = new Candle ();
+                candle.read (CandleTest.class.getResourceAsStream ("/testParserError.cndl"));
         }
 }
