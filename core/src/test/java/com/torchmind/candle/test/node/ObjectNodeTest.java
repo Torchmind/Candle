@@ -19,6 +19,7 @@ package com.torchmind.candle.test.node;
 import com.torchmind.candle.Candle;
 import com.torchmind.candle.api.INode;
 import com.torchmind.candle.node.CommentNode;
+import com.torchmind.candle.node.property.IntegerPropertyNode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,6 +54,31 @@ public class ObjectNodeTest {
                 Assert.assertEquals (node1, it.next ());
 
                 candle.insertAfter (node2, node3);
+                it = candle.iterator ();
+                Assert.assertEquals (node2, it.next ());
+                Assert.assertEquals (node3, it.next ());
+                Assert.assertEquals (node1, it.next ());
+        }
+
+        /**
+         * Tests {@link com.torchmind.candle.node.ObjectNode#insertBefore(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)} and {@link com.torchmind.candle.node.ObjectNode#insertAfter(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)}.
+         */
+        @Test
+        public void testInsertNamed () {
+                Candle candle = new Candle ();
+
+                IntegerPropertyNode node1 = new IntegerPropertyNode (candle, "property1", 42);
+                IntegerPropertyNode node2 = new IntegerPropertyNode (candle, "property2", 42);
+                IntegerPropertyNode node3 = new IntegerPropertyNode (candle, "property3", 42);
+
+                candle.append (node1);
+
+                candle.insertBefore ("property1", node2);
+                Iterator<INode> it = candle.iterator ();
+                Assert.assertEquals (node2, it.next ());
+                Assert.assertEquals (node1, it.next ());
+
+                candle.insertAfter ("property2", node3);
                 it = candle.iterator ();
                 Assert.assertEquals (node2, it.next ());
                 Assert.assertEquals (node3, it.next ());
