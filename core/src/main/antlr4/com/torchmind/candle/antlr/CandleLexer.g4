@@ -32,6 +32,7 @@ fragment NUMBER_HEX: [0-9A-Fa-f];
 
 // Keywords
 COPY: 'copy';
+DEFAULT: 'default';
 FALSE: 'false';
 INCLUDE: 'include';
 NULL: 'null' | 'NULL';

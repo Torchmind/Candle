@@ -33,6 +33,11 @@ public enum NodeValueType {
         BOOLEAN,
 
         /**
+         * Represents a default value.
+         */
+        DEFAULT,
+
+        /**
          * Represents a value within a list of possible values.
          */
         ENUM,

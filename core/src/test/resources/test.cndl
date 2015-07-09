@@ -32,16 +32,17 @@ property15 = true
 property16 = false
 property17 = VALUE1
 property18 = null
-property19 = ["Test 1", "Test 2", "Test 3"]
-property20 = [1, 2, 3, 4]
-property21 = [-1, -2, -3, -4]
-property22 = [0xA, 0xB, 0xC, 0xD]
-property23 = [1.1, 1.2, 1.3, 1.4]
-property24 = [true, false, true, false]
-property25 = [VALUE1, VALUE2, VALUE3, VALUE4]
-property26 = [null, null, null, null]
-property27 = [null, null, "Test 1", null]
-property28 = [
+property19 = default
+property20 = ["Test 1", "Test 2", "Test 3"]
+property21 = [1, 2, 3, 4]
+property22 = [-1, -2, -3, -4]
+property23 = [0xA, 0xB, 0xC, 0xD]
+property24 = [1.1, 1.2, 1.3, 1.4]
+property25 = [true, false, true, false]
+property26 = [VALUE1, VALUE2, VALUE3, VALUE4]
+property27 = [null, null, null, null]
+property28 = [null, null, "Test 1", null]
+property29 = [
         "Test 1",
         "Test 2",
         "Test 3",
@@ -68,16 +69,17 @@ object1 {
         property16 = false
         property17 = VALUE1
         property18 = null
-        property19 = ["Test 1", "Test 2", "Test 3"]
-        property20 = [1, 2, 3, 4]
-        property21 = [-1, -2, -3, -4]
-        property22 = [0xA, 0xB, 0xC, 0xD]
-        property23 = [1.1, 1.2, 1.3, 1.4]
-        property24 = [true, false, true, false]
-        property25 = [VALUE1, VALUE2, VALUE3, VALUE4]
-        property26 = [null, null, null, null]
-        property27 = [null, null, "Test 1", null]
-        property28 = [
+        property19 = default
+        property20 = ["Test 1", "Test 2", "Test 3"]
+        property21 = [1, 2, 3, 4]
+        property22 = [-1, -2, -3, -4]
+        property23 = [0xA, 0xB, 0xC, 0xD]
+        property24 = [1.1, 1.2, 1.3, 1.4]
+        property25 = [true, false, true, false]
+        property26 = [VALUE1, VALUE2, VALUE3, VALUE4]
+        property27 = [null, null, null, null]
+        property28 = [null, null, "Test 1", null]
+        property29 = [
                 "Test 1",
                 "Test 2",
                 "Test 3",
@@ -103,16 +105,17 @@ object1 {
                 property16 = false
                 property17 = VALUE1
                 property18 = null
-                property19 = ["Test 1", "Test 2", "Test 3"]
-                property20 = [1, 2, 3, 4]
-                property21 = [-1, -2, -3, -4]
-                property22 = [0xA, 0xB, 0xC, 0xD]
-                property23 = [1.1, 1.2, 1.3, 1.4]
-                property24 = [true, false, true, false]
-                property25 = [VALUE1, VALUE2, VALUE3, VALUE4]
-                property26 = [null, null, null, null]
-                property27 = [null, null, "Test 1", null]
-                property28 = [
+                property19 = default
+                property20 = ["Test 1", "Test 2", "Test 3"]
+                property21 = [1, 2, 3, 4]
+                property22 = [-1, -2, -3, -4]
+                property23 = [0xA, 0xB, 0xC, 0xD]
+                property24 = [1.1, 1.2, 1.3, 1.4]
+                property25 = [true, false, true, false]
+                property26 = [VALUE1, VALUE2, VALUE3, VALUE4]
+                property27 = [null, null, null, null]
+                property28 = [null, null, "Test 1", null]
+                property29 = [
                         "Test 1",
                         "Test 2",
                         "Test 3",
@@ -138,16 +141,17 @@ object1 {
                         property16 = false
                         property17 = VALUE1
                         property18 = null
-                        property19 = ["Test 1", "Test 2", "Test 3"]
-                        property20 = [1, 2, 3, 4]
-                        property21 = [-1, -2, -3, -4]
-                        property22 = [0xA, 0xB, 0xC, 0xD]
-                        property23 = [1.1, 1.2, 1.3, 1.4]
-                        property24 = [true, false, true, false]
-                        property25 = [VALUE1, VALUE2, VALUE3, VALUE4]
-                        property26 = [null, null, null, null]
-                        property27 = [null, null, "Test 1", null]
-                        property28 = [
+                        property19 = default
+                        property20 = ["Test 1", "Test 2", "Test 3"]
+                        property21 = [1, 2, 3, 4]
+                        property22 = [-1, -2, -3, -4]
+                        property23 = [0xA, 0xB, 0xC, 0xD]
+                        property24 = [1.1, 1.2, 1.3, 1.4]
+                        property25 = [true, false, true, false]
+                        property26 = [VALUE1, VALUE2, VALUE3, VALUE4]
+                        property27 = [null, null, null, null]
+                        property28 = [null, null, "Test 1", null]
+                        property29 = [
                                 "Test 1",
                                 "Test 2",
                                 "Test 3",
@@ -175,16 +179,17 @@ object1 {
                 property16 = false
                 property17 = VALUE1
                 property18 = null
-                property19 = ["Test 1", "Test 2", "Test 3"]
-                property20 = [1, 2, 3, 4]
-                property21 = [-1, -2, -3, -4]
-                property22 = [0xA, 0xB, 0xC, 0xD]
-                property23 = [1.1, 1.2, 1.3, 1.4]
-                property24 = [true, false, true, false]
-                property25 = [VALUE1, VALUE2, VALUE3, VALUE4]
-                property26 = [null, null, null, null]
-                property27 = [null, null, "Test 1", null]
-                property28 = [
+                property19 = default
+                property20 = ["Test 1", "Test 2", "Test 3"]
+                property21 = [1, 2, 3, 4]
+                property22 = [-1, -2, -3, -4]
+                property23 = [0xA, 0xB, 0xC, 0xD]
+                property24 = [1.1, 1.2, 1.3, 1.4]
+                property25 = [true, false, true, false]
+                property26 = [VALUE1, VALUE2, VALUE3, VALUE4]
+                property27 = [null, null, null, null]
+                property28 = [null, null, "Test 1", null]
+                property29 = [
                         "Test 1",
                         "Test 2",
                         "Test 3",

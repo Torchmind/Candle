@@ -38,8 +38,9 @@ property: propertyIdentifier EQUALS propertyValue;
 propertyIdentifier: IDENTIFIER;
 
 // Property Value Types
-propertyValue: propertyValueArray | propertyValueBoolean | propertyValueEnum | propertyValueFloat | propertyValueInteger | propertyValueNull | propertyValueString;
+propertyValue: propertyValueArray | propertyValueBoolean | propertyValueDefault | propertyValueEnum | propertyValueFloat | propertyValueInteger | propertyValueNull | propertyValueString;
 propertyValueBoolean: TRUE | FALSE;
+propertyValueDefault: DEFAULT;
 propertyValueEnum: IDENTIFIER;
 propertyValueFloat: NUMBER_FLOAT;
 propertyValueInteger: NUMBER_INTEGER;

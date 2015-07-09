@@ -595,6 +595,15 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
         IObjectNode insertBefore (@Nonnull INode before, @Nonnull INode node) throws NoSuchElementException;
 
         /**
+         * Checks whether a value is set to default.
+         * @param name The node name.
+         * @return True if default.
+         * @throws java.lang.IllegalStateException when the node type differs from the expected type.
+         * @throws java.util.NoSuchElementException when the element is not present within the tree.
+         */
+        boolean isDefault (@Nonnull String name) throws IllegalStateException, NoSuchElementException;
+
+        /**
          * Checks whether the node represents the root document node.
          *
          * @return The node.

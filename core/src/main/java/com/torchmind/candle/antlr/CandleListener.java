@@ -106,6 +106,15 @@ public class CandleListener extends CandleParserBaseListener {
          * {@inheritDoc}
          */
         @Override
+        public void enterPropertyValueDefault (CandleParser.PropertyValueDefaultContext ctx) {
+                this.objectNodeStack.peek ().append (new DefaultPropertyNode (this.candle, this.lastIdentifier));
+                this.lastIdentifier = null;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
         public void enterPropertyValueEnum (CandleParser.PropertyValueEnumContext ctx) {
                 String value = ctx.getText ();
 

@@ -68,17 +68,18 @@ public class CandleTest {
                 Assert.assertEquals ("VALUE1", candle.getEnum ("property17"));
 
                 Assert.assertTrue (candle.isNull ("property18"));
+                Assert.assertTrue (candle.isDefault ("property19"));
 
-                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, candle.getStringArray ("property19"));
-                Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, candle.getIntegerArray ("property20"));
-                Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, candle.getIntegerArray ("property21"));
-                Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, candle.getIntegerArray ("property22"));
-                Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, candle.getFloatArray ("property23"), 0.001f);
-                Assert.assertArrayEquals (new boolean[] { true, false, true, false }, candle.getBooleanArray ("property24"));
-                Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, candle.getEnumArray ("property25"));
-                Assert.assertEquals (NullArrayPropertyNode.class, candle.get ("property26").getClass ());
-                Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, candle.getStringArray ("property27"));
-                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, candle.getStringArray ("property28"));
+                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, candle.getStringArray ("property20"));
+                Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, candle.getIntegerArray ("property21"));
+                Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, candle.getIntegerArray ("property22"));
+                Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, candle.getIntegerArray ("property23"));
+                Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, candle.getFloatArray ("property24"), 0.001f);
+                Assert.assertArrayEquals (new boolean[] { true, false, true, false }, candle.getBooleanArray ("property25"));
+                Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, candle.getEnumArray ("property26"));
+                Assert.assertEquals (NullArrayPropertyNode.class, candle.get ("property27").getClass ());
+                Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, candle.getStringArray ("property28"));
+                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, candle.getStringArray ("property29"));
 
                 {
                         IObjectNode objectNode = candle.get ("object1", IObjectNode.class);
@@ -107,17 +108,18 @@ public class CandleTest {
                         Assert.assertEquals ("VALUE1", objectNode.getEnum ("property17"));
 
                         Assert.assertTrue (objectNode.isNull ("property18"));
+                        Assert.assertTrue (objectNode.isDefault ("property19"));
 
-                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, objectNode.getStringArray ("property19"));
-                        Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, objectNode.getIntegerArray ("property20"));
-                        Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, objectNode.getIntegerArray ("property21"));
-                        Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, objectNode.getIntegerArray ("property22"));
-                        Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, objectNode.getFloatArray ("property23"), 0.001f);
-                        Assert.assertArrayEquals (new boolean[] { true, false, true, false }, objectNode.getBooleanArray ("property24"));
-                        Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, objectNode.getEnumArray ("property25"));
-                        Assert.assertEquals (NullArrayPropertyNode.class, objectNode.get ("property26").getClass ());
-                        Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, objectNode.getStringArray ("property27"));
-                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, objectNode.getStringArray ("property28"));
+                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, objectNode.getStringArray ("property20"));
+                        Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, objectNode.getIntegerArray ("property21"));
+                        Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, objectNode.getIntegerArray ("property22"));
+                        Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, objectNode.getIntegerArray ("property23"));
+                        Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, objectNode.getFloatArray ("property24"), 0.001f);
+                        Assert.assertArrayEquals (new boolean[] { true, false, true, false }, objectNode.getBooleanArray ("property25"));
+                        Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, objectNode.getEnumArray ("property26"));
+                        Assert.assertEquals (NullArrayPropertyNode.class, objectNode.get ("property27").getClass ());
+                        Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, objectNode.getStringArray ("property28"));
+                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, objectNode.getStringArray ("property29"));
 
                         {
                                 Assert.assertEquals ("Test", objectNode.getString ("child1.property1"));
@@ -143,17 +145,18 @@ public class CandleTest {
                                 Assert.assertEquals ("VALUE1", objectNode.getEnum ("child1.property17"));
 
                                 Assert.assertTrue (objectNode.isNull ("child1.property18"));
+                                Assert.assertTrue (objectNode.isDefault ("child1.property19"));
 
-                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, objectNode.getStringArray ("child1.property19"));
-                                Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, objectNode.getIntegerArray ("child1.property20"));
-                                Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, objectNode.getIntegerArray ("child1.property21"));
-                                Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, objectNode.getIntegerArray ("child1.property22"));
-                                Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, objectNode.getFloatArray ("child1.property23"), 0.001f);
-                                Assert.assertArrayEquals (new boolean[] { true, false, true, false }, objectNode.getBooleanArray ("child1.property24"));
-                                Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, objectNode.getEnumArray ("child1.property25"));
-                                Assert.assertEquals (NullArrayPropertyNode.class, objectNode.get ("child1.property26").getClass ());
-                                Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, objectNode.getStringArray ("child1.property27"));
-                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, objectNode.getStringArray ("child1.property28"));
+                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, objectNode.getStringArray ("child1.property20"));
+                                Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, objectNode.getIntegerArray ("child1.property21"));
+                                Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, objectNode.getIntegerArray ("child1.property22"));
+                                Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, objectNode.getIntegerArray ("child1.property23"));
+                                Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, objectNode.getFloatArray ("child1.property24"), 0.001f);
+                                Assert.assertArrayEquals (new boolean[] { true, false, true, false }, objectNode.getBooleanArray ("child1.property25"));
+                                Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, objectNode.getEnumArray ("child1.property26"));
+                                Assert.assertEquals (NullArrayPropertyNode.class, objectNode.get ("child1.property27").getClass ());
+                                Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, objectNode.getStringArray ("child1.property28"));
+                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, objectNode.getStringArray ("child1.property29"));
                         }
 
                         {
@@ -180,17 +183,18 @@ public class CandleTest {
                                 Assert.assertEquals ("VALUE1", objectNode.getEnum ("child1.child1.property17"));
 
                                 Assert.assertTrue (objectNode.isNull ("child1.child1.property18"));
+                                Assert.assertTrue (objectNode.isDefault ("child1.child1.property19"));
 
-                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, objectNode.getStringArray ("child1.child1.property19"));
-                                Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, objectNode.getIntegerArray ("child1.child1.property20"));
-                                Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, objectNode.getIntegerArray ("child1.child1.property21"));
-                                Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, objectNode.getIntegerArray ("child1.child1.property22"));
-                                Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, objectNode.getFloatArray ("child1.child1.property23"), 0.001f);
-                                Assert.assertArrayEquals (new boolean[] { true, false, true, false }, objectNode.getBooleanArray ("child1.child1.property24"));
-                                Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, objectNode.getEnumArray ("child1.child1.property25"));
-                                Assert.assertEquals (NullArrayPropertyNode.class, objectNode.get ("child1.child1.property26").getClass ());
-                                Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, objectNode.getStringArray ("child1.child1.property27"));
-                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, objectNode.getStringArray ("child1.child1.property28"));
+                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, objectNode.getStringArray ("child1.child1.property20"));
+                                Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, objectNode.getIntegerArray ("child1.child1.property21"));
+                                Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, objectNode.getIntegerArray ("child1.child1.property22"));
+                                Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, objectNode.getIntegerArray ("child1.child1.property23"));
+                                Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, objectNode.getFloatArray ("child1.child1.property24"), 0.001f);
+                                Assert.assertArrayEquals (new boolean[] { true, false, true, false }, objectNode.getBooleanArray ("child1.child1.property25"));
+                                Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, objectNode.getEnumArray ("child1.child1.property26"));
+                                Assert.assertEquals (NullArrayPropertyNode.class, objectNode.get ("child1.child1.property27").getClass ());
+                                Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, objectNode.getStringArray ("child1.child1.property28"));
+                                Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, objectNode.getStringArray ("child1.child1.property29"));
                         }
                 }
 
@@ -220,17 +224,18 @@ public class CandleTest {
                         Assert.assertEquals ("VALUE1", candle.getEnum ("object1.child2.property17"));
 
                         Assert.assertTrue (candle.isNull ("object1.child2.property18"));
+                        Assert.assertTrue (candle.isDefault ("object1.child2.property19"));
 
-                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, candle.getStringArray ("object1.child2.property19"));
-                        Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, candle.getIntegerArray ("object1.child2.property20"));
-                        Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, candle.getIntegerArray ("object1.child2.property21"));
-                        Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, candle.getIntegerArray ("object1.child2.property22"));
-                        Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, candle.getFloatArray ("object1.child2.property23"), 0.001f);
-                        Assert.assertArrayEquals (new boolean[] { true, false, true, false }, candle.getBooleanArray ("object1.child2.property24"));
-                        Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, candle.getEnumArray ("object1.child2.property25"));
-                        Assert.assertEquals (NullArrayPropertyNode.class, candle.get ("object1.child2.property26").getClass ());
-                        Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, candle.getStringArray ("object1.child2.property27"));
-                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, candle.getStringArray ("object1.child2.property28"));
+                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3" }, candle.getStringArray ("object1.child2.property20"));
+                        Assert.assertArrayEquals (new int[] { 1, 2, 3, 4 }, candle.getIntegerArray ("object1.child2.property21"));
+                        Assert.assertArrayEquals (new int[] { -1, -2, -3, -4 }, candle.getIntegerArray ("object1.child2.property22"));
+                        Assert.assertArrayEquals (new int[] { 0xA, 0xB, 0xC, 0xD }, candle.getIntegerArray ("object1.child2.property23"));
+                        Assert.assertArrayEquals (new float[] { 1.1f, 1.2f, 1.3f, 1.4f }, candle.getFloatArray ("object1.child2.property24"), 0.001f);
+                        Assert.assertArrayEquals (new boolean[] { true, false, true, false }, candle.getBooleanArray ("object1.child2.property25"));
+                        Assert.assertArrayEquals (new String[] { "VALUE1", "VALUE2", "VALUE3", "VALUE4" }, candle.getEnumArray ("object1.child2.property26"));
+                        Assert.assertEquals (NullArrayPropertyNode.class, candle.get ("object1.child2.property27").getClass ());
+                        Assert.assertArrayEquals (new String[] { null, null, "Test 1", null }, candle.getStringArray ("object1.child2.property28"));
+                        Assert.assertArrayEquals (new String[] { "Test 1", "Test 2", "Test 3", "Test 4" }, candle.getStringArray ("object1.child2.property29"));
                 }
         }
 
