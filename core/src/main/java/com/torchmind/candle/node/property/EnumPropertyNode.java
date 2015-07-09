@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents an enum value within the tree.
+ *
  * @author Johannes Donath
  */
 public class EnumPropertyNode extends AbstractPropertyNode {
@@ -42,6 +43,7 @@ public class EnumPropertyNode extends AbstractPropertyNode {
 
         /**
          * Retrieves the enum value.
+         *
          * @return The value.
          */
         @Nonnull
@@ -51,6 +53,7 @@ public class EnumPropertyNode extends AbstractPropertyNode {
 
         /**
          * Sets the enum value.
+         *
          * @param value The value.
          * @return The node.
          */
@@ -62,9 +65,11 @@ public class EnumPropertyNode extends AbstractPropertyNode {
 
         /**
          * Retrieves the enum value.
+         *
          * @param enumType The enum type.
-         * @param <T> The enum type.
+         * @param <T>      The enum type.
          * @return The value.
+         *
          * @throws java.lang.IllegalStateException when the enum does not contain the node value.
          */
         @Nonnull
@@ -79,6 +84,7 @@ public class EnumPropertyNode extends AbstractPropertyNode {
 
         /**
          * Sets an enum value.
+         *
          * @param value The enum value.
          * @return The node.
          */

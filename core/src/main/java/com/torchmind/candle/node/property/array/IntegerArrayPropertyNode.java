@@ -25,6 +25,7 @@ import java.util.Arrays;
 
 /**
  * Represents integer array properties within the tree.
+ *
  * @author Johannes Donath
  */
 public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
@@ -40,12 +41,13 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
                 super (documentNode, name);
 
                 int[] primitiveArray = new int[array.length];
-                for (int i = 0; i < primitiveArray.length; i++) primitiveArray[i] = array[i];
+                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
                 this.array (primitiveArray);
         }
 
         /**
          * Retrieves the integer array.
+         *
          * @return The array.
          */
         @Nonnull
@@ -54,21 +56,8 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
         }
 
         /**
-         * Retrieves the unsigned integer array.
-         * @return The array.
-         */
-        @Nonnull
-        @Nonnegative
-        public int[] arrayUnsigned () {
-                for (int current : this.array) {
-                        if (current < 0) throw new IllegalStateException ("Expected an unsigned value but got " + current);
-                }
-
-                return this.array;
-        }
-
-        /**
          * Sets the integer array.
+         *
          * @param array The array.
          * @return The node.
          */
@@ -76,6 +65,23 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
         public IntegerArrayPropertyNode array (@Nonnull int[] array) {
                 this.array = array;
                 return this;
+        }
+
+        /**
+         * Retrieves the unsigned integer array.
+         *
+         * @return The array.
+         */
+        @Nonnull
+        @Nonnegative
+        public int[] arrayUnsigned () {
+                for (int current : this.array) {
+                        if (current < 0) {
+                                throw new IllegalStateException ("Expected an unsigned value but got " + current);
+                        }
+                }
+
+                return this.array;
         }
 
         /**

@@ -24,18 +24,19 @@ import javax.annotation.Nonnull;
 
 /**
  * Provides an abstract utility implementation of {@link com.torchmind.candle.api.INode}.
+ *
  * @author Johannes Donath
  */
 public abstract class AbstractNode implements INode {
         private IDocumentNode documentNode;
+
+        protected AbstractNode () { }
 
         public AbstractNode (@Nonnull IDocumentNode documentNode) {
                 super ();
 
                 this.documentNode = documentNode;
         }
-
-        protected AbstractNode () { }
 
         /**
          * {@inheritDoc}
@@ -52,7 +53,9 @@ public abstract class AbstractNode implements INode {
         @Nonnull
         @Override
         public AbstractNode ensureType (@Nonnull NodeType type) throws IllegalStateException {
-                if (this.type () != type) throw new IllegalStateException ("Expected node of type " + type + " but found " + this.type ());
+                if (this.type () != type) {
+                        throw new IllegalStateException ("Expected node of type " + type + " but found " + this.type ());
+                }
                 return this;
         }
 }

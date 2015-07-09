@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a boolean within the node tree.
+ *
  * @author Johannes Donath
  */
 public class BooleanPropertyNode extends AbstractPropertyNode {
@@ -43,6 +44,7 @@ public class BooleanPropertyNode extends AbstractPropertyNode {
 
         /**
          * Sets the boolean value.
+         *
          * @param value The value.
          * @return The node.
          */

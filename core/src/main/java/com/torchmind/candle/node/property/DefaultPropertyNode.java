@@ -17,13 +17,13 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
-import com.torchmind.candle.api.IPropertyNode;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
 
 /**
  * Represents a default value.
+ *
  * @author Johannes Donath
  */
 public class DefaultPropertyNode extends AbstractPropertyNode {

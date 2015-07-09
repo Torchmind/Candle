@@ -24,6 +24,7 @@ import java.util.Arrays;
 
 /**
  * Represents a string array property within the tree.
+ *
  * @author Johannes Donath
  */
 public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
@@ -37,6 +38,7 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Retrieves the string array.
+         *
          * @return The array.
          */
         public String[] array () {
@@ -45,6 +47,7 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Sets the string array.
+         *
          * @param array The array.
          * @return The node.
          */

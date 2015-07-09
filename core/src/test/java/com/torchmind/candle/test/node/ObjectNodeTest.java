@@ -31,6 +31,7 @@ import java.util.Iterator;
 
 /**
  * Provides test cases for {@link com.torchmind.candle.node.ObjectNode}.
+ *
  * @author Johannes Donath
  */
 @RunWith (MockitoJUnitRunner.class)

@@ -38,6 +38,15 @@ import java.io.IOException;
 public class CandleTest {
 
         /**
+         * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
+         */
+        @Test (expected = CandleLexerException.class)
+        public void testLexerError () throws IOException, CandleException {
+                Candle candle = new Candle ();
+                candle.read (CandleTest.class.getResourceAsStream ("/testLexerError.cndl"));
+        }
+
+        /**
          * Tests {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
          */
         @Test
@@ -240,6 +249,15 @@ public class CandleTest {
         }
 
         /**
+         * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
+         */
+        @Test (expected = CandleParserException.class)
+        public void testParserError () throws IOException, CandleException {
+                Candle candle = new Candle ();
+                candle.read (CandleTest.class.getResourceAsStream ("/testParserError.cndl"));
+        }
+
+        /**
          * Tests property replacement of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
          */
         @Test
@@ -249,23 +267,5 @@ public class CandleTest {
 
                 Assert.assertEquals (42, candle.getInteger ("property1"));
                 Assert.assertEquals (4, candle.getInteger ("property2"));
-        }
-
-        /**
-         * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
-         */
-        @Test (expected = CandleLexerException.class)
-        public void testLexerError () throws IOException, CandleException {
-                Candle candle = new Candle ();
-                candle.read (CandleTest.class.getResourceAsStream ("/testLexerError.cndl"));
-        }
-
-        /**
-         * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
-         */
-        @Test (expected = CandleParserException.class)
-        public void testParserError () throws IOException, CandleException {
-                Candle candle = new Candle ();
-                candle.read (CandleTest.class.getResourceAsStream ("/testParserError.cndl"));
         }
 }

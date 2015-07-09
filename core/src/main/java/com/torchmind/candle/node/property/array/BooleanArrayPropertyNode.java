@@ -18,13 +18,13 @@ package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
-import com.torchmind.candle.node.property.BooleanPropertyNode;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 /**
  * Represents a boolean array property within the tree.
+ *
  * @author Johannes Donath
  */
 public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
@@ -40,12 +40,13 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
                 super (documentNode, name);
 
                 boolean[] primitiveArray = new boolean[array.length];
-                for (int i = 0; i < primitiveArray.length; i++) primitiveArray[i] = array[i];
+                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
                 this.array (primitiveArray);
         }
 
         /**
          * Retrieves the boolean array.
+         *
          * @return The array.
          */
         @Nonnull
@@ -55,6 +56,7 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Sets the boolean array.
+         *
          * @param array The array.
          * @return The node.
          */

@@ -17,11 +17,15 @@
 package com.torchmind.candle.antlr;
 
 import com.torchmind.candle.api.error.CandleParserException;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.BailErrorStrategy;
+import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 /**
  * Wraps parser errors for user convenience.
+ *
  * @author Johannes Donath
  */
 public class ParserErrorStrategy extends BailErrorStrategy {

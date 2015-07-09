@@ -18,26 +18,25 @@ package com.torchmind.candle.node;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.INamedNode;
-import com.torchmind.candle.api.NodeType;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Provides an abstract implementation of {@link com.torchmind.candle.api.INamedNode}.
+ *
  * @author Johannes Donath
  */
 public abstract class AbstractNamedNode extends AbstractNode implements INamedNode {
         private String name;
 
+        protected AbstractNamedNode () {
+                super ();
+        }
+
         public AbstractNamedNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
                 super (documentNode);
 
                 this.name (name);
-        }
-
-        protected AbstractNamedNode () {
-                super ();
         }
 
         /**

@@ -32,6 +32,7 @@ import java.io.InputStream;
 
 /**
  * Provides a root document for the Candle Configuration File Format.
+ *
  * @author Johannes Donath
  */
 public class Candle extends ObjectNode implements IDocumentNode {
@@ -42,10 +43,12 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
         /**
          * Processes a {@link java.io.File}.
+         *
          * @param file The file.
          * @return The document.
+         *
          * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
-         * @throws java.io.IOException when reading the document fails.
+         * @throws java.io.IOException                            when reading the document fails.
          */
         @Nonnull
         public Candle read (@Nonnull File file) throws CandleException, IOException {
@@ -54,10 +57,12 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
         /**
          * Processes a file.
+         *
          * @param fileName The file name/path.
          * @return The document.
+         *
          * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
-         * @throws java.io.IOException when reading the document fails.
+         * @throws java.io.IOException                            when reading the document fails.
          */
         @Nonnull
         public Candle read (@Nonnull String fileName) throws CandleException, IOException {
@@ -66,10 +71,12 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
         /**
          * Processes an {@link java.io.InputStream}.
+         *
          * @param inputStream The input stream.
          * @return The document.
+         *
          * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
-         * @throws java.io.IOException when reading the document fails.
+         * @throws java.io.IOException                            when reading the document fails.
          */
         @Nonnull
         public Candle read (@Nonnull InputStream inputStream) throws CandleException, IOException {
@@ -78,8 +85,10 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
         /**
          * Processes an {@link org.antlr.v4.runtime.ANTLRInputStream}.
+         *
          * @param inputStream The input stream.
          * @return The document.
+         *
          * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
          */
         @Nonnull
@@ -99,7 +108,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
                         walker.walk (listener, parser.candle ());
                         return this;
                 } catch (RuntimeException ex) {
-                        if (ex.getCause () instanceof CandleException) throw ((CandleException) ex.getCause ());
+                        if (ex.getCause () instanceof CandleException) { throw ((CandleException) ex.getCause ()); }
                         throw ex;
                 }
         }

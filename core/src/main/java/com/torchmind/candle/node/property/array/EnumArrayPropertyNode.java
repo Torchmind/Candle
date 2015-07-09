@@ -25,6 +25,7 @@ import java.util.Arrays;
 
 /**
  * Represents an enum array property within the tree.
+ *
  * @author Johannes Donath
  */
 public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
@@ -44,6 +45,7 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Retrieves the raw enum array.
+         *
          * @return The array.
          */
         @Nonnull
@@ -53,8 +55,9 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Retrieves the enum array.
+         *
          * @param enumType The enum type.
-         * @param <T> The enum type.
+         * @param <T>      The enum type.
          * @return The array.
          */
         @Nonnull
@@ -76,6 +79,7 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Sets the raw enum array.
+         *
          * @param array The array.
          * @return The node.
          */
@@ -87,14 +91,17 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
 
         /**
          * Sets the enum array.
+         *
          * @param array The array.
-         * @param <T> The enum type.
+         * @param <T>   The enum type.
          * @return The node.
          */
         @Nonnull
         public <T extends Enum> EnumArrayPropertyNode array (@Nonnull T[] array) {
                 String[] convertedArray = new String[array.length];
-                for (int i = 0; i < array.length; i++) convertedArray[i] = (array[i] != null ? array[i].name () : null);
+                for (int i = 0; i < array.length; i++) {
+                        convertedArray[i] = (array[i] != null ? array[i].name () : null);
+                }
                 return this.array (convertedArray);
         }
 

@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a string value within the tree.
+ *
  * @author Johannes Donath
  */
 public class StringPropertyNode extends AbstractPropertyNode {
@@ -44,6 +45,7 @@ public class StringPropertyNode extends AbstractPropertyNode {
 
         /**
          * Sets the string value.
+         *
          * @param value The value.
          * @return The node.
          */

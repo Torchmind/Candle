@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Provides an implementation of {@link }
+ *
  * @author Johannes Donath
  */
 public class CommentNode extends AbstractNode implements ICommentNode {

@@ -25,6 +25,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Provides an abstract implementation of {@link com.torchmind.candle.api.IPropertyNode}.
+ *
  * @author Johannes Donath
  */
 public abstract class AbstractPropertyNode extends AbstractNamedNode implements IPropertyNode {
@@ -39,7 +40,9 @@ public abstract class AbstractPropertyNode extends AbstractNamedNode implements 
         @Nonnull
         @Override
         public IPropertyNode ensureValueType (@Nonnull NodeValueType valueType) throws IllegalStateException {
-                if (this.valueType () != valueType) throw new IllegalStateException ("Expected value node representing type " + valueType + " but found " + this.valueType ());
+                if (this.valueType () != valueType) {
+                        throw new IllegalStateException ("Expected value node representing type " + valueType + " but found " + this.valueType ());
+                }
                 return this;
         }
 }

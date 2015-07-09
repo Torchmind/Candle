@@ -22,6 +22,7 @@ import javax.annotation.Nullable;
 
 /**
  * Provides an exception for lexer error cases.
+ *
  * @author Johannes Donath
  */
 public class CandleLexerException extends CandleException {

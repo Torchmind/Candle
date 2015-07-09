@@ -25,6 +25,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Provides an abstract implementation of {@link com.torchmind.candle.api.IArrayPropertyNode}.
+ *
  * @author Johannes Donath
  */
 public abstract class AbstractArrayPropertyNode extends AbstractPropertyNode implements IArrayPropertyNode {
@@ -39,7 +40,9 @@ public abstract class AbstractArrayPropertyNode extends AbstractPropertyNode imp
         @Nonnull
         @Override
         public AbstractArrayPropertyNode ensureItemType (@Nonnull NodeValueType valueType) throws IllegalStateException {
-                if (this.itemType () != valueType) throw new IllegalStateException ("Expected value node representing items of type " + valueType + " but found " + this.itemType ());
+                if (this.itemType () != valueType) {
+                        throw new IllegalStateException ("Expected value node representing items of type " + valueType + " but found " + this.itemType ());
+                }
                 return this;
         }
 

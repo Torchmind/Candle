@@ -18,6 +18,7 @@ package com.torchmind.candle.api.error;
 
 /**
  * Provides an exception for parser error cases.
+ *
  * @author Johannes Donath
  */
 public class CandleParserException extends CandleException {

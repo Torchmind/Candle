@@ -23,6 +23,7 @@ import org.antlr.v4.runtime.Recognizer;
 
 /**
  * Provides a basic Lexer error listener.
+ *
  * @author Johannes Donath
  */
 public class LexerErrorListener extends BaseErrorListener {

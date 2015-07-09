@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents an empty array property within the tree.
+ *
  * @author Johannes Donath
  */
 public class NullArrayPropertyNode extends AbstractArrayPropertyNode {

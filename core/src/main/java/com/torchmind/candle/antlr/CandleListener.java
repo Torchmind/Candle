@@ -64,14 +64,6 @@ public class CandleListener extends CandleParserBaseListener {
          * {@inheritDoc}
          */
         @Override
-        public void exitObject (CandleParser.ObjectContext ctx) {
-                this.objectNodeStack.pop ();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
         public void enterObjectIdentifier (CandleParser.ObjectIdentifierContext ctx) {
                 ObjectNode node = new ObjectNode (this.candle, ctx.getText ());
 
@@ -91,12 +83,18 @@ public class CandleListener extends CandleParserBaseListener {
          * {@inheritDoc}
          */
         @Override
+        public void enterPropertyValueArray (CandleParser.PropertyValueArrayContext ctx) {
+                this.arrayContent = new ArrayList<> ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
         public void enterPropertyValueBoolean (CandleParser.PropertyValueBooleanContext ctx) {
                 boolean value = Boolean.parseBoolean (ctx.getText ());
 
-                if (this.arrayContent != null)
-                        this.arrayContent.add (value);
-                else {
+                if (this.arrayContent != null) { this.arrayContent.add (value); } else {
                         this.objectNodeStack.peek ().append (new BooleanPropertyNode (this.candle, this.lastIdentifier, value));
                         this.lastIdentifier = null;
                 }
@@ -118,9 +116,7 @@ public class CandleListener extends CandleParserBaseListener {
         public void enterPropertyValueEnum (CandleParser.PropertyValueEnumContext ctx) {
                 String value = ctx.getText ();
 
-                if (this.arrayContent != null)
-                        this.arrayContent.add (new EnumWrapper (value));
-                else {
+                if (this.arrayContent != null) { this.arrayContent.add (new EnumWrapper (value)); } else {
                         this.objectNodeStack.peek ().append (new EnumPropertyNode (this.candle, this.lastIdentifier, value));
                         this.lastIdentifier = null;
                 }
@@ -133,9 +129,7 @@ public class CandleListener extends CandleParserBaseListener {
         public void enterPropertyValueFloat (CandleParser.PropertyValueFloatContext ctx) {
                 float value = Float.parseFloat (ctx.getText ());
 
-                if (this.arrayContent != null)
-                        this.arrayContent.add (value);
-                else {
+                if (this.arrayContent != null) { this.arrayContent.add (value); } else {
                         this.objectNodeStack.peek ().append (new FloatPropertyNode (this.candle, this.lastIdentifier, value));
                         this.lastIdentifier = null;
                 }
@@ -148,9 +142,7 @@ public class CandleListener extends CandleParserBaseListener {
         public void enterPropertyValueInteger (CandleParser.PropertyValueIntegerContext ctx) {
                 int value = Integer.decode (ctx.getText ());
 
-                if (this.arrayContent != null)
-                        this.arrayContent.add (value);
-                else {
+                if (this.arrayContent != null) { this.arrayContent.add (value); } else {
                         this.objectNodeStack.peek ().append (new IntegerPropertyNode (this.candle, this.lastIdentifier, value));
                         this.lastIdentifier = null;
                 }
@@ -161,9 +153,7 @@ public class CandleListener extends CandleParserBaseListener {
          */
         @Override
         public void enterPropertyValueNull (CandleParser.PropertyValueNullContext ctx) {
-                if (this.arrayContent != null)
-                        this.arrayContent.add (null);
-                else {
+                if (this.arrayContent != null) { this.arrayContent.add (null); } else {
                         this.objectNodeStack.peek ().append (new NullPropertyNode (this.candle, this.lastIdentifier));
                         this.lastIdentifier = null;
                 }
@@ -177,9 +167,7 @@ public class CandleListener extends CandleParserBaseListener {
                 String value = ctx.getText ().substring (1);
                 value = value.substring (0, value.length () - 1);
 
-                if (this.arrayContent != null)
-                        this.arrayContent.add (value);
-                else {
+                if (this.arrayContent != null) { this.arrayContent.add (value); } else {
                         this.objectNodeStack.peek ().append (new StringPropertyNode (this.candle, this.lastIdentifier, value));
                         this.lastIdentifier = null;
                 }
@@ -189,8 +177,8 @@ public class CandleListener extends CandleParserBaseListener {
          * {@inheritDoc}
          */
         @Override
-        public void enterPropertyValueArray (CandleParser.PropertyValueArrayContext ctx) {
-                this.arrayContent = new ArrayList<> ();
+        public void exitObject (CandleParser.ObjectContext ctx) {
+                this.objectNodeStack.pop ();
         }
 
         /**
@@ -207,25 +195,26 @@ public class CandleListener extends CandleParserBaseListener {
                         firstSaneValue = arrayContentIterator.next ();
                 }
 
-                if (firstSaneValue == null)
+                if (firstSaneValue == null) {
                         this.objectNodeStack.peek ().append (new NullArrayPropertyNode (this.candle, this.lastIdentifier));
-                else if (firstSaneValue.getClass ().equals (Boolean.class))
+                } else if (firstSaneValue.getClass ().equals (Boolean.class)) {
                         this.objectNodeStack.peek ().append (new BooleanArrayPropertyNode (this.candle, this.lastIdentifier, this.getArrayContents (arrayContent, Boolean.class, () -> false)));
-                else if (firstSaneValue.getClass ().equals (EnumWrapper.class)) {
+                } else if (firstSaneValue.getClass ().equals (EnumWrapper.class)) {
                         String[] values = Arrays.stream (this.getArrayContents (arrayContent, EnumWrapper.class)).map ((e) -> {
-                                if (e == null) return null;
+                                if (e == null) { return null; }
                                 return e.name;
                         }).toArray (String[]::new);
 
                         this.objectNodeStack.peek ().append (new EnumArrayPropertyNode (this.candle, this.lastIdentifier, values));
-                } else if (firstSaneValue.getClass ().equals (Float.class))
+                } else if (firstSaneValue.getClass ().equals (Float.class)) {
                         this.objectNodeStack.peek ().append (new FloatArrayPropertyNode (this.candle, this.lastIdentifier, this.getArrayContents (arrayContent, Float.class, () -> 0.0f)));
-                else if (firstSaneValue.getClass ().equals (Integer.class))
+                } else if (firstSaneValue.getClass ().equals (Integer.class)) {
                         this.objectNodeStack.peek ().append (new IntegerArrayPropertyNode (this.candle, this.lastIdentifier, this.getArrayContents (arrayContent, Integer.class, () -> 0)));
-                else if (firstSaneValue.getClass ().equals (String.class))
+                } else if (firstSaneValue.getClass ().equals (String.class)) {
                         this.objectNodeStack.peek ().append (new StringArrayPropertyNode (this.candle, this.lastIdentifier, this.getArrayContents (arrayContent, String.class)));
-                else
+                } else {
                         throw new RuntimeException (new CandleParserException ("Cannot handle array element of type " + firstSaneValue.getClass ().getCanonicalName ()));
+                }
         }
 
         /**

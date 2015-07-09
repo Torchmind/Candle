@@ -35,12 +35,12 @@ import java.util.stream.Stream;
 public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         private final LinkedList<INode> children = new LinkedList<> ();
 
-        public ObjectNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
-                super (documentNode, name);
-        }
-
         protected ObjectNode () {
                 super ();
+        }
+
+        public ObjectNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
+                super (documentNode, name);
         }
 
         /**
@@ -103,8 +103,10 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                                  .findFirst ()
                                         .orElseThrow (() -> new NoSuchElementException ("Could not locate element with name \"" + name + "\"" + (!closestNode.equals (name) ? " (failed to locate closest node \"" + closestNode + "\")" : "")));
                 // @formatter:on
-                if (name.indexOf ('.') == -1) return node;
-                if (!(node instanceof IObjectNode)) throw new NoSuchElementException ("Node with name \"" + closestNode + "\" is not a container node");
+                if (name.indexOf ('.') == -1) { return node; }
+                if (!(node instanceof IObjectNode)) {
+                        throw new NoSuchElementException ("Node with name \"" + closestNode + "\" is not a container node");
+                }
                 return ((IObjectNode) node).get (name.substring ((closestNode.length () + 1)));
         }
 
@@ -116,8 +118,206 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @SuppressWarnings ("unchecked")
         public <T extends INode> T get (@Nonnull String name, @Nonnull Class<T> nodeType) throws IllegalStateException, NoSuchElementException {
                 INode node = this.get (name);
-                if (!nodeType.isAssignableFrom (node.getClass ())) throw new IllegalStateException ("Expected node of type " + nodeType.getCanonicalName () + " but got " + node.getClass ().getName ());
+                if (!nodeType.isAssignableFrom (node.getClass ())) {
+                        throw new IllegalStateException ("Expected node of type " + nodeType.getCanonicalName () + " but got " + node.getClass ().getName ());
+                }
                 return ((T) node);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean getBoolean (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, BooleanPropertyNode.class, BooleanPropertyNode::value, () -> false);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean getBoolean (@Nonnull String name, boolean defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name)) { return defaultValue; }
+                return this.getBoolean (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public boolean[] getBooleanArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, BooleanArrayPropertyNode.class, BooleanArrayPropertyNode::array);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public boolean[] getBooleanArray (@Nonnull String name, @Nullable boolean[] defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name)) { return defaultValue; }
+                return this.getBooleanArray (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public String getEnum (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, EnumPropertyNode.class, EnumPropertyNode::value);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public String getEnum (@Nonnull String name, @Nullable String defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name)) { return defaultValue; }
+                return this.getEnum (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull Class<T> enumType) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, EnumPropertyNode.class, (n) -> n.value (enumType));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        @SuppressWarnings ("unchecked")
+        // Indeed very unchecked. However Java does not allow us to extend Enums so this is perfectly fine ...
+        public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull T defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getEnum (name, ((Class<T>) defaultValue.getClass ()));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public <T extends Enum> T getEnum (@Nonnull String name, @Nullable T defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getEnum (name, enumType);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public String[] getEnumArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, EnumArrayPropertyNode.class, EnumArrayPropertyNode::array);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public String[] getEnumArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getEnumArray (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable Class<T> enumType) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, EnumArrayPropertyNode.class, (n) -> n.array (enumType));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable T[] defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getEnumArray (name, enumType);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public float getFloat (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, FloatPropertyNode.class, FloatPropertyNode::value, () -> 0.0f);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public float getFloat (@Nonnull String name, float defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getFloat (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public float[] getFloatArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, FloatArrayPropertyNode.class, FloatArrayPropertyNode::array);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public float[] getFloatArray (@Nonnegative String name, @Nullable float[] defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getFloatArray (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int getInteger (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, IntegerPropertyNode.class, IntegerPropertyNode::value, () -> 0);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int getInteger (@Nonnull String name, int defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getInteger (name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public int[] getIntegerArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
+                return this.getPropertyValue (name, IntegerArrayPropertyNode.class, IntegerArrayPropertyNode::array);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nullable
+        @Override
+        public int[] getIntegerArray (@Nonnull String name, @Nullable int[] defaultValue) throws IllegalStateException {
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                return this.getIntegerArray (name);
         }
 
         /**
@@ -144,203 +344,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public <T extends IPropertyNode, R> R getPropertyValue (@Nonnull String name, @Nonnull Class<T> nodeType, @Nonnull Function<T, R> ifPresent, @Nonnull Supplier<R> ifNull) {
-                if (this.isNull (name)) return ifNull.get ();
+                if (this.isNull (name)) { return ifNull.get (); }
                 return ifPresent.apply (this.get (name, nodeType));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public boolean getBoolean (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, BooleanPropertyNode.class, BooleanPropertyNode::value, () -> false);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public boolean getBoolean (@Nonnull String name, boolean defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name)) return defaultValue;
-                return this.getBoolean (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public boolean[] getBooleanArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, BooleanArrayPropertyNode.class, BooleanArrayPropertyNode::array);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public boolean[] getBooleanArray (@Nonnull String name, @Nullable boolean[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name)) return defaultValue;
-                return this.getBooleanArray (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public String getEnum (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumPropertyNode.class, EnumPropertyNode::value);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public String getEnum (@Nonnull String name, @Nullable String defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name)) return defaultValue;
-                return this.getEnum (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull Class<T> enumType) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumPropertyNode.class, (n) -> n.value (enumType));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        @SuppressWarnings ("unchecked") // Indeed very unchecked. However Java does not allow us to extend Enums so this is perfectly fine ...
-        public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull T defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getEnum (name, ((Class<T>) defaultValue.getClass ()));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public <T extends Enum> T getEnum (@Nonnull String name, @Nullable T defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getEnum (name, enumType);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public String[] getEnumArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumArrayPropertyNode.class, EnumArrayPropertyNode::array);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public String[] getEnumArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException, NoSuchElementException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getEnumArray (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable Class<T> enumType) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumArrayPropertyNode.class, (n) -> n.array (enumType));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable T[] defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getEnumArray (name, enumType);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public float getFloat (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, FloatPropertyNode.class, FloatPropertyNode::value, () -> 0.0f);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public float getFloat (@Nonnull String name, float defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getFloat (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public float[] getFloatArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, FloatArrayPropertyNode.class, FloatArrayPropertyNode::array);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public float[] getFloatArray (@Nonnegative String name, @Nullable float[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getFloatArray (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public int getInteger (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, IntegerPropertyNode.class, IntegerPropertyNode::value, () -> 0);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public int getInteger (@Nonnull String name, int defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getInteger (name);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public int[] getIntegerArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, IntegerArrayPropertyNode.class, IntegerArrayPropertyNode::array);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nullable
-        @Override
-        public int[] getIntegerArray (@Nonnull String name, @Nullable int[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
-                return this.getIntegerArray (name);
         }
 
         /**
@@ -358,7 +363,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String getString (@Nonnegative String name, @Nullable String defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
                 return this.getString (name);
         }
 
@@ -377,7 +382,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String[] getStringArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
                 return this.getStringArray (name);
         }
 
@@ -394,7 +399,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public float getUnsignedFloat (@Nonnull String name, @Nonnegative float defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedFloat (name);
         }
 
@@ -413,7 +418,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public float[] getUnsignedFloatArray (@Nonnull String name, @Nullable @Nonnegative float[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedFloatArray (name);
         }
 
@@ -430,7 +435,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public int getUnsignedInteger (@Nonnegative String name, @Nonnegative int defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedInteger (name);
         }
 
@@ -449,7 +454,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public int[] getUnsignedIntegerArray (@Nonnull String name, @Nullable @Nonnegative int[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) return defaultValue;
+                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedIntegerArray (name);
         }
 
@@ -476,7 +481,9 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Override
         public IObjectNode insertAfter (@Nonnull INode after, @Nonnull INode node) throws NoSuchElementException {
                 int index = (this.children.indexOf (after) + 1);
-                if (index == 0) throw new NoSuchElementException ("Cannot locate element to insert after within tree");
+                if (index == 0) {
+                        throw new NoSuchElementException ("Cannot locate element to insert after within tree");
+                }
                 this.children.add (index, node);
                 return this;
         }
@@ -504,7 +511,9 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Override
         public IObjectNode insertBefore (@Nonnull INode before, @Nonnull INode node) throws NoSuchElementException {
                 int index = this.children.indexOf (before);
-                if (index == -1) throw new NoSuchElementException ("Cannot locate element to insert before within tree");
+                if (index == -1) {
+                        throw new NoSuchElementException ("Cannot locate element to insert before within tree");
+                }
                 this.children.add (index, node);
                 return this;
         }
@@ -597,6 +606,14 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         /**
          * {@inheritDoc}
          */
+        @Override
+        public Iterator<INode> iterator () {
+                return this.children ().iterator ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
         @Nonnull
         @Override
         public IObjectNode remove (@Nonnull String name) throws NoSuchElementException {
@@ -616,7 +633,9 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public IObjectNode remove (@Nonnull INode node) throws NoSuchElementException {
-                if (!this.children.remove (node)) throw new NoSuchElementException ("Cannot locate element to remove within tree");
+                if (!this.children.remove (node)) {
+                        throw new NoSuchElementException ("Cannot locate element to remove within tree");
+                }
                 return this;
         }
 
@@ -643,7 +662,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Override
         public IObjectNode replace (@Nonnull INode node, @Nonnull INode replacement) throws NoSuchElementException {
                 int index = this.children.indexOf (node);
-                if (index == -1) throw new NoSuchElementException ("Cannot locate element to replace within tree");
+                if (index == -1) { throw new NoSuchElementException ("Cannot locate element to replace within tree"); }
 
                 this.children.remove (node);
                 this.children.add (index, replacement);
@@ -675,16 +694,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @SuppressWarnings ("unchecked")
         public <T extends INode> Stream<T> stream (@Nonnull Class<T> nodeType) {
                 return ((Stream<T>) this.stream ().parallel ()
-                        .filter (n -> nodeType.isAssignableFrom (n.getClass ()))
-                                .sequential ());
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public Iterator<INode> iterator () {
-                return this.children ().iterator ();
+                                        .filter (n -> nodeType.isAssignableFrom (n.getClass ()))
+                                        .sequential ());
         }
 
         /**

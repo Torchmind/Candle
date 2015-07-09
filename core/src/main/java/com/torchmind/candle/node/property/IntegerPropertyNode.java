@@ -24,6 +24,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents an integer value within the tree.
+ *
  * @author Johannes Donath
  */
 public class IntegerPropertyNode extends AbstractPropertyNode {
@@ -45,15 +46,6 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
         /**
          * {@inheritDoc}
          */
-        @Nonnegative
-        public int valueUnsigned () {
-                if (this.value () < 0) throw new IllegalStateException ("Expected an unsigned value but got " + this.value ());
-                return this.value ();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
         @Nonnull
         public IntegerPropertyNode value (int value) {
                 this.value = value;
@@ -67,6 +59,17 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
         @Override
         public NodeValueType valueType () {
                 return NodeValueType.INTEGER;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnegative
+        public int valueUnsigned () {
+                if (this.value () < 0) {
+                        throw new IllegalStateException ("Expected an unsigned value but got " + this.value ());
+                }
+                return this.value ();
         }
 
         /**
