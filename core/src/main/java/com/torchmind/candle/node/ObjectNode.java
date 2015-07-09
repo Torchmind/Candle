@@ -137,7 +137,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public boolean getBoolean (@Nonnull String name, boolean defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name)) { return defaultValue; }
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getBoolean (name);
         }
 
@@ -155,8 +155,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public boolean[] getBooleanArray (@Nonnull String name, @Nullable boolean[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name)) { return defaultValue; }
+        public boolean[] getBooleanArray (@Nonnull String name, @Nullable boolean[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getBooleanArray (name);
         }
 
@@ -174,8 +174,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public String getEnum (@Nonnull String name, @Nullable String defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name)) { return defaultValue; }
+        public String getEnum (@Nonnull String name, @Nullable String defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getEnum (name);
         }
 
@@ -195,8 +195,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Override
         @SuppressWarnings ("unchecked")
         // Indeed very unchecked. However Java does not allow us to extend Enums so this is perfectly fine ...
-        public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull T defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull T defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getEnum (name, ((Class<T>) defaultValue.getClass ()));
         }
 
@@ -205,8 +205,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public <T extends Enum> T getEnum (@Nonnull String name, @Nullable T defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public <T extends Enum> T getEnum (@Nonnull String name, @Nullable T defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getEnum (name, enumType);
         }
 
@@ -225,7 +225,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String[] getEnumArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException, NoSuchElementException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getEnumArray (name);
         }
 
@@ -243,8 +243,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable T[] defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable T[] defaultValue, @Nonnull Class<T> enumType) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getEnumArray (name, enumType);
         }
 
@@ -260,8 +260,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          * {@inheritDoc}
          */
         @Override
-        public float getFloat (@Nonnull String name, float defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public float getFloat (@Nonnull String name, float defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getFloat (name);
         }
 
@@ -279,8 +279,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public float[] getFloatArray (@Nonnegative String name, @Nullable float[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public float[] getFloatArray (@Nonnegative String name, @Nullable float[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getFloatArray (name);
         }
 
@@ -296,8 +296,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          * {@inheritDoc}
          */
         @Override
-        public int getInteger (@Nonnull String name, int defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public int getInteger (@Nonnull String name, int defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getInteger (name);
         }
 
@@ -315,8 +315,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public int[] getIntegerArray (@Nonnull String name, @Nullable int[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public int[] getIntegerArray (@Nonnull String name, @Nullable int[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getIntegerArray (name);
         }
 
@@ -362,8 +362,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public String getString (@Nonnegative String name, @Nullable String defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public String getString (@Nonnegative String name, @Nullable String defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getString (name);
         }
 
@@ -381,8 +381,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public String[] getStringArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public String[] getStringArray (@Nonnull String name, @Nullable String[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getStringArray (name);
         }
 
@@ -398,8 +398,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          * {@inheritDoc}
          */
         @Override
-        public float getUnsignedFloat (@Nonnull String name, @Nonnegative float defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public float getUnsignedFloat (@Nonnull String name, @Nonnegative float defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedFloat (name);
         }
 
@@ -417,8 +417,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public float[] getUnsignedFloatArray (@Nonnull String name, @Nullable @Nonnegative float[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public float[] getUnsignedFloatArray (@Nonnull String name, @Nullable @Nonnegative float[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedFloatArray (name);
         }
 
@@ -434,8 +434,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          * {@inheritDoc}
          */
         @Override
-        public int getUnsignedInteger (@Nonnegative String name, @Nonnegative int defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public int getUnsignedInteger (@Nonnegative String name, @Nonnegative int defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedInteger (name);
         }
 
@@ -453,8 +453,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nullable
         @Override
-        public int[] getUnsignedIntegerArray (@Nonnull String name, @Nullable @Nonnegative int[] defaultValue) throws IllegalStateException {
-                if (!this.isPresent (name) || this.isDefault (name)) { return defaultValue; }
+        public int[] getUnsignedIntegerArray (@Nonnull String name, @Nullable @Nonnegative int[] defaultValue) throws IllegalStateException, NoSuchElementException {
+                if (this.isDefault (name)) { return defaultValue; }
                 return this.getUnsignedIntegerArray (name);
         }
 
