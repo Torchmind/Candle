@@ -19,6 +19,7 @@ package com.torchmind.candle.test.node;
 import com.torchmind.candle.Candle;
 import com.torchmind.candle.api.INode;
 import com.torchmind.candle.node.CommentNode;
+import com.torchmind.candle.node.ObjectNode;
 import com.torchmind.candle.node.property.*;
 import com.torchmind.candle.node.property.array.*;
 import org.junit.Assert;
@@ -180,6 +181,34 @@ public class ObjectNodeTest {
 
                 candle.insertAfter ("property2", node3);
                 it = candle.iterator ();
+                Assert.assertEquals (node2, it.next ());
+                Assert.assertEquals (node3, it.next ());
+                Assert.assertEquals (node1, it.next ());
+        }
+
+        /**
+         * Tests {@link com.torchmind.candle.node.ObjectNode#insertBefore(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)} and {@link com.torchmind.candle.node.ObjectNode#insertAfter(com.torchmind.candle.api.INode, com.torchmind.candle.api.INode)}.
+         */
+        @Test
+        public void testInsertPath () {
+                Candle candle = new Candle ();
+
+                ObjectNode parentNode1 = new ObjectNode (candle, "object1");
+
+                IntegerPropertyNode node1 = new IntegerPropertyNode (candle, "property1", 42);
+                IntegerPropertyNode node2 = new IntegerPropertyNode (candle, "property2", 42);
+                IntegerPropertyNode node3 = new IntegerPropertyNode (candle, "property3", 42);
+
+                parentNode1.append (node1);
+                candle.append (parentNode1);
+
+                candle.insertBefore ("object1.property1", node2);
+                Iterator<INode> it = parentNode1.iterator ();
+                Assert.assertEquals (node2, it.next ());
+                Assert.assertEquals (node1, it.next ());
+
+                candle.insertAfter ("object1.property2", node3);
+                it = parentNode1.iterator ();
                 Assert.assertEquals (node2, it.next ());
                 Assert.assertEquals (node3, it.next ());
                 Assert.assertEquals (node1, it.next ());
