@@ -344,7 +344,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nonnull
         @Override
         public <T extends IPropertyNode, R> R getPropertyValue (@Nonnull String name, @Nonnull Class<T> nodeType, @Nonnull Function<T, R> ifPresent, @Nonnull Supplier<R> ifNull) {
-                if (this.isNull (name)) { return ifNull.get (); }
+                if (this.isNull (name) || this.isDefault (name)) { return ifNull.get (); }
                 return ifPresent.apply (this.get (name, nodeType));
         }
 
