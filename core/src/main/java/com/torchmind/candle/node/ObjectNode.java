@@ -490,7 +490,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                 int index = before.indexOf ('.');
                 if (index != -1) {
                         IObjectNode closestNode = this.get (before.substring (0, index), IObjectNode.class);
-                        closestNode.insertAfter (before.substring ((index + 1)), node);
+                        closestNode.insertBefore (before.substring ((index + 1)), node);
                         return this;
                 }
 
