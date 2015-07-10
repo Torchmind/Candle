@@ -1,0 +1,390 @@
+/*
+ * Copyright 2015 Johannes Donath <johannesd@torchmind.com>
+ * and other copyright owners as documented in the project's IP log.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * 	http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+property1 = "Test"
+property2 = "Test\"Test"
+property3 = "Test\\Test"
+property4 = "Test\bTest"
+property5 = "Test\fTest"
+property6 = "Test\nTest"
+property7 = "Test\rTest"
+property8 = "Test\tTest"
+property9 = "Test\u2764Test"
+property10 = 1234
+property11 = -1234
+property12 = 255
+property13 = 1.23
+property14 = -1.23
+property15 = true
+property16 = false
+property17 = VALUE1
+property18 = null
+property19 = default
+property20 = [
+	"Test 1",
+	"Test 2",
+	"Test 3",
+]
+property21 = [
+	1,
+	2,
+	3,
+	4,
+]
+property22 = [
+	-1,
+	-2,
+	-3,
+	-4,
+]
+property23 = [
+	10,
+	11,
+	12,
+	13,
+]
+property24 = [
+	1.1,
+	1.2,
+	1.3,
+	1.4,
+]
+property25 = [
+	true,
+	false,
+	true,
+	false,
+]
+property26 = [
+	VALUE1,
+	VALUE2,
+	VALUE3,
+	VALUE4,
+]
+property27 = [ ]
+property28 = [
+	null,
+	null,
+	"Test 1",
+	null,
+]
+property29 = [
+	"Test 1",
+	"Test 2",
+	"Test 3",
+	"Test 4",
+]
+// Test Comment
+object1 {
+	property1 = "Test"
+	property2 = "Test\"Test"
+	property3 = "Test\\Test"
+	property4 = "Test\bTest"
+	property5 = "Test\fTest"
+	property6 = "Test\nTest"
+	property7 = "Test\rTest"
+	property8 = "Test\tTest"
+	property9 = "Test\u2764Test"
+	property10 = 1234
+	property11 = -1234
+	property12 = 255
+	property13 = 1.23
+	property14 = -1.23
+	property15 = true
+	property16 = false
+	property17 = VALUE1
+	property18 = null
+	property19 = default
+	property20 = [
+		"Test 1",
+		"Test 2",
+		"Test 3",
+	]
+	property21 = [
+		1,
+		2,
+		3,
+		4,
+	]
+	property22 = [
+		-1,
+		-2,
+		-3,
+		-4,
+	]
+	property23 = [
+		10,
+		11,
+		12,
+		13,
+	]
+	property24 = [
+		1.1,
+		1.2,
+		1.3,
+		1.4,
+	]
+	property25 = [
+		true,
+		false,
+		true,
+		false,
+	]
+	property26 = [
+		VALUE1,
+		VALUE2,
+		VALUE3,
+		VALUE4,
+	]
+	property27 = [ ]
+	property28 = [
+		null,
+		null,
+		"Test 1",
+		null,
+	]
+	property29 = [
+		"Test 1",
+		"Test 2",
+		"Test 3",
+		"Test 4",
+	]
+	child1 {
+		property1 = "Test"
+		property2 = "Test\"Test"
+		property3 = "Test\\Test"
+		property4 = "Test\bTest"
+		property5 = "Test\fTest"
+		property6 = "Test\nTest"
+		property7 = "Test\rTest"
+		property8 = "Test\tTest"
+		property9 = "Test\u2764Test"
+		property10 = 1234
+		property11 = -1234
+		property12 = 255
+		property13 = 1.23
+		property14 = -1.23
+		property15 = true
+		property16 = false
+		property17 = VALUE1
+		property18 = null
+		property19 = default
+		property20 = [
+			"Test 1",
+			"Test 2",
+			"Test 3",
+		]
+		property21 = [
+			1,
+			2,
+			3,
+			4,
+		]
+		property22 = [
+			-1,
+			-2,
+			-3,
+			-4,
+		]
+		property23 = [
+			10,
+			11,
+			12,
+			13,
+		]
+		property24 = [
+			1.1,
+			1.2,
+			1.3,
+			1.4,
+		]
+		property25 = [
+			true,
+			false,
+			true,
+			false,
+		]
+		property26 = [
+			VALUE1,
+			VALUE2,
+			VALUE3,
+			VALUE4,
+		]
+		property27 = [ ]
+		property28 = [
+			null,
+			null,
+			"Test 1",
+			null,
+		]
+		property29 = [
+			"Test 1",
+			"Test 2",
+			"Test 3",
+			"Test 4",
+		]
+		child1 {
+			property1 = "Test"
+			property2 = "Test\"Test"
+			property3 = "Test\\Test"
+			property4 = "Test\bTest"
+			property5 = "Test\fTest"
+			property6 = "Test\nTest"
+			property7 = "Test\rTest"
+			property8 = "Test\tTest"
+			property9 = "Test\u2764Test"
+			property10 = 1234
+			property11 = -1234
+			property12 = 255
+			property13 = 1.23
+			property14 = -1.23
+			property15 = true
+			property16 = false
+			property17 = VALUE1
+			property18 = null
+			property19 = default
+			property20 = [
+				"Test 1",
+				"Test 2",
+				"Test 3",
+			]
+			property21 = [
+				1,
+				2,
+				3,
+				4,
+			]
+			property22 = [
+				-1,
+				-2,
+				-3,
+				-4,
+			]
+			property23 = [
+				10,
+				11,
+				12,
+				13,
+			]
+			property24 = [
+				1.1,
+				1.2,
+				1.3,
+				1.4,
+			]
+			property25 = [
+				true,
+				false,
+				true,
+				false,
+			]
+			property26 = [
+				VALUE1,
+				VALUE2,
+				VALUE3,
+				VALUE4,
+			]
+			property27 = [ ]
+			property28 = [
+				null,
+				null,
+				"Test 1",
+				null,
+			]
+			property29 = [
+				"Test 1",
+				"Test 2",
+				"Test 3",
+				"Test 4",
+			]
+		}
+	}
+	child2 {
+		property1 = "Test"
+		property2 = "Test\"Test"
+		property3 = "Test\\Test"
+		property4 = "Test\bTest"
+		property5 = "Test\fTest"
+		property6 = "Test\nTest"
+		property7 = "Test\rTest"
+		property8 = "Test\tTest"
+		property9 = "Test\u2764Test"
+		property10 = 1234
+		property11 = -1234
+		property12 = 255
+		property13 = 1.23
+		property14 = -1.23
+		property15 = true
+		property16 = false
+		property17 = VALUE1
+		property18 = null
+		property19 = default
+		property20 = [
+			"Test 1",
+			"Test 2",
+			"Test 3",
+		]
+		property21 = [
+			1,
+			2,
+			3,
+			4,
+		]
+		property22 = [
+			-1,
+			-2,
+			-3,
+			-4,
+		]
+		property23 = [
+			10,
+			11,
+			12,
+			13,
+		]
+		property24 = [
+			1.1,
+			1.2,
+			1.3,
+			1.4,
+		]
+		property25 = [
+			true,
+			false,
+			true,
+			false,
+		]
+		property26 = [
+			VALUE1,
+			VALUE2,
+			VALUE3,
+			VALUE4,
+		]
+		property27 = [ ]
+		property28 = [
+			null,
+			null,
+			"Test 1",
+			null,
+		]
+		property29 = [
+			"Test 1",
+			"Test 2",
+			"Test 3",
+			"Test 4",
+		]
+	}
+}
