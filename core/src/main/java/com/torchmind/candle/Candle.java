@@ -114,6 +114,30 @@ public class Candle extends ObjectNode implements IDocumentNode {
         }
 
         /**
+         * Reads a Candle document.
+         * @param file The file.
+         * @return The document.
+         * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
+         * @throws java.io.IOException                            when reading the document fails.
+         */
+        @Nonnull
+        public static Candle readFile (@Nonnull File file) throws CandleException, IOException {
+                return (new Candle ()).read (file);
+        }
+
+        /**
+         * Reads a Candle document.
+         * @param inputStream The input stream.
+         * @return The document.
+         * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
+         * @throws java.io.IOException                            when reading the document fails.
+         */
+        @Nonnull
+        public static Candle readFile (@Nonnull InputStream inputStream) throws CandleException, IOException {
+                return (new Candle ()).read (inputStream);
+        }
+
+        /**
          * {@inheritDoc}
          */
         @Override
