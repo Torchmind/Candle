@@ -52,7 +52,6 @@ public class CandleSerializerTest {
                 CandleSerializer serializer = new CandleSerializer ().newline ("\n");
 
                 StringWriter writer = new StringWriter ();
-                serializer.serialize (candle, new File ("testSerialized.cndl"));
                 serializer.serialize (candle, writer);
 
                 Assert.assertEquals (expected.toString (), writer.toString ());
