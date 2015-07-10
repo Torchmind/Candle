@@ -503,7 +503,7 @@ public class CandleSerializer {
                 StringBuilder buffer = new StringBuilder ();
 
                 buffer.append (this.serialize (((IPropertyNode) node), level));
-                buffer.append ("\"" + node.value () + "\""); // TODO: Replace escape sequences
+                buffer.append ("\"" + this.escapeString (node.value ()) + "\"");
 
                 return buffer.toString ();
         }
@@ -550,7 +550,12 @@ public class CandleSerializer {
 
                 for (String value : node.array ()) {
                         if (this.prettyPrint ()) buffer.append (this.indent ((level + 1)));
-                        buffer.append (value);
+
+                        if (value != null)
+                                buffer.append (value);
+                        else
+                                buffer.append ("null");
+
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
 
@@ -646,7 +651,12 @@ public class CandleSerializer {
 
                 for (String value : node.array ()) {
                         if (this.prettyPrint ()) buffer.append (this.indent ((level + 1)));
-                        buffer.append ("\"" + value + "\""); // TODO: Support escape sequences
+
+                        if (value != null)
+                                buffer.append ("\"" + this.escapeString (value) + "\"");
+                        else
+                                buffer.append ("null");
+
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
 
@@ -654,5 +664,32 @@ public class CandleSerializer {
                 buffer.append ("]");
 
                 return buffer.toString ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        protected String escapeString (@Nonnull String text) {
+                text = text.replace ("\\", "\\\\");
+                text = text.replace ("\"", "\\\"");
+                text = text.replace ("\b", "\\b");
+                text = text.replace ("\f", "\\f");
+                text = text.replace ("\n", "\\n");
+                text = text.replace ("\r", "\\r");
+                text = text.replace ("\t", "\\t");
+
+                StringBuilder builder = new StringBuilder ();
+
+                for (int i = 0; i < text.length (); i++) {
+                        char element = text.charAt (i);
+
+                        if (((int) element) < 0x20 || ((int) element) > 0x7E)
+                                builder.append (String.format ("\\u%4X", ((int) element)));
+                        else
+                                builder.append (element);
+                }
+
+                return builder.toString ();
         }
 }
