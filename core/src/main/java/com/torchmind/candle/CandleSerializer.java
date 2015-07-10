@@ -525,6 +525,7 @@ public class CandleSerializer {
                 for (boolean value : node.array ()) {
                         if (this.prettyPrint ()) buffer.append (this.indent ((level + 1)));
                         buffer.append (Boolean.toString (value));
+                        buffer.append (",");
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
 
@@ -556,6 +557,8 @@ public class CandleSerializer {
                         else
                                 buffer.append ("null");
 
+                        buffer.append (",");
+
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
 
@@ -582,6 +585,7 @@ public class CandleSerializer {
                 for (float value : node.array ()) {
                         if (this.prettyPrint ()) buffer.append (this.indent ((level + 1)));
                         buffer.append (Float.toString (value));
+                        buffer.append (",");
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
 
@@ -608,6 +612,7 @@ public class CandleSerializer {
                 for (int value : node.array ()) {
                         if (this.prettyPrint ()) buffer.append (this.indent ((level + 1)));
                         buffer.append (Integer.toString (value));
+                        buffer.append (",");
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
 
@@ -656,6 +661,8 @@ public class CandleSerializer {
                                 buffer.append ("\"" + this.escapeString (value) + "\"");
                         else
                                 buffer.append ("null");
+
+                        buffer.append (",");
 
                         if (this.prettyPrint ()) buffer.append (this.newline ());
                 }
