@@ -15,7 +15,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <modelVersion>4.0.0</modelVersion>
 
         <!-- Parent Artifact Information -->
@@ -26,10 +26,10 @@
         </parent>
 
         <!-- Artifact Information -->
-        <artifactId>tree</artifactId>
+        <artifactId>common</artifactId>
 
         <!-- Artifact Metadata -->
-        <name>Candle Configuration Format</name>
+        <name>Candle Commons</name>
         <description>Provides access to the Candle configuration format.</description>
 
         <!-- Dependencies -->
@@ -37,31 +37,6 @@
                 <dependency>
                         <groupId>org.antlr</groupId>
                         <artifactId>antlr4-runtime</artifactId>
-                </dependency>
-
-                <dependency>
-                        <groupId>com.torchmind.candle</groupId>
-                        <artifactId>api</artifactId>
-                </dependency>
-
-                <dependency>
-                        <groupId>com.torchmind.candle</groupId>
-                        <artifactId>common</artifactId>
-                </dependency>
-
-                <dependency>
-                        <groupId>com.google.code.findbugs</groupId>
-                        <artifactId>findbugs</artifactId>
-                </dependency>
-
-                <dependency>
-                        <groupId>junit</groupId>
-                        <artifactId>junit</artifactId>
-                </dependency>
-
-                <dependency>
-                        <groupId>org.mockito</groupId>
-                        <artifactId>mockito-all</artifactId>
                 </dependency>
         </dependencies>
 
@@ -84,12 +59,6 @@
                         <plugin>
                                 <groupId>org.antlr</groupId>
                                 <artifactId>antlr4-maven-plugin</artifactId>
-                        </plugin>
-
-                        <!-- Findbugs -->
-                        <plugin>
-                                <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>findbugs-maven-plugin</artifactId>
                         </plugin>
 
                         <!-- Attach Sources -->
