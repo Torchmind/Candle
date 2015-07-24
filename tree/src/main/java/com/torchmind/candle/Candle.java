@@ -18,6 +18,8 @@ package com.torchmind.candle;
 
 import com.torchmind.candle.antlr.*;
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IObjectNode;
+import com.torchmind.candle.api.ITreeWalker;
 import com.torchmind.candle.api.error.CandleException;
 import com.torchmind.candle.node.ObjectNode;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -135,6 +137,18 @@ public class Candle extends ObjectNode implements IDocumentNode {
         @Nonnull
         public static Candle readFile (@Nonnull InputStream inputStream) throws CandleException, IOException {
                 return (new Candle ()).read (inputStream);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public IDocumentNode walk (@Nonnull ITreeWalker walker) {
+                walker.visitDocumentNode (this);
+                super.walk (walker);
+
+                return this;
         }
 
         /**

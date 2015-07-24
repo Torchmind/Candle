@@ -701,6 +701,40 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         /**
          * {@inheritDoc}
          */
+        @Nonnull
+        @Override
+        public IObjectNode walk (@Nonnull ITreeWalker walker) {
+                this.stream ().forEach (n -> {
+                        if (n instanceof IObjectNode) {
+                                walker.visitObjectNode (this.document (), ((IObjectNode) n));
+                                ((IObjectNode) n).walk (walker);
+                                return;
+                        }
+
+                        if (n instanceof ICommentNode) {
+                                walker.visitCommentNode (this.document (), ((ICommentNode) n));
+                                return;
+                        }
+
+                        if (n instanceof IArrayPropertyNode) {
+                                walker.visitPropertyNode (this.document (), ((IArrayPropertyNode) n));
+                                return;
+                        }
+
+                        if (n instanceof IPropertyNode) {
+                                walker.visitPropertyNode (this.document (), ((IPropertyNode) n));
+                                return;
+                        }
+
+                        throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
+                });
+
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public String toString () {
                 return String.format ("ObjectNode{%s,children=[%s]}", super.toString (), this.children ());

@@ -753,4 +753,12 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
         default NodeType type () {
                 return NodeType.OBJECT;
         }
+
+        /**
+         * Walks the node tree.
+         * @param walker The walker.
+         * @return The node.
+         */
+        @Nonnull
+        IObjectNode walk (@Nonnull ITreeWalker walker);
 }

@@ -70,4 +70,11 @@ public interface IDocumentNode extends IObjectNode {
         default NodeType type () {
                 return NodeType.DOCUMENT;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IDocumentNode walk (@Nonnull ITreeWalker walker);
 }
