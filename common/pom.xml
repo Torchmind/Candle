@@ -38,6 +38,16 @@
                         <groupId>org.antlr</groupId>
                         <artifactId>antlr4-runtime</artifactId>
                 </dependency>
+
+                <dependency>
+                        <groupId>com.torchmind.candle</groupId>
+                        <artifactId>api</artifactId>
+                </dependency>
+
+                <dependency>
+                        <groupId>com.google.code.findbugs</groupId>
+                        <artifactId>findbugs</artifactId>
+                </dependency>
         </dependencies>
 
         <!-- Build Settings -->
@@ -53,6 +63,12 @@
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-jar-plugin</artifactId>
+                        </plugin>
+
+                        <!-- Findbugs -->
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>findbugs-maven-plugin</artifactId>
                         </plugin>
 
                         <!-- ANTLR4 -->
