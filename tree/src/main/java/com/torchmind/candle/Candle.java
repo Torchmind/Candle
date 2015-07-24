@@ -147,6 +147,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
         public IDocumentNode walk (@Nonnull ITreeWalker walker) {
                 walker.visitDocumentNode (this);
                 super.walk (walker);
+                walker.visitDocumentNodeEnd (this);
 
                 return this;
         }

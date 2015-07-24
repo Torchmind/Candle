@@ -708,6 +708,8 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                         if (n instanceof IObjectNode) {
                                 walker.visitObjectNode (this.document (), ((IObjectNode) n));
                                 ((IObjectNode) n).walk (walker);
+                                walker.visitObjectNodeEnd (this.document (), ((IObjectNode) n));
+
                                 return;
                         }
 

@@ -31,11 +31,24 @@ public interface ITreeWalker {
         void visitDocumentNode (@Nonnull IDocumentNode node);
 
         /**
+         * Visits a document node end.
+         * @param document The document.
+         */
+        void visitDocumentNodeEnd (@Nonnull IDocumentNode document);
+
+        /**
          * Visits an object node.
          * @param document The document.
          * @param node The node.
          */
         void visitObjectNode (@Nonnull IDocumentNode document, @Nonnull IObjectNode node);
+
+        /**
+         * Visits an object node end.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitObjectNodeEnd (@Nonnull IDocumentNode document, @Nonnull IObjectNode node);
 
         /**
          * Visits a comment node.
