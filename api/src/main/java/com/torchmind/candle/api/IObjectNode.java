@@ -16,6 +16,8 @@
  */
 package com.torchmind.candle.api;
 
+import com.torchmind.candle.api.property.IPropertyNode;
+
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -17,6 +17,8 @@
 package com.torchmind.candle.node;
 
 import com.torchmind.candle.api.*;
+import com.torchmind.candle.api.property.IArrayPropertyNode;
+import com.torchmind.candle.api.property.IPropertyNode;
 import com.torchmind.candle.node.property.*;
 import com.torchmind.candle.node.property.array.*;
 

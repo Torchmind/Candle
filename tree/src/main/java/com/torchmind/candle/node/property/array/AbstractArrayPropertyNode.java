@@ -16,7 +16,7 @@
  */
 package com.torchmind.candle.node.property.array;
 
-import com.torchmind.candle.api.IArrayPropertyNode;
+import com.torchmind.candle.api.property.IArrayPropertyNode;
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.node.property.AbstractPropertyNode;
@@ -24,7 +24,7 @@ import com.torchmind.candle.node.property.AbstractPropertyNode;
 import javax.annotation.Nonnull;
 
 /**
- * Provides an abstract implementation of {@link com.torchmind.candle.api.IArrayPropertyNode}.
+ * Provides an abstract implementation of {@link com.torchmind.candle.api.property.IArrayPropertyNode}.
  *
  * @author Johannes Donath
  */
