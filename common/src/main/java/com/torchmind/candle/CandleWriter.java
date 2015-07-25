@@ -30,6 +30,7 @@ import java.io.*;
 /**
  * Provides a solution for generating human-readable Candle configuration files from {@link com.torchmind.candle.api.INode}
  * implementations.
+ *
  * @author Johannes Donath
  */
 public class CandleWriter implements ITreeWalker {
@@ -177,10 +178,7 @@ public class CandleWriter implements ITreeWalker {
                         this.indent ();
 
                         // ENUM_VALUE,
-                        if (current == null)
-                                this.builder.append ("null");
-                        else
-                                this.builder.append (current);
+                        if (current == null) { this.builder.append ("null"); } else { this.builder.append (current); }
                         this.builder.append (",");
 
                         this.line ();
@@ -236,9 +234,7 @@ public class CandleWriter implements ITreeWalker {
                         this.indent ();
 
                         // "<string>",
-                        if (current == null)
-                                this.builder.append ("null");
-                        else {
+                        if (current == null) { this.builder.append ("null"); } else {
                                 this.builder.append ("\"");
                                 this.builder.append (this.escapeString (current));
                                 this.builder.append ("\"");
