@@ -27,6 +27,7 @@ public interface IEnumArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Retrieves a raw array value.
+         *
          * @return The array.
          */
         @Nonnull
@@ -34,6 +35,7 @@ public interface IEnumArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets a raw array value.
+         *
          * @param array The array.
          * @return The node.
          */
@@ -42,9 +44,11 @@ public interface IEnumArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Retrieves an array value.
+         *
          * @param enumType The enum type.
-         * @param <E> The enum type.
+         * @param <E>      The enum type.
          * @return The array.
+         *
          * @throws java.lang.IllegalStateException when one or more elements are not present within the enum.
          */
         @Nonnull
@@ -52,8 +56,9 @@ public interface IEnumArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets an array value.
+         *
          * @param array The array.
-         * @param <E> The enum type.
+         * @param <E>   The enum type.
          * @return The node.
          */
         @Nonnull

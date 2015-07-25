@@ -23,18 +23,24 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents an {@link java.lang.Integer} property value.
+ *
  * @author Johannes Donath
  */
 public interface IIntegerPropertyNode extends IPropertyNode {
 
         /**
-         * Retrieves an integer value.
-         * @return The value.
+         * Retrieves an unsigned integer value.
+         *
+         * @return The unsigned value.
+         *
+         * @throws java.lang.IllegalStateException when the value is negative.
          */
-        int value ();
+        @Nonnegative
+        int unsignedValue () throws IllegalStateException;
 
         /**
          * Sets an integer value.
+         *
          * @param value The value.
          * @return The node.
          */
@@ -42,12 +48,11 @@ public interface IIntegerPropertyNode extends IPropertyNode {
         IIntegerPropertyNode value (int value);
 
         /**
-         * Retrieves an unsigned integer value.
-         * @return The unsigned value.
-         * @throws java.lang.IllegalStateException when the value is negative.
+         * Retrieves an integer value.
+         *
+         * @return The value.
          */
-        @Nonnegative
-        int unsignedValue () throws IllegalStateException;
+        int value ();
 
         /**
          * {@inheritDoc}

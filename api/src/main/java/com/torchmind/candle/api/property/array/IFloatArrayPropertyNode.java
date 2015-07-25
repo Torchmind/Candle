@@ -28,6 +28,7 @@ public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Retrieves an array value.
+         *
          * @return The array.
          */
         @Nonnull
@@ -35,6 +36,7 @@ public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets an array value.
+         *
          * @param array The array.
          * @return The node.
          */
@@ -43,20 +45,12 @@ public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets an array value.
+         *
          * @param array The array.
          * @return The node.
          */
         @Nonnull
         IFloatArrayPropertyNode array (@Nonnull Float[] array);
-
-        /**
-         * Retrieves an unsigned array value.
-         * @return The array.
-         * @throws java.lang.IllegalStateException when one or more values are negative.
-         */
-        @Nonnull
-        @Nonnegative
-        float[] unsignedArray () throws IllegalStateException;
 
         /**
          * {@inheritDoc}
@@ -66,4 +60,15 @@ public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
         default NodeValueType itemType () {
                 return NodeValueType.FLOAT;
         }
+
+        /**
+         * Retrieves an unsigned array value.
+         *
+         * @return The array.
+         *
+         * @throws java.lang.IllegalStateException when one or more values are negative.
+         */
+        @Nonnull
+        @Nonnegative
+        float[] unsignedArray () throws IllegalStateException;
 }

@@ -22,12 +22,14 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents an {@link java.lang.Enum} property value.
+ *
  * @author Johannes Donath
  */
 public interface IEnumPropertyNode extends IPropertyNode {
 
         /**
          * Retrieves the property value.
+         *
          * @return The value.
          */
         @Nonnull
@@ -35,6 +37,7 @@ public interface IEnumPropertyNode extends IPropertyNode {
 
         /**
          * Sets the raw property value.
+         *
          * @param value The value.
          * @return The node.
          */
@@ -43,9 +46,11 @@ public interface IEnumPropertyNode extends IPropertyNode {
 
         /**
          * Retrieves the property value.
+         *
          * @param enumType The enum type.
-         * @param <E> The enum type.
+         * @param <E>      The enum type.
          * @return The value.
+         *
          * @throws java.lang.IllegalStateException when the property value is not valid for the supplied enum type.
          */
         @Nonnull
@@ -53,6 +58,7 @@ public interface IEnumPropertyNode extends IPropertyNode {
 
         /**
          * Sets the property value.
+         *
          * @param value The value.
          * @return The node.
          */

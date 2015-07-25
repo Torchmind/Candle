@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a default property value.
+ *
  * @author Johannes Donath
  */
 public interface IDefaultPropertyNode extends IPropertyNode {

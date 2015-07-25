@@ -27,6 +27,7 @@ public interface IStringPropertyNode extends IPropertyNode {
 
         /**
          * Retrieves a string value.
+         *
          * @return The value.
          */
         @Nonnull
@@ -34,6 +35,7 @@ public interface IStringPropertyNode extends IPropertyNode {
 
         /**
          * Sets a string value.
+         *
          * @param value The value.
          * @return The node.
          */

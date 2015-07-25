@@ -22,18 +22,21 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a {@link java.lang.Boolean} property value.
+ *
  * @author Johannes Donath
  */
 public interface IBooleanPropertyNode extends IPropertyNode {
 
         /**
          * Retrieves the property value.
+         *
          * @return The value.
          */
         boolean value ();
 
         /**
          * Sets the property value.
+         *
          * @param value The value.
          * @return The node.
          */

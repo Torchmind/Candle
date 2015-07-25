@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a {@code null} property value.
+ *
  * @author Johannes Donath
  */
 public interface INullPropertyNode extends IPropertyNode {

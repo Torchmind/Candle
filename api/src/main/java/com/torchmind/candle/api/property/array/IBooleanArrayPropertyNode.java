@@ -27,6 +27,7 @@ public interface IBooleanArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Retrieves an array value.
+         *
          * @return The array.
          */
         @Nonnull
@@ -34,6 +35,7 @@ public interface IBooleanArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets an array value.
+         *
          * @param array The array.
          * @return The node.
          */
@@ -42,6 +44,7 @@ public interface IBooleanArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets an array value.
+         *
          * @param array The array.
          * @return The node.
          */

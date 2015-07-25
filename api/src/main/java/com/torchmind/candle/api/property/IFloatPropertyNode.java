@@ -23,18 +23,24 @@ import javax.annotation.Nonnull;
 
 /**
  * Represents a {@link java.lang.Float} property value.
+ *
  * @author Johannes Donath
  */
 public interface IFloatPropertyNode extends IPropertyNode {
 
         /**
-         * Retrieves a float value.
+         * Retrieves an unsigned float value.
+         *
          * @return The value.
+         *
+         * @throws java.lang.IllegalStateException when the value is negative.
          */
-        float value ();
+        @Nonnegative
+        float unsignedValue () throws IllegalStateException;
 
         /**
          * Sets a float value.
+         *
          * @param value The value.
          * @return The node.
          */
@@ -42,12 +48,11 @@ public interface IFloatPropertyNode extends IPropertyNode {
         IFloatPropertyNode value (float value);
 
         /**
-         * Retrieves an unsigned float value.
+         * Retrieves a float value.
+         *
          * @return The value.
-         * @throws java.lang.IllegalStateException when the value is negative.
          */
-        @Nonnegative
-        float unsignedValue () throws IllegalStateException;
+        float value ();
 
         /**
          * {@inheritDoc}

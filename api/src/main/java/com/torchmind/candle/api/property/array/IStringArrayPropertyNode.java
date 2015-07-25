@@ -27,6 +27,7 @@ public interface IStringArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Retrieves an array value.
+         *
          * @return The array.
          */
         @Nonnull
@@ -34,6 +35,7 @@ public interface IStringArrayPropertyNode extends IArrayPropertyNode {
 
         /**
          * Sets an array value.
+         *
          * @param array The array.
          * @return The node.
          */
