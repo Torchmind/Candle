@@ -30,8 +30,8 @@
         </properties>
 
         <!-- Artifact Metadata -->
-        <name>Candle Configuration Format</name>
-        <description>Provides a simple human-readable configuration format.</description>
+        <name>Candle Tree API</name>
+        <description>Provides access to the Candle Configuration Format via node trees.</description>
         <inceptionYear>2015</inceptionYear>
 
         <organization>
