@@ -30,7 +30,7 @@ import java.io.*;
 /**
  * @author Johannes Donath
  */
-public class CandleSerializer implements ITreeWalker {
+public class CandleWriter implements ITreeWalker {
         public StringBuilder builder = new StringBuilder ();
         private String indentation = "\t";
         private String newline = System.lineSeparator ();
@@ -91,7 +91,7 @@ public class CandleSerializer implements ITreeWalker {
          * @return The serializer.
          */
         @Nonnull
-        public CandleSerializer indentation (@Nullable String indentation) {
+        public CandleWriter indentation (@Nullable String indentation) {
                 this.indentation = indentation;
                 return this;
         }
@@ -120,7 +120,7 @@ public class CandleSerializer implements ITreeWalker {
          * @return The serializer.
          */
         @Nonnull
-        public CandleSerializer newline (@Nonnull String newline) {
+        public CandleWriter newline (@Nonnull String newline) {
                 this.newline = newline;
                 return this;
         }
@@ -131,7 +131,7 @@ public class CandleSerializer implements ITreeWalker {
          * @return The writer.
          */
         @Nonnull
-        public CandleSerializer reset () {
+        public CandleWriter reset () {
                 this.builder.setLength (0);
                 return this;
         }
@@ -412,7 +412,7 @@ public class CandleSerializer implements ITreeWalker {
          * @throws java.io.IOException when writing fails.
          */
         @Nonnull
-        public CandleSerializer write (@Nonnull File file, @Nonnull IObjectNode node) throws IOException {
+        public CandleWriter write (@Nonnull File file, @Nonnull IObjectNode node) throws IOException {
                 try (FileOutputStream outputStream = new FileOutputStream (file)) {
                         return this.write (outputStream, node);
                 }
@@ -428,7 +428,7 @@ public class CandleSerializer implements ITreeWalker {
          * @throws java.io.IOException when writing fails.
          */
         @Nonnull
-        public CandleSerializer write (@Nonnull OutputStream outputStream, @Nonnull IObjectNode node) throws IOException {
+        public CandleWriter write (@Nonnull OutputStream outputStream, @Nonnull IObjectNode node) throws IOException {
                 try (OutputStreamWriter writer = new OutputStreamWriter (outputStream)) {
                         return this.write (writer, node);
                 }
@@ -444,7 +444,7 @@ public class CandleSerializer implements ITreeWalker {
          * @throws java.io.IOException when writing fails.
          */
         @Nonnull
-        public CandleSerializer write (@Nonnull Writer writer, @Nonnull IObjectNode node) throws IOException {
+        public CandleWriter write (@Nonnull Writer writer, @Nonnull IObjectNode node) throws IOException {
                 node.walk (this);
                 return this.write (writer);
         }
@@ -458,7 +458,7 @@ public class CandleSerializer implements ITreeWalker {
          * @throws java.io.IOException when writing fails.
          */
         @Nonnull
-        public CandleSerializer write (@Nonnull Writer writer) throws IOException {
+        public CandleWriter write (@Nonnull Writer writer) throws IOException {
                 writer.write (this.toString ());
                 return this.reset ();
         }

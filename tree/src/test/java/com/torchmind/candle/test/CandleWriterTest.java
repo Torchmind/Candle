@@ -17,7 +17,7 @@
 package com.torchmind.candle.test;
 
 import com.torchmind.candle.Candle;
-import com.torchmind.candle.CandleSerializer;
+import com.torchmind.candle.CandleWriter;
 import com.torchmind.candle.api.error.CandleException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,20 +27,20 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.io.*;
 
 /**
- * Provides test cases for {@link com.torchmind.candle.CandleSerializer}.
+ * Provides test cases for {@link com.torchmind.candle.CandleWriter}.
  * @author Johannes Donath
  */
 @RunWith (MockitoJUnitRunner.class)
-public class CandleSerializerTest {
+public class CandleWriterTest {
 
         /**
-         * Tests the standard serialization format written by {@link com.torchmind.candle.CandleSerializer#serialize(com.torchmind.candle.api.IDocumentNode, java.io.Writer)}.
+         * Tests the standard serialization format written by {@link com.torchmind.candle.CandleWriter#serialize(com.torchmind.candle.api.IDocumentNode, java.io.Writer)}.
          */
         @Test
         public void testStandardWrite () throws CandleException, IOException {
                 // build expected value
                 // Note: This is only needed due to the fact that Candle files utilize system specific line separators
-                BufferedReader reader = new BufferedReader (new InputStreamReader (CandleSerializerTest.class.getResourceAsStream ("/testSerialized.cndl")));
+                BufferedReader reader = new BufferedReader (new InputStreamReader (CandleWriterTest.class.getResourceAsStream ("/testSerialized.cndl")));
                 StringBuilder expected = new StringBuilder ();
 
                 reader.lines ().forEach (s -> {
@@ -48,8 +48,8 @@ public class CandleSerializerTest {
                         expected.append ("\n");
                 });
 
-                Candle candle = Candle.readFile (CandleSerializerTest.class.getResourceAsStream ("/testSerialized.cndl"));
-                CandleSerializer serializer = new CandleSerializer ().newline ("\n");
+                Candle candle = Candle.readFile (CandleWriterTest.class.getResourceAsStream ("/testSerialized.cndl"));
+                CandleWriter serializer = new CandleWriter ().newline ("\n");
                 candle.walk (serializer);
 
                 Assert.assertEquals (expected.toString (), serializer.toString ());
