@@ -26,6 +26,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Provides test cases for {@link com.torchmind.candle.node.property.IntegerPropertyNode}.
+ *
  * @author Johannes Donath
  */
 @RunWith (MockitoJUnitRunner.class)
@@ -36,19 +37,19 @@ public class IntegerPropertyNodeTest {
         /**
          * Tests {@link com.torchmind.candle.node.property.IntegerPropertyNode#unsignedValue()}.
          */
-        @Test
-        public void testSuccessfulUnsigned () {
-                IntegerPropertyNode node = new IntegerPropertyNode (this.candle, "testProperty1", 42);
-
-                Assert.assertEquals (42.0f, node.unsignedValue (), 0.01f);
+        @Test (expected = IllegalStateException.class)
+        public void testFailureUnsigned () {
+                IntegerPropertyNode node = new IntegerPropertyNode (this.candle, "testProperty1", -42);
+                node.unsignedValue ();
         }
 
         /**
          * Tests {@link com.torchmind.candle.node.property.IntegerPropertyNode#unsignedValue()}.
          */
-        @Test (expected = IllegalStateException.class)
-        public void testFailureUnsigned () {
-                IntegerPropertyNode node = new IntegerPropertyNode (this.candle, "testProperty1", -42);
-                node.unsignedValue ();
+        @Test
+        public void testSuccessfulUnsigned () {
+                IntegerPropertyNode node = new IntegerPropertyNode (this.candle, "testProperty1", 42);
+
+                Assert.assertEquals (42.0f, node.unsignedValue (), 0.01f);
         }
 }

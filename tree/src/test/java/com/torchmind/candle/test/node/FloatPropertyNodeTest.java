@@ -26,6 +26,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Provides test cases for {@link com.torchmind.candle.node.property.FloatPropertyNode}.
+ *
  * @author Johannes Donath
  */
 @RunWith (MockitoJUnitRunner.class)
@@ -36,19 +37,19 @@ public class FloatPropertyNodeTest {
         /**
          * Tests {@link com.torchmind.candle.node.property.FloatPropertyNode#unsignedValue()}.
          */
-        @Test
-        public void testSuccessfulUnsigned () {
-                FloatPropertyNode node = new FloatPropertyNode (this.candle, "testProperty1", 42.0f);
-
-                Assert.assertEquals (42.0f, node.unsignedValue (), 0.01f);
+        @Test (expected = IllegalStateException.class)
+        public void testFailureUnsigned () {
+                FloatPropertyNode node = new FloatPropertyNode (this.candle, "testProperty1", -42.0f);
+                node.unsignedValue ();
         }
 
         /**
          * Tests {@link com.torchmind.candle.node.property.FloatPropertyNode#unsignedValue()}.
          */
-        @Test (expected = IllegalStateException.class)
-        public void testFailureUnsigned () {
-                FloatPropertyNode node = new FloatPropertyNode (this.candle, "testProperty1", -42.0f);
-                node.unsignedValue ();
+        @Test
+        public void testSuccessfulUnsigned () {
+                FloatPropertyNode node = new FloatPropertyNode (this.candle, "testProperty1", 42.0f);
+
+                Assert.assertEquals (42.0f, node.unsignedValue (), 0.01f);
         }
 }

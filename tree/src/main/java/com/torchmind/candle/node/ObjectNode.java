@@ -19,8 +19,6 @@ package com.torchmind.candle.node;
 import com.torchmind.candle.api.*;
 import com.torchmind.candle.api.property.*;
 import com.torchmind.candle.api.property.array.*;
-import com.torchmind.candle.node.property.*;
-import com.torchmind.candle.node.property.array.*;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -723,20 +721,21 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                         if (n instanceof IArrayPropertyNode) {
                                 walker.visitArrayPropertyNode (this.document (), ((IArrayPropertyNode) n));
 
-                                if (n instanceof IBooleanArrayPropertyNode)
+                                if (n instanceof IBooleanArrayPropertyNode) {
                                         walker.visitArrayPropertyNode (this.document (), ((IBooleanArrayPropertyNode) n));
-                                else if (n instanceof IEnumArrayPropertyNode)
+                                } else if (n instanceof IEnumArrayPropertyNode) {
                                         walker.visitArrayPropertyNode (this.document (), ((IEnumArrayPropertyNode) n));
-                                else if (n instanceof IFloatArrayPropertyNode)
+                                } else if (n instanceof IFloatArrayPropertyNode) {
                                         walker.visitArrayPropertyNode (this.document (), ((IFloatArrayPropertyNode) n));
-                                else if (n instanceof IIntegerArrayPropertyNode)
+                                } else if (n instanceof IIntegerArrayPropertyNode) {
                                         walker.visitArrayPropertyNode (this.document (), ((IIntegerArrayPropertyNode) n));
-                                else if (n instanceof INullArrayPropertyNode)
+                                } else if (n instanceof INullArrayPropertyNode) {
                                         walker.visitArrayPropertyNode (this.document (), ((INullArrayPropertyNode) n));
-                                else if (n instanceof IStringArrayPropertyNode)
+                                } else if (n instanceof IStringArrayPropertyNode) {
                                         walker.visitArrayPropertyNode (this.document (), ((IStringArrayPropertyNode) n));
-                                else
+                                } else {
                                         throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
+                                }
 
                                 walker.visitArrayPropertyNodeEnd (this.document (), ((IArrayPropertyNode) n));
                                 return;
@@ -745,22 +744,23 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                         if (n instanceof IPropertyNode) {
                                 walker.visitPropertyNode (this.document (), ((IPropertyNode) n));
 
-                                if (n instanceof IBooleanPropertyNode)
+                                if (n instanceof IBooleanPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((IBooleanPropertyNode) n));
-                                else if (n instanceof IDefaultPropertyNode)
+                                } else if (n instanceof IDefaultPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((IDefaultPropertyNode) n));
-                                else if (n instanceof IEnumPropertyNode)
+                                } else if (n instanceof IEnumPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((IEnumPropertyNode) n));
-                                else if (n instanceof IFloatPropertyNode)
+                                } else if (n instanceof IFloatPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((IFloatPropertyNode) n));
-                                else if (n instanceof IIntegerPropertyNode)
+                                } else if (n instanceof IIntegerPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((IIntegerPropertyNode) n));
-                                else if (n instanceof INullPropertyNode)
+                                } else if (n instanceof INullPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((INullPropertyNode) n));
-                                else if (n instanceof IStringPropertyNode)
+                                } else if (n instanceof IStringPropertyNode) {
                                         walker.visitPropertyNode (this.document (), ((IStringPropertyNode) n));
-                                else
+                                } else {
                                         throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
+                                }
 
                                 walker.visitPropertyNodeEnd (this.document (), ((IPropertyNode) n));
                                 return;

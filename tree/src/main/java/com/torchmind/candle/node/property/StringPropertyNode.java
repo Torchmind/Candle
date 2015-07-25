@@ -17,7 +17,6 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
-import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.IStringPropertyNode;
 
 import javax.annotation.Nonnull;

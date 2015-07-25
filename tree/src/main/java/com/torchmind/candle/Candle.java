@@ -18,7 +18,6 @@ package com.torchmind.candle;
 
 import com.torchmind.candle.antlr.*;
 import com.torchmind.candle.api.IDocumentNode;
-import com.torchmind.candle.api.IObjectNode;
 import com.torchmind.candle.api.ITreeWalker;
 import com.torchmind.candle.api.error.CandleException;
 import com.torchmind.candle.node.ObjectNode;
@@ -114,35 +113,11 @@ public class Candle extends ObjectNode implements IDocumentNode {
         }
 
         /**
-         * Writes the document into a file.
-         * @param file The file.
-         * @return The document.
-         * @throws java.io.IOException when writing fails.
-         */
-        @Nonnull
-        public Candle write (@Nonnull File file) throws IOException {
-                try (FileOutputStream outputStream = new FileOutputStream (file)) {
-                        return this.write (outputStream);
-                }
-        }
-
-        /**
-         * Writes the document into a stream.
-         * @param outputStream The output stream.
-         * @return The document.
-         * @throws java.io.IOException when writing fails.
-         */
-        @Nonnull
-        public Candle write (@Nonnull OutputStream outputStream) throws IOException {
-                CandleWriter writer = new CandleWriter ();
-                writer.write (outputStream, this);
-                return this;
-        }
-
-        /**
          * Reads a Candle document.
+         *
          * @param file The file.
          * @return The document.
+         *
          * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
          * @throws java.io.IOException                            when reading the document fails.
          */
@@ -153,8 +128,10 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
         /**
          * Reads a Candle document.
+         *
          * @param inputStream The input stream.
          * @return The document.
+         *
          * @throws com.torchmind.candle.api.error.CandleException when lexing or parsing fails.
          * @throws java.io.IOException                            when reading the document fails.
          */
@@ -174,6 +151,36 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 walker.visitDocumentNodeEnd (this);
 
                 return this;
+        }
+
+        /**
+         * Writes the document into a stream.
+         *
+         * @param outputStream The output stream.
+         * @return The document.
+         *
+         * @throws java.io.IOException when writing fails.
+         */
+        @Nonnull
+        public Candle write (@Nonnull OutputStream outputStream) throws IOException {
+                CandleWriter writer = new CandleWriter ();
+                writer.write (outputStream, this);
+                return this;
+        }
+
+        /**
+         * Writes the document into a file.
+         *
+         * @param file The file.
+         * @return The document.
+         *
+         * @throws java.io.IOException when writing fails.
+         */
+        @Nonnull
+        public Candle write (@Nonnull File file) throws IOException {
+                try (FileOutputStream outputStream = new FileOutputStream (file)) {
+                        return this.write (outputStream);
+                }
         }
 
         /**

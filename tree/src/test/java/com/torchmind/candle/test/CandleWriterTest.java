@@ -24,10 +24,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Provides test cases for {@link com.torchmind.candle.CandleWriter}.
+ *
  * @author Johannes Donath
  */
 @RunWith (MockitoJUnitRunner.class)

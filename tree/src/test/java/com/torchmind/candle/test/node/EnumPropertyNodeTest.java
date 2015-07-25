@@ -26,6 +26,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Provides test cases for {@link com.torchmind.candle.node.property.EnumPropertyNode}.
+ *
  * @author Johannes Donath
  */
 @RunWith (MockitoJUnitRunner.class)

@@ -17,7 +17,6 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
-import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.IFloatPropertyNode;
 
 import javax.annotation.Nonnegative;
@@ -41,8 +40,12 @@ public class FloatPropertyNode extends AbstractPropertyNode implements IFloatPro
          * {@inheritDoc}
          */
         @Override
-        public float value () {
-                return this.value;
+        @Nonnegative
+        public float unsignedValue () throws IllegalStateException {
+                if (this.value () < 0) {
+                        throw new IllegalStateException ("Expected an unsigned value but got " + this.value ());
+                }
+                return this.value ();
         }
 
         /**
@@ -59,12 +62,8 @@ public class FloatPropertyNode extends AbstractPropertyNode implements IFloatPro
          * {@inheritDoc}
          */
         @Override
-        @Nonnegative
-        public float unsignedValue () throws IllegalStateException {
-                if (this.value () < 0) {
-                        throw new IllegalStateException ("Expected an unsigned value but got " + this.value ());
-                }
-                return this.value ();
+        public float value () {
+                return this.value;
         }
 
         /**

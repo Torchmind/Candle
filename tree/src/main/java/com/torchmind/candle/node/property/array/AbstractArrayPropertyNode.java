@@ -16,9 +16,9 @@
  */
 package com.torchmind.candle.node.property.array;
 
-import com.torchmind.candle.api.property.array.IArrayPropertyNode;
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.array.IArrayPropertyNode;
 import com.torchmind.candle.node.property.AbstractPropertyNode;
 
 import javax.annotation.Nonnull;

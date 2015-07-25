@@ -79,22 +79,6 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode implemen
          */
         @Nonnull
         @Override
-        @Nonnegative
-        public int[] unsignedArray () {
-                for (int current : this.array) {
-                        if (current < 0) {
-                                throw new IllegalStateException ("Expected an unsigned value but got " + current);
-                        }
-                }
-
-                return this.array;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nonnull
-        @Override
         public NodeValueType itemType () {
                 return NodeValueType.INTEGER;
         }
@@ -106,6 +90,22 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode implemen
         @Nonnegative
         public int length () {
                 return this.array.length;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        @Nonnegative
+        public int[] unsignedArray () {
+                for (int current : this.array) {
+                        if (current < 0) {
+                                throw new IllegalStateException ("Expected an unsigned value but got " + current);
+                        }
+                }
+
+                return this.array;
         }
 
         /**
