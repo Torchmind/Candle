@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.IIntegerPropertyNode;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -27,7 +28,7 @@ import javax.annotation.Nonnull;
  *
  * @author Johannes Donath
  */
-public class IntegerPropertyNode extends AbstractPropertyNode {
+public class IntegerPropertyNode extends AbstractPropertyNode implements IIntegerPropertyNode {
         private int value;
 
         public IntegerPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, int value) {
@@ -39,6 +40,7 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
         /**
          * {@inheritDoc}
          */
+        @Override
         public int value () {
                 return this.value;
         }
@@ -47,6 +49,7 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
          * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public IntegerPropertyNode value (int value) {
                 this.value = value;
                 return this;
@@ -55,17 +58,9 @@ public class IntegerPropertyNode extends AbstractPropertyNode {
         /**
          * {@inheritDoc}
          */
-        @Nonnull
         @Override
-        public NodeValueType valueType () {
-                return NodeValueType.INTEGER;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
         @Nonnegative
-        public int valueUnsigned () {
+        public int unsignedValue () {
                 if (this.value () < 0) {
                         throw new IllegalStateException ("Expected an unsigned value but got " + this.value ());
                 }

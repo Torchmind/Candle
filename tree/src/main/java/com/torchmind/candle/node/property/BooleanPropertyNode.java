@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.IBooleanPropertyNode;
 
 import javax.annotation.Nonnull;
 
@@ -26,7 +27,7 @@ import javax.annotation.Nonnull;
  *
  * @author Johannes Donath
  */
-public class BooleanPropertyNode extends AbstractPropertyNode {
+public class BooleanPropertyNode extends AbstractPropertyNode implements IBooleanPropertyNode {
         private boolean value;
 
         public BooleanPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, boolean value) {
@@ -36,22 +37,11 @@ public class BooleanPropertyNode extends AbstractPropertyNode {
         }
 
         /**
-         * Retrieves the boolean value.
+         * {@inheritDoc}
          */
+        @Override
         public boolean value () {
                 return this.value;
-        }
-
-        /**
-         * Sets the boolean value.
-         *
-         * @param value The value.
-         * @return The node.
-         */
-        @Nonnull
-        public BooleanPropertyNode value (boolean value) {
-                this.value = value;
-                return this;
         }
 
         /**
@@ -59,8 +49,9 @@ public class BooleanPropertyNode extends AbstractPropertyNode {
          */
         @Nonnull
         @Override
-        public NodeValueType valueType () {
-                return NodeValueType.BOOLEAN;
+        public BooleanPropertyNode value (boolean value) {
+                this.value = value;
+                return this;
         }
 
         /**

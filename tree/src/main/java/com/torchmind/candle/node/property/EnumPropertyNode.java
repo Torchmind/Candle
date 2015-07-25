@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.IEnumPropertyNode;
 
 import javax.annotation.Nonnull;
 
@@ -26,7 +27,7 @@ import javax.annotation.Nonnull;
  *
  * @author Johannes Donath
  */
-public class EnumPropertyNode extends AbstractPropertyNode {
+public class EnumPropertyNode extends AbstractPropertyNode implements IEnumPropertyNode {
         private String value;
 
         public EnumPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull String value) {
@@ -42,55 +43,21 @@ public class EnumPropertyNode extends AbstractPropertyNode {
         }
 
         /**
-         * Retrieves the enum value.
-         *
-         * @return The value.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public String value () {
                 return this.value;
         }
 
         /**
-         * Sets the enum value.
-         *
-         * @param value The value.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
-        public EnumPropertyNode value (String value) {
+        @Override
+        public EnumPropertyNode value (@Nonnull String value) {
                 this.value = value;
-                return this;
-        }
-
-        /**
-         * Retrieves the enum value.
-         *
-         * @param enumType The enum type.
-         * @param <T>      The enum type.
-         * @return The value.
-         *
-         * @throws java.lang.IllegalStateException when the enum does not contain the node value.
-         */
-        @Nonnull
-        public <T extends Enum> T value (@Nonnull Class<T> enumType) throws IllegalStateException {
-                try {
-                        // Looks unneeded, should be unneeded, isn't unneeded ...
-                        return ((T) Enum.valueOf (enumType, this.value ()));
-                } catch (IllegalArgumentException ex) {
-                        throw new IllegalStateException ("Enum of type " + enumType.getCanonicalName () + " does not contain possible value \"" + this.value () + "\"", ex);
-                }
-        }
-
-        /**
-         * Sets an enum value.
-         *
-         * @param value The enum value.
-         * @return The node.
-         */
-        @Nonnull
-        public EnumPropertyNode value (@Nonnull Enum value) {
-                this.value (value.name ());
                 return this;
         }
 
@@ -99,8 +66,23 @@ public class EnumPropertyNode extends AbstractPropertyNode {
          */
         @Nonnull
         @Override
-        public NodeValueType valueType () {
-                return NodeValueType.ENUM;
+        public <E extends Enum> E value (@Nonnull Class<E> enumType) throws IllegalStateException {
+                try {
+                        // Looks unneeded, should be unneeded, isn't unneeded ...
+                        return ((E) Enum.valueOf (enumType, this.value ()));
+                } catch (IllegalArgumentException ex) {
+                        throw new IllegalStateException ("Enum of type " + enumType.getCanonicalName () + " does not contain possible value \"" + this.value () + "\"", ex);
+                }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public EnumPropertyNode value (@Nonnull Enum value) {
+                this.value (value.name ());
+                return this;
         }
 
         /**

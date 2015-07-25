@@ -14,39 +14,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.torchmind.candle.node.property;
+package com.torchmind.candle.api.property;
 
-import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
-import com.torchmind.candle.api.property.IDefaultPropertyNode;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 /**
- * Represents a default value.
- *
+ * Represents a {@link java.lang.Float} property value.
  * @author Johannes Donath
  */
-public class DefaultPropertyNode extends AbstractPropertyNode implements IDefaultPropertyNode {
+public interface IFloatPropertyNode extends IPropertyNode {
 
-        public DefaultPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
-                super (documentNode, name);
-        }
+        /**
+         * Retrieves a float value.
+         * @return The value.
+         */
+        float value ();
+
+        /**
+         * Sets a float value.
+         * @param value The value.
+         * @return The node.
+         */
+        @Nonnull
+        IFloatPropertyNode value (float value);
+
+        /**
+         * Retrieves an unsigned float value.
+         * @return The value.
+         * @throws java.lang.IllegalStateException when the value is negative.
+         */
+        @Nonnegative
+        float unsignedValue () throws IllegalStateException;
 
         /**
          * {@inheritDoc}
          */
         @Nonnull
         @Override
-        public DefaultPropertyNode ensureValueType (@Nonnull NodeValueType valueType) throws IllegalStateException {
-                return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public String toString () {
-                return String.format ("DefaultPropertyNode{%s}", super.toString ());
+        default NodeValueType valueType () {
+                return NodeValueType.FLOAT;
         }
 }

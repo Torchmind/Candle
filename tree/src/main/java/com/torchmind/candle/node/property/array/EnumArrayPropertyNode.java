@@ -18,7 +18,9 @@ package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.array.IEnumArrayPropertyNode;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -28,7 +30,7 @@ import java.util.Arrays;
  *
  * @author Johannes Donath
  */
-public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
+public class EnumArrayPropertyNode extends AbstractArrayPropertyNode implements IEnumArrayPropertyNode {
         private String[] array;
 
         public EnumArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull String[] array) {
@@ -44,23 +46,19 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
         }
 
         /**
-         * Retrieves the raw enum array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public String[] array () {
                 return this.array;
         }
 
         /**
-         * Retrieves the enum array.
-         *
-         * @param enumType The enum type.
-         * @param <T>      The enum type.
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         @SuppressWarnings ("unchecked")
         public <T extends Enum> T[] array (@Nonnull Class<T> enumType) {
                 try {
@@ -78,25 +76,20 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
         }
 
         /**
-         * Sets the raw enum array.
-         *
-         * @param array The array.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public EnumArrayPropertyNode array (@Nonnull String[] array) {
                 this.array = array;
                 return this;
         }
 
         /**
-         * Sets the enum array.
-         *
-         * @param array The array.
-         * @param <T>   The enum type.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public <T extends Enum> EnumArrayPropertyNode array (@Nonnull T[] array) {
                 String[] convertedArray = new String[array.length];
                 for (int i = 0; i < array.length; i++) {
@@ -108,16 +101,8 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode {
         /**
          * {@inheritDoc}
          */
-        @Nonnull
         @Override
-        public NodeValueType itemType () {
-                return NodeValueType.STRING;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
+        @Nonnegative
         public int length () {
                 return this.array.length;
         }

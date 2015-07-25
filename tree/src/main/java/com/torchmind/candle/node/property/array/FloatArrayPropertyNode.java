@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.array.IFloatArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -28,7 +29,7 @@ import java.util.Arrays;
  *
  * @author Johannes Donath
  */
-public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
+public class FloatArrayPropertyNode extends AbstractArrayPropertyNode implements IFloatArrayPropertyNode {
         private float[] array;
 
         public FloatArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull float[] array) {
@@ -40,41 +41,46 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
         public FloatArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull Float[] array) {
                 super (documentNode, name);
 
-                float[] primitiveArray = new float[array.length];
-                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
-                this.array (primitiveArray);
+                this.array (array);
         }
 
         /**
-         * Retrieves the float array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public float[] array () {
                 return this.array;
         }
 
         /**
-         * Sets the float array.
-         *
-         * @param array The array.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public FloatArrayPropertyNode array (@Nonnull float[] array) {
                 this.array = array;
                 return this;
         }
 
         /**
-         * Retrieves the unsigned float array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
+        public IFloatArrayPropertyNode array (@Nonnull Float[] array) {
+                float[] primitiveArray = new float[array.length];
+                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
+                return this.array (primitiveArray);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
         @Nonnegative
-        public float[] arrayUnsigned () {
+        public float[] unsignedArray () {
                 for (float current : this.array) {
                         if (current < 0) {
                                 throw new IllegalStateException ("Expected an unsigned value but got " + current);
@@ -87,16 +93,8 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode {
         /**
          * {@inheritDoc}
          */
-        @Nonnull
         @Override
-        public NodeValueType itemType () {
-                return NodeValueType.FLOAT;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
+        @Nonnegative
         public int length () {
                 return this.array.length;
         }

@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.array.IIntegerArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -28,7 +29,7 @@ import java.util.Arrays;
  *
  * @author Johannes Donath
  */
-public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
+public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode implements IIntegerArrayPropertyNode {
         private int[] array;
 
         public IntegerArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull int[] array) {
@@ -40,41 +41,46 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
         public IntegerArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull Integer[] array) {
                 super (documentNode, name);
 
-                int[] primitiveArray = new int[array.length];
-                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
-                this.array (primitiveArray);
+                this.array (array);
         }
 
         /**
-         * Retrieves the integer array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public int[] array () {
                 return this.array;
         }
 
         /**
-         * Sets the integer array.
-         *
-         * @param array The array.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public IntegerArrayPropertyNode array (@Nonnull int[] array) {
                 this.array = array;
                 return this;
         }
 
         /**
-         * Retrieves the unsigned integer array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
+        public IIntegerArrayPropertyNode array (@Nonnull Integer[] array) {
+                int[] primitiveArray = new int[array.length];
+                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
+                return this.array (primitiveArray);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
         @Nonnegative
-        public int[] arrayUnsigned () {
+        public int[] unsignedArray () {
                 for (int current : this.array) {
                         if (current < 0) {
                                 throw new IllegalStateException ("Expected an unsigned value but got " + current);
@@ -97,6 +103,7 @@ public class IntegerArrayPropertyNode extends AbstractArrayPropertyNode {
          * {@inheritDoc}
          */
         @Override
+        @Nonnegative
         public int length () {
                 return this.array.length;
         }

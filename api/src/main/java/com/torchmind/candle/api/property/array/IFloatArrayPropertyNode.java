@@ -14,49 +14,56 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.torchmind.candle.node.property.array;
+package com.torchmind.candle.api.property.array;
 
-import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
-import com.torchmind.candle.api.property.array.INullArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 /**
- * Represents an empty array property within the tree.
- *
  * @author Johannes Donath
  */
-public class NullArrayPropertyNode extends AbstractArrayPropertyNode implements INullArrayPropertyNode {
+public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
 
-        public NullArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
-                super (documentNode, name);
-        }
+        /**
+         * Retrieves an array value.
+         * @return The array.
+         */
+        @Nonnull
+        float[] array ();
+
+        /**
+         * Sets an array value.
+         * @param array The array.
+         * @return The node.
+         */
+        @Nonnull
+        IFloatArrayPropertyNode array (@Nonnull float[] array);
+
+        /**
+         * Sets an array value.
+         * @param array The array.
+         * @return The node.
+         */
+        @Nonnull
+        IFloatArrayPropertyNode array (@Nonnull Float[] array);
+
+        /**
+         * Retrieves an unsigned array value.
+         * @return The array.
+         * @throws java.lang.IllegalStateException when one or more values are negative.
+         */
+        @Nonnull
+        @Nonnegative
+        float[] unsignedArray () throws IllegalStateException;
 
         /**
          * {@inheritDoc}
          */
         @Nonnull
         @Override
-        public NullArrayPropertyNode ensureItemType (@Nonnull NodeValueType valueType) throws IllegalStateException {
-                return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        @Nonnegative
-        public int length () {
-                return 0;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public String toString () {
-                return String.format ("NullArrayPropertyNode{%s}", super.toString ());
+        default NodeValueType itemType () {
+                return NodeValueType.FLOAT;
         }
 }

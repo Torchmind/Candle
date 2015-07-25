@@ -18,7 +18,9 @@ package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.array.IStringArrayPropertyNode;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
@@ -27,7 +29,7 @@ import java.util.Arrays;
  *
  * @author Johannes Donath
  */
-public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
+public class StringArrayPropertyNode extends AbstractArrayPropertyNode implements IStringArrayPropertyNode {
         private String[] array;
 
         public StringArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull String[] array) {
@@ -37,23 +39,12 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
         }
 
         /**
-         * Retrieves the string array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
+        @Nonnull
+        @Override
         public String[] array () {
                 return this.array;
-        }
-
-        /**
-         * Sets the string array.
-         *
-         * @param array The array.
-         * @return The node.
-         */
-        public StringArrayPropertyNode array (String[] array) {
-                this.array = array;
-                return this;
         }
 
         /**
@@ -61,11 +52,16 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode {
          */
         @Nonnull
         @Override
-        public NodeValueType itemType () {
-                return NodeValueType.STRING;
+        public StringArrayPropertyNode array (@Nonnull String[] array) {
+                this.array = array;
+                return this;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
+        @Nonnegative
         public int length () {
                 return this.array.length;
         }

@@ -18,7 +18,9 @@ package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.array.IBooleanArrayPropertyNode;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.util.Arrays;
 
@@ -27,7 +29,7 @@ import java.util.Arrays;
  *
  * @author Johannes Donath
  */
-public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
+public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode implements IBooleanArrayPropertyNode {
         private boolean[] array;
 
         public BooleanArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull boolean[] array) {
@@ -39,40 +41,44 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode {
         public BooleanArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull Boolean[] array) {
                 super (documentNode, name);
 
-                boolean[] primitiveArray = new boolean[array.length];
-                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
-                this.array (primitiveArray);
+                this.array (array);
         }
 
         /**
-         * Retrieves the boolean array.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public boolean[] array () {
                 return this.array;
         }
 
         /**
-         * Sets the boolean array.
-         *
-         * @param array The array.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public BooleanArrayPropertyNode array (@Nonnull boolean[] array) {
                 this.array = array;
                 return this;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Nonnull
         @Override
-        public NodeValueType itemType () {
-                return NodeValueType.BOOLEAN;
+        public IBooleanArrayPropertyNode array (@Nonnull Boolean[] array) {
+                boolean[] primitiveArray = new boolean[array.length];
+                for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
+                return this.array (primitiveArray);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
+        @Nonnegative
         public int length () {
                 return this.array.length;
         }

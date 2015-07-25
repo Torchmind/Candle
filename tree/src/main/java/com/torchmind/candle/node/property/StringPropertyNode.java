@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.IStringPropertyNode;
 
 import javax.annotation.Nonnull;
 
@@ -26,7 +27,7 @@ import javax.annotation.Nonnull;
  *
  * @author Johannes Donath
  */
-public class StringPropertyNode extends AbstractPropertyNode {
+public class StringPropertyNode extends AbstractPropertyNode implements IStringPropertyNode {
         private String value;
 
         public StringPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, @Nonnull String value) {
@@ -36,20 +37,19 @@ public class StringPropertyNode extends AbstractPropertyNode {
         }
 
         /**
-         * Retrieves the string value.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public String value () {
                 return this.value;
         }
 
         /**
-         * Sets the string value.
-         *
-         * @param value The value.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public StringPropertyNode value (@Nonnull String value) {
                 this.value = value;
                 return this;
@@ -58,12 +58,6 @@ public class StringPropertyNode extends AbstractPropertyNode {
         /**
          * {@inheritDoc}
          */
-        @Nonnull
-        @Override
-        public NodeValueType valueType () {
-                return NodeValueType.STRING;
-        }
-
         @Override
         public String toString () {
                 return String.format ("StringPropertyNode{%s,value=\"%s\"}", super.toString (), this.value ());

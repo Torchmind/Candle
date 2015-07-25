@@ -17,8 +17,8 @@
 package com.torchmind.candle.node;
 
 import com.torchmind.candle.api.*;
-import com.torchmind.candle.api.property.array.IArrayPropertyNode;
-import com.torchmind.candle.api.property.IPropertyNode;
+import com.torchmind.candle.api.property.*;
+import com.torchmind.candle.api.property.array.*;
 import com.torchmind.candle.node.property.*;
 import com.torchmind.candle.node.property.array.*;
 
@@ -131,7 +131,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public boolean getBoolean (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, BooleanPropertyNode.class, BooleanPropertyNode::value, () -> false);
+                return this.getPropertyValue (name, IBooleanPropertyNode.class, IBooleanPropertyNode::value, () -> false);
         }
 
         /**
@@ -149,7 +149,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public boolean[] getBooleanArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, BooleanArrayPropertyNode.class, BooleanArrayPropertyNode::array);
+                return this.getPropertyValue (name, IBooleanArrayPropertyNode.class, IBooleanArrayPropertyNode::array);
         }
 
         /**
@@ -168,7 +168,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String getEnum (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumPropertyNode.class, EnumPropertyNode::value);
+                return this.getPropertyValue (name, IEnumPropertyNode.class, IEnumPropertyNode::value);
         }
 
         /**
@@ -187,7 +187,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public <T extends Enum> T getEnum (@Nonnull String name, @Nonnull Class<T> enumType) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumPropertyNode.class, (n) -> n.value (enumType));
+                return this.getPropertyValue (name, IEnumPropertyNode.class, (n) -> n.value (enumType));
         }
 
         /**
@@ -218,7 +218,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String[] getEnumArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumArrayPropertyNode.class, EnumArrayPropertyNode::array);
+                return this.getPropertyValue (name, IEnumArrayPropertyNode.class, IEnumArrayPropertyNode::array);
         }
 
         /**
@@ -237,7 +237,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public <T extends Enum> T[] getEnumArray (@Nonnull String name, @Nullable Class<T> enumType) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, EnumArrayPropertyNode.class, (n) -> n.array (enumType));
+                return this.getPropertyValue (name, IEnumArrayPropertyNode.class, (n) -> n.array (enumType));
         }
 
         /**
@@ -255,7 +255,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public float getFloat (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, FloatPropertyNode.class, FloatPropertyNode::value, () -> 0.0f);
+                return this.getPropertyValue (name, IFloatPropertyNode.class, IFloatPropertyNode::value, () -> 0.0f);
         }
 
         /**
@@ -273,7 +273,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public float[] getFloatArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, FloatArrayPropertyNode.class, FloatArrayPropertyNode::array);
+                return this.getPropertyValue (name, IFloatArrayPropertyNode.class, IFloatArrayPropertyNode::array);
         }
 
         /**
@@ -291,7 +291,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public int getInteger (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, IntegerPropertyNode.class, IntegerPropertyNode::value, () -> 0);
+                return this.getPropertyValue (name, IIntegerPropertyNode.class, IIntegerPropertyNode::value, () -> 0);
         }
 
         /**
@@ -309,7 +309,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public int[] getIntegerArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, IntegerArrayPropertyNode.class, IntegerArrayPropertyNode::array);
+                return this.getPropertyValue (name, IIntegerArrayPropertyNode.class, IIntegerArrayPropertyNode::array);
         }
 
         /**
@@ -356,7 +356,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String getString (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, StringPropertyNode.class, StringPropertyNode::value);
+                return this.getPropertyValue (name, IStringPropertyNode.class, IStringPropertyNode::value);
         }
 
         /**
@@ -375,7 +375,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public String[] getStringArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, StringArrayPropertyNode.class, StringArrayPropertyNode::array);
+                return this.getPropertyValue (name, IStringArrayPropertyNode.class, IStringArrayPropertyNode::array);
         }
 
         /**
@@ -393,7 +393,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public float getUnsignedFloat (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, FloatPropertyNode.class, FloatPropertyNode::valueUnsigned, () -> 0.0f);
+                return this.getPropertyValue (name, IFloatPropertyNode.class, IFloatPropertyNode::unsignedValue, () -> 0.0f);
         }
 
         /**
@@ -411,7 +411,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public float[] getUnsignedFloatArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, FloatArrayPropertyNode.class, FloatArrayPropertyNode::arrayUnsigned);
+                return this.getPropertyValue (name, IFloatArrayPropertyNode.class, IFloatArrayPropertyNode::unsignedArray);
         }
 
         /**
@@ -429,7 +429,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Override
         public int getUnsignedInteger (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, IntegerPropertyNode.class, IntegerPropertyNode::valueUnsigned, () -> 0);
+                return this.getPropertyValue (name, IIntegerPropertyNode.class, IIntegerPropertyNode::unsignedValue, () -> 0);
         }
 
         /**
@@ -447,7 +447,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
         @Nullable
         @Override
         public int[] getUnsignedIntegerArray (@Nonnull String name) throws IllegalStateException, NoSuchElementException {
-                return this.getPropertyValue (name, IntegerArrayPropertyNode.class, IntegerArrayPropertyNode::arrayUnsigned);
+                return this.getPropertyValue (name, IIntegerArrayPropertyNode.class, IIntegerArrayPropertyNode::unsignedArray);
         }
 
         /**

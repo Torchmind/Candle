@@ -18,6 +18,7 @@ package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.IFloatPropertyNode;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -27,7 +28,7 @@ import javax.annotation.Nonnull;
  *
  * @author Johannes Donath
  */
-public class FloatPropertyNode extends AbstractPropertyNode {
+public class FloatPropertyNode extends AbstractPropertyNode implements IFloatPropertyNode {
         private float value;
 
         public FloatPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name, float value) {
@@ -37,21 +38,18 @@ public class FloatPropertyNode extends AbstractPropertyNode {
         }
 
         /**
-         * Retrieves the float value.
-         *
-         * @return The value.
+         * {@inheritDoc}
          */
+        @Override
         public float value () {
                 return this.value;
         }
 
         /**
-         * Sets the float value.
-         *
-         * @param value The value.
-         * @return The node.
+         * {@inheritDoc}
          */
         @Nonnull
+        @Override
         public FloatPropertyNode value (float value) {
                 this.value = value;
                 return this;
@@ -60,21 +58,9 @@ public class FloatPropertyNode extends AbstractPropertyNode {
         /**
          * {@inheritDoc}
          */
-        @Nonnull
         @Override
-        public NodeValueType valueType () {
-                return NodeValueType.FLOAT;
-        }
-
-        /**
-         * Retrieves an unsigned float value.
-         *
-         * @return The value.
-         *
-         * @throws java.lang.IllegalStateException when a negative value was supplied.
-         */
         @Nonnegative
-        public float valueUnsigned () throws IllegalStateException {
+        public float unsignedValue () throws IllegalStateException {
                 if (this.value () < 0) {
                         throw new IllegalStateException ("Expected an unsigned value but got " + this.value ());
                 }

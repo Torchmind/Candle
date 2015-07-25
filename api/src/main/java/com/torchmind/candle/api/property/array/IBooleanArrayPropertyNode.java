@@ -14,39 +14,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.torchmind.candle.node.property;
+package com.torchmind.candle.api.property.array;
 
-import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.NodeValueType;
-import com.torchmind.candle.api.property.IDefaultPropertyNode;
 
 import javax.annotation.Nonnull;
 
 /**
- * Represents a default value.
- *
  * @author Johannes Donath
  */
-public class DefaultPropertyNode extends AbstractPropertyNode implements IDefaultPropertyNode {
+public interface IBooleanArrayPropertyNode extends IArrayPropertyNode {
 
-        public DefaultPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
-                super (documentNode, name);
-        }
+        /**
+         * Retrieves an array value.
+         * @return The array.
+         */
+        @Nonnull
+        boolean[] array ();
+
+        /**
+         * Sets an array value.
+         * @param array The array.
+         * @return The node.
+         */
+        @Nonnull
+        IBooleanArrayPropertyNode array (@Nonnull boolean[] array);
+
+        /**
+         * Sets an array value.
+         * @param array The array.
+         * @return The node.
+         */
+        @Nonnull
+        IBooleanArrayPropertyNode array (@Nonnull Boolean[] array);
 
         /**
          * {@inheritDoc}
          */
         @Nonnull
         @Override
-        public DefaultPropertyNode ensureValueType (@Nonnull NodeValueType valueType) throws IllegalStateException {
-                return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public String toString () {
-                return String.format ("DefaultPropertyNode{%s}", super.toString ());
+        default NodeValueType itemType () {
+                return NodeValueType.BOOLEAN;
         }
 }
