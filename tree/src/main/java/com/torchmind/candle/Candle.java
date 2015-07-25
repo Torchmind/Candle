@@ -28,9 +28,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import javax.annotation.Nonnull;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Provides a root document for the Candle Configuration File Format.
@@ -113,6 +111,32 @@ public class Candle extends ObjectNode implements IDocumentNode {
                         if (ex.getCause () instanceof CandleException) { throw ((CandleException) ex.getCause ()); }
                         throw ex;
                 }
+        }
+
+        /**
+         * Writes the document into a file.
+         * @param file The file.
+         * @return The document.
+         * @throws java.io.IOException when writing fails.
+         */
+        @Nonnull
+        public Candle write (@Nonnull File file) throws IOException {
+                try (FileOutputStream outputStream = new FileOutputStream (file)) {
+                        return this.write (outputStream);
+                }
+        }
+
+        /**
+         * Writes the document into a stream.
+         * @param outputStream The output stream.
+         * @return The document.
+         * @throws java.io.IOException when writing fails.
+         */
+        @Nonnull
+        public Candle write (@Nonnull OutputStream outputStream) throws IOException {
+                CandleWriter writer = new CandleWriter ();
+                writer.write (outputStream, this);
+                return this;
         }
 
         /**
