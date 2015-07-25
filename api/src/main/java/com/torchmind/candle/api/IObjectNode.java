@@ -763,5 +763,5 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @return The node.
          */
         @Nonnull
-        IObjectNode walk (@Nonnull ITreeWalker walker);
+        IObjectNode walk (@Nonnull ITreeVisitor walker);
 }

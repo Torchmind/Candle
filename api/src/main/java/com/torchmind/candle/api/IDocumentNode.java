@@ -76,5 +76,5 @@ public interface IDocumentNode extends IObjectNode {
          */
         @Nonnull
         @Override
-        IDocumentNode walk (@Nonnull ITreeWalker walker);
+        IDocumentNode walk (@Nonnull ITreeVisitor walker);
 }

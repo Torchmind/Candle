@@ -19,7 +19,7 @@ package com.torchmind.candle;
 import com.torchmind.candle.api.ICommentNode;
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.IObjectNode;
-import com.torchmind.candle.api.ITreeWalker;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.property.*;
 import com.torchmind.candle.api.property.array.*;
 
@@ -33,7 +33,7 @@ import java.io.*;
  *
  * @author Johannes Donath
  */
-public class CandleWriter implements ITreeWalker {
+public class CandleWriter implements ITreeVisitor {
         public StringBuilder builder = new StringBuilder ();
         private String indentation = "\t";
         private String newline = System.lineSeparator ();

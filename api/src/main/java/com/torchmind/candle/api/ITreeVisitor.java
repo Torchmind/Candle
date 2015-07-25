@@ -26,7 +26,7 @@ import javax.annotation.Nonnull;
  *
  * @author Johannes Donath
  */
-public interface ITreeWalker {
+public interface ITreeVisitor {
 
         /**
          * Visits an array property node.

@@ -18,7 +18,7 @@ package com.torchmind.candle;
 
 import com.torchmind.candle.antlr.*;
 import com.torchmind.candle.api.IDocumentNode;
-import com.torchmind.candle.api.ITreeWalker;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.error.CandleException;
 import com.torchmind.candle.node.ObjectNode;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -145,7 +145,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
          */
         @Nonnull
         @Override
-        public IDocumentNode walk (@Nonnull ITreeWalker walker) {
+        public IDocumentNode walk (@Nonnull ITreeVisitor walker) {
                 walker.visitDocumentNode (this);
                 super.walk (walker);
                 walker.visitDocumentNodeEnd (this);

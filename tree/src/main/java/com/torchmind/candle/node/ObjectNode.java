@@ -703,7 +703,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nonnull
         @Override
-        public IObjectNode walk (@Nonnull ITreeWalker walker) {
+        public IObjectNode walk (@Nonnull ITreeVisitor walker) {
                 this.stream ().forEach (n -> {
                         if (n instanceof IObjectNode) {
                                 walker.visitObjectNode (this.document (), ((IObjectNode) n));
