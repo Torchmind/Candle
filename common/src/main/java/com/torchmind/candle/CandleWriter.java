@@ -28,6 +28,8 @@ import javax.annotation.Nullable;
 import java.io.*;
 
 /**
+ * Provides a solution for generating human-readable Candle configuration files from {@link com.torchmind.candle.api.INode}
+ * implementations.
  * @author Johannes Donath
  */
 public class CandleWriter implements ITreeWalker {
