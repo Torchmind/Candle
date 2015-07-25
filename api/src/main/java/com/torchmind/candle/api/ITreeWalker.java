@@ -195,4 +195,12 @@ public interface ITreeWalker {
          * @param node     The node.
          */
         void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IStringPropertyNode node);
+
+        /**
+         * Visits a property node end.
+         *
+         * @param document The document.
+         * @param node     The node.
+         */
+        void visitPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node);
 }
