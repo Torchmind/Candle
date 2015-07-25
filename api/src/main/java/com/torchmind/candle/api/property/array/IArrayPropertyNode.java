@@ -14,9 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.torchmind.candle.api.property;
+package com.torchmind.candle.api.property.array;
 
 import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.property.IPropertyNode;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;

@@ -16,7 +16,7 @@
  */
 package com.torchmind.candle.api;
 
-import com.torchmind.candle.api.property.IArrayPropertyNode;
+import com.torchmind.candle.api.property.array.IArrayPropertyNode;
 import com.torchmind.candle.api.property.IPropertyNode;
 
 import javax.annotation.Nonnull;
@@ -62,8 +62,8 @@ public interface ITreeWalker {
 
         /**
          * Visits a property node.
-         * <strong>Note:</strong> Instances of {@link com.torchmind.candle.api.property.IArrayPropertyNode} are handled by
-         * {@link #visitPropertyNode(IDocumentNode, com.torchmind.candle.api.property.IArrayPropertyNode)}.
+         * <strong>Note:</strong> Instances of {@link com.torchmind.candle.api.property.array.IArrayPropertyNode} are handled by
+         * {@link #visitPropertyNode(IDocumentNode, com.torchmind.candle.api.property.array.IArrayPropertyNode)}.
          * @param document The document.
          * @param node The node.
          */
