@@ -74,7 +74,8 @@ property26 = [
 	VALUE3,
 	VALUE4,
 ]
-property27 = [ ]
+property27 = [
+]
 property28 = [
 	null,
 	null,
@@ -149,7 +150,8 @@ object1 {
 		VALUE3,
 		VALUE4,
 	]
-	property27 = [ ]
+	property27 = [
+	]
 	property28 = [
 		null,
 		null,
@@ -223,7 +225,8 @@ object1 {
 			VALUE3,
 			VALUE4,
 		]
-		property27 = [ ]
+		property27 = [
+		]
 		property28 = [
 			null,
 			null,
@@ -297,7 +300,8 @@ object1 {
 				VALUE3,
 				VALUE4,
 			]
-			property27 = [ ]
+			property27 = [
+			]
 			property28 = [
 				null,
 				null,
@@ -373,7 +377,8 @@ object1 {
 			VALUE3,
 			VALUE4,
 		]
-		property27 = [ ]
+		property27 = [
+		]
 		property28 = [
 			null,
 			null,

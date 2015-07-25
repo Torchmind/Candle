@@ -34,21 +34,21 @@ public class IntegerPropertyNodeTest {
         private Candle candle;
 
         /**
-         * Tests {@link com.torchmind.candle.node.property.IntegerPropertyNode#valueUnsigned()}.
+         * Tests {@link com.torchmind.candle.node.property.IntegerPropertyNode#unsignedValue()}.
          */
         @Test
         public void testSuccessfulUnsigned () {
                 IntegerPropertyNode node = new IntegerPropertyNode (this.candle, "testProperty1", 42);
 
-                Assert.assertEquals (42.0f, node.valueUnsigned (), 0.01f);
+                Assert.assertEquals (42.0f, node.unsignedValue (), 0.01f);
         }
 
         /**
-         * Tests {@link com.torchmind.candle.node.property.IntegerPropertyNode#valueUnsigned()}.
+         * Tests {@link com.torchmind.candle.node.property.IntegerPropertyNode#unsignedValue()}.
          */
         @Test (expected = IllegalStateException.class)
         public void testFailureUnsigned () {
                 IntegerPropertyNode node = new IntegerPropertyNode (this.candle, "testProperty1", -42);
-                node.valueUnsigned ();
+                node.unsignedValue ();
         }
 }

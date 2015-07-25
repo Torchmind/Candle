@@ -50,10 +50,8 @@ public class CandleSerializerTest {
 
                 Candle candle = Candle.readFile (CandleSerializerTest.class.getResourceAsStream ("/testSerialized.cndl"));
                 CandleSerializer serializer = new CandleSerializer ().newline ("\n");
+                candle.walk (serializer);
 
-                StringWriter writer = new StringWriter ();
-                serializer.serialize (candle, writer);
-
-                Assert.assertEquals (expected.toString (), writer.toString ());
+                Assert.assertEquals (expected.toString (), serializer.toString ());
         }
 }

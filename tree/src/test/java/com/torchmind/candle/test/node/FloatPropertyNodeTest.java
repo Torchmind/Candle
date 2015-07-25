@@ -34,21 +34,21 @@ public class FloatPropertyNodeTest {
         private Candle candle;
 
         /**
-         * Tests {@link com.torchmind.candle.node.property.FloatPropertyNode#valueUnsigned()}.
+         * Tests {@link com.torchmind.candle.node.property.FloatPropertyNode#unsignedValue()}.
          */
         @Test
         public void testSuccessfulUnsigned () {
                 FloatPropertyNode node = new FloatPropertyNode (this.candle, "testProperty1", 42.0f);
 
-                Assert.assertEquals (42.0f, node.valueUnsigned (), 0.01f);
+                Assert.assertEquals (42.0f, node.unsignedValue (), 0.01f);
         }
 
         /**
-         * Tests {@link com.torchmind.candle.node.property.FloatPropertyNode#valueUnsigned()}.
+         * Tests {@link com.torchmind.candle.node.property.FloatPropertyNode#unsignedValue()}.
          */
         @Test (expected = IllegalStateException.class)
         public void testFailureUnsigned () {
                 FloatPropertyNode node = new FloatPropertyNode (this.candle, "testProperty1", -42.0f);
-                node.valueUnsigned ();
+                node.unsignedValue ();
         }
 }
