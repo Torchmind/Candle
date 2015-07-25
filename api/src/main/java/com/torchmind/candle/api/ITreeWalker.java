@@ -16,8 +16,8 @@
  */
 package com.torchmind.candle.api;
 
-import com.torchmind.candle.api.property.array.IArrayPropertyNode;
-import com.torchmind.candle.api.property.IPropertyNode;
+import com.torchmind.candle.api.property.*;
+import com.torchmind.candle.api.property.array.*;
 
 import javax.annotation.Nonnull;
 
@@ -63,16 +63,114 @@ public interface ITreeWalker {
         /**
          * Visits a property node.
          * <strong>Note:</strong> Instances of {@link com.torchmind.candle.api.property.array.IArrayPropertyNode} are handled by
-         * {@link #visitPropertyNode(IDocumentNode, com.torchmind.candle.api.property.array.IArrayPropertyNode)}.
+         * {@link #visitArrayPropertyNode(IDocumentNode, com.torchmind.candle.api.property.array.IArrayPropertyNode)}.
          * @param document The document.
          * @param node The node.
          */
         void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node);
 
         /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.IBooleanPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IBooleanPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.IDefaultPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IDefaultPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.IEnumPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IEnumPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.IFloatPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IFloatPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.IIntegerPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IIntegerPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.INullPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull INullPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.IStringPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IStringPropertyNode node);
+
+        /**
          * Visits an array property node.
          * @param document The document.
          * @param node The node.
          */
-        void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IArrayPropertyNode node);
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IArrayPropertyNode node);
+
+        /**
+         * Visits an array property node end.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IArrayPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.array.IBooleanArrayPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IBooleanArrayPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.array.IEnumArrayPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IEnumArrayPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.array.IFloatArrayPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IFloatArrayPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.array.IIntegerArrayPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IIntegerArrayPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.array.INullArrayPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull INullArrayPropertyNode node);
+
+        /**
+         * Visits a property node of type {@link com.torchmind.candle.api.property.array.IStringArrayPropertyNode}.
+         * @param document The document.
+         * @param node The node.
+         */
+        void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IStringArrayPropertyNode node);
 }
