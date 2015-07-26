@@ -18,6 +18,7 @@ package com.torchmind.candle.test;
 
 import com.torchmind.candle.Candle;
 import com.torchmind.candle.api.IObjectNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.error.CandleException;
 import com.torchmind.candle.api.error.CandleLexerException;
 import com.torchmind.candle.api.error.CandleParserException;
@@ -25,6 +26,8 @@ import com.torchmind.candle.node.property.array.NullArrayPropertyNode;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
@@ -36,6 +39,8 @@ import java.io.IOException;
  */
 @RunWith (MockitoJUnitRunner.class)
 public class CandleTest {
+        @Mock
+        private ITreeVisitor treeVisitor;
 
         /**
          * Tests error handling of {@link com.torchmind.candle.Candle#read(org.antlr.v4.runtime.ANTLRInputStream)}.
@@ -267,5 +272,21 @@ public class CandleTest {
 
                 Assert.assertEquals (42, candle.getInteger ("property1"));
                 Assert.assertEquals (4, candle.getInteger ("property2"));
+        }
+
+        /**
+         * Tests {@link com.torchmind.candle.Candle#accept(com.torchmind.candle.api.ITreeVisitor)}.
+         */
+        @Test
+        public void testVisitor () {
+                Candle candle = new Candle ();
+                candle.accept (this.treeVisitor);
+
+                // @formatter:off
+                Mockito.verify (this.treeVisitor, Mockito.times (1))
+                        .visitDocumentNode (candle);
+                Mockito.verify (this.treeVisitor, Mockito.times (1))
+                        .visitDocumentNodeEnd (candle);
+                // @formatter:on
         }
 }
