@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -28,11 +29,11 @@ import javax.annotation.Nonnull;
 public interface IBooleanPropertyNode extends IPropertyNode {
 
         /**
-         * Retrieves the property value.
-         *
-         * @return The value.
+         * {@inheritDoc}
          */
-        boolean value ();
+        @Nonnull
+        @Override
+        IBooleanPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets the property value.
@@ -42,6 +43,13 @@ public interface IBooleanPropertyNode extends IPropertyNode {
          */
         @Nonnull
         IBooleanPropertyNode value (boolean value);
+
+        /**
+         * Retrieves the property value.
+         *
+         * @return The value.
+         */
+        boolean value ();
 
         /**
          * {@inheritDoc}

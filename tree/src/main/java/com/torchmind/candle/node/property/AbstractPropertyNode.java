@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.IPropertyNode;
 import com.torchmind.candle.node.AbstractNamedNode;
@@ -32,6 +33,16 @@ public abstract class AbstractPropertyNode extends AbstractNamedNode implements 
 
         public AbstractPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
                 super (documentNode, name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public AbstractPropertyNode accept (@Nonnull IVisitor visitor) {
+                visitor.visitProperty (this.name ());
+                return this;
         }
 
         /**

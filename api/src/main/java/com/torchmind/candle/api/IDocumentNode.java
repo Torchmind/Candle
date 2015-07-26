@@ -32,6 +32,20 @@ public interface IDocumentNode extends IObjectNode {
          */
         @Nonnull
         @Override
+        IDocumentNode accept (@Nonnull ITreeVisitor walker);
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IDocumentNode accept (@Nonnull IVisitor visitor);
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
         default IDocumentNode document () {
                 return this;
         }
@@ -70,18 +84,4 @@ public interface IDocumentNode extends IObjectNode {
         default NodeType type () {
                 return NodeType.DOCUMENT;
         }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nonnull
-        @Override
-        IDocumentNode accept (@Nonnull ITreeVisitor walker);
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nonnull
-        @Override
-        IDocumentNode accept (@Nonnull IVisitor visitor);
 }

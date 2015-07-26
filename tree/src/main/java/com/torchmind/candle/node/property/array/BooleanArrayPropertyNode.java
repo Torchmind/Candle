@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.array.IBooleanArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
@@ -48,8 +49,17 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode implemen
          */
         @Nonnull
         @Override
-        public boolean[] array () {
-                return this.array;
+        public BooleanArrayPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitArray ();
+
+                for (boolean current : this.array ()) {
+                        visitor.visitBoolean (current);
+                }
+
+                visitor.visitArrayEnd ();
+                return this;
         }
 
         /**
@@ -71,6 +81,15 @@ public class BooleanArrayPropertyNode extends AbstractArrayPropertyNode implemen
                 boolean[] primitiveArray = new boolean[array.length];
                 for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
                 return this.array (primitiveArray);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public boolean[] array () {
+                return this.array;
         }
 
         /**

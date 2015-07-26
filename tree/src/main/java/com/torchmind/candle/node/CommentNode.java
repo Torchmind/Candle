@@ -18,6 +18,7 @@ package com.torchmind.candle.node;
 
 import com.torchmind.candle.api.ICommentNode;
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 
 import javax.annotation.Nonnull;
 
@@ -39,9 +40,28 @@ public class CommentNode extends AbstractNode implements ICommentNode {
         /**
          * {@inheritDoc}
          */
+        @Nonnull
+        @Override
+        public CommentNode accept (@Nonnull IVisitor visitor) {
+                visitor.visitComment (this.text ());
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public boolean isMultiline () {
                 return this.multiline;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public String text () {
+                return this.content;
         }
 
         /**
@@ -53,15 +73,6 @@ public class CommentNode extends AbstractNode implements ICommentNode {
                 this.content = text;
                 this.multiline = text.contains ("\n");
                 return this;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nonnull
-        @Override
-        public String text () {
-                return this.content;
         }
 
         /**

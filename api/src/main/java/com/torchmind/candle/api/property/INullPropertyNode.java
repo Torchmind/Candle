@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -26,6 +27,13 @@ import javax.annotation.Nonnull;
  * @author Johannes Donath
  */
 public interface INullPropertyNode extends IPropertyNode {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        INullPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * {@inheritDoc}

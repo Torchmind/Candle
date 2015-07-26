@@ -26,12 +26,11 @@ import javax.annotation.Nonnull;
 public interface INamedNode extends INode {
 
         /**
-         * Retrieves the node name.
-         *
-         * @return The name.
+         * {@inheritDoc}
          */
         @Nonnull
-        String name ();
+        @Override
+        INamedNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets the node name.
@@ -41,4 +40,12 @@ public interface INamedNode extends INode {
          */
         @Nonnull
         INamedNode name (@Nonnull String name);
+
+        /**
+         * Retrieves the node name.
+         *
+         * @return The name.
+         */
+        @Nonnull
+        String name ();
 }

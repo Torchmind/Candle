@@ -19,6 +19,7 @@ package com.torchmind.candle;
 import com.torchmind.candle.antlr.*;
 import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.ITreeVisitor;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.error.CandleException;
 import com.torchmind.candle.node.ObjectNode;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -38,6 +39,29 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
         public Candle () {
                 super ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public Candle accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public IDocumentNode accept (@Nonnull ITreeVisitor walker) {
+                walker.visitDocumentNode (this);
+                super.accept (walker);
+                walker.visitDocumentNodeEnd (this);
+
+                return this;
         }
 
         /**
@@ -138,19 +162,6 @@ public class Candle extends ObjectNode implements IDocumentNode {
         @Nonnull
         public static Candle readFile (@Nonnull InputStream inputStream) throws CandleException, IOException {
                 return (new Candle ()).read (inputStream);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Nonnull
-        @Override
-        public IDocumentNode accept (@Nonnull ITreeVisitor walker) {
-                walker.visitDocumentNode (this);
-                super.accept (walker);
-                walker.visitDocumentNodeEnd (this);
-
-                return this;
         }
 
         /**

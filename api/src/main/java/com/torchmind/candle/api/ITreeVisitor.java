@@ -29,6 +29,13 @@ import javax.annotation.Nonnull;
 public interface ITreeVisitor {
 
         /**
+         * Visits all elements within an object node.
+         *
+         * @param node The node.
+         */
+        void visit (@Nonnull IObjectNode node);
+
+        /**
          * Visits an array property node.
          *
          * @param document The document.
@@ -203,10 +210,4 @@ public interface ITreeVisitor {
          * @param node     The node.
          */
         void visitPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node);
-
-        /**
-         * Visits all elements within an object node.
-         * @param node The node.
-         */
-        void visit (@Nonnull IObjectNode node);
 }

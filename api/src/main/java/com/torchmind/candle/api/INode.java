@@ -26,6 +26,15 @@ import javax.annotation.Nonnull;
 public interface INode {
 
         /**
+         * Visits a node.
+         *
+         * @param visitor The visitor.
+         * @return The node.
+         */
+        @Nonnull
+        INode accept (@Nonnull IVisitor visitor);
+
+        /**
          * Retrieves the parent document node.
          *
          * @return The node.

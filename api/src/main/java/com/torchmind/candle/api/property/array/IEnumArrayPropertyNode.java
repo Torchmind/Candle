@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property.array;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -26,12 +27,11 @@ import javax.annotation.Nonnull;
 public interface IEnumArrayPropertyNode extends IArrayPropertyNode {
 
         /**
-         * Retrieves a raw array value.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
-        String[] array ();
+        @Override
+        IEnumArrayPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets a raw array value.
@@ -63,6 +63,14 @@ public interface IEnumArrayPropertyNode extends IArrayPropertyNode {
          */
         @Nonnull
         <E extends Enum> IEnumArrayPropertyNode array (@Nonnull E[] array);
+
+        /**
+         * Retrieves a raw array value.
+         *
+         * @return The array.
+         */
+        @Nonnull
+        String[] array ();
 
         /**
          * {@inheritDoc}

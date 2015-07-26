@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.array.INullArrayPropertyNode;
 
@@ -32,6 +33,19 @@ public class NullArrayPropertyNode extends AbstractArrayPropertyNode implements 
 
         public NullArrayPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
                 super (documentNode, name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public NullArrayPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitArray ();
+                visitor.visitArrayEnd ();
+                return this;
         }
 
         /**

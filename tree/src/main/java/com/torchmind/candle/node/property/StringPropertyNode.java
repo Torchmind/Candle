@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IStringPropertyNode;
 
 import javax.annotation.Nonnull;
@@ -40,8 +41,11 @@ public class StringPropertyNode extends AbstractPropertyNode implements IStringP
          */
         @Nonnull
         @Override
-        public String value () {
-                return this.value;
+        public StringPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitString (this.value ());
+                return this;
         }
 
         /**
@@ -52,6 +56,15 @@ public class StringPropertyNode extends AbstractPropertyNode implements IStringP
         public StringPropertyNode value (@Nonnull String value) {
                 this.value = value;
                 return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public String value () {
+                return this.value;
         }
 
         /**

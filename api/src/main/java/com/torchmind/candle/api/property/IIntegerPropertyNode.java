@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnegative;
@@ -29,6 +30,13 @@ import javax.annotation.Nonnull;
 public interface IIntegerPropertyNode extends IPropertyNode {
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IIntegerPropertyNode accept (@Nonnull IVisitor visitor);
+
+        /**
          * Retrieves an unsigned integer value.
          *
          * @return The unsigned value.
@@ -39,6 +47,13 @@ public interface IIntegerPropertyNode extends IPropertyNode {
         int unsignedValue () throws IllegalStateException;
 
         /**
+         * Retrieves an integer value.
+         *
+         * @return The value.
+         */
+        int value ();
+
+        /**
          * Sets an integer value.
          *
          * @param value The value.
@@ -46,13 +61,6 @@ public interface IIntegerPropertyNode extends IPropertyNode {
          */
         @Nonnull
         IIntegerPropertyNode value (int value);
-
-        /**
-         * Retrieves an integer value.
-         *
-         * @return The value.
-         */
-        int value ();
 
         /**
          * {@inheritDoc}

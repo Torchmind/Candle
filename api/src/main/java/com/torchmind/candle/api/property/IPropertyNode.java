@@ -31,6 +31,13 @@ import javax.annotation.Nonnull;
 public interface IPropertyNode extends INamedNode {
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IPropertyNode accept (@Nonnull IVisitor visitor);
+
+        /**
          * Ensures that a node value consists of a certain type.
          *
          * @param valueType The value type.
@@ -57,12 +64,4 @@ public interface IPropertyNode extends INamedNode {
          */
         @Nonnull
         NodeValueType valueType ();
-
-        /**
-         * Visits a property node.
-         * @param visitor The visitor.
-         * @return The node.
-         */
-        @Nonnull
-        IPropertyNode accept (@Nonnull IVisitor visitor);
 }

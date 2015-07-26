@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.INullPropertyNode;
 
@@ -31,6 +32,18 @@ public class NullPropertyNode extends AbstractPropertyNode implements INullPrope
 
         public NullPropertyNode (@Nonnull IDocumentNode documentNode, @Nonnull String name) {
                 super (documentNode, name);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public NullPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitNull ();
+                return this;
         }
 
         /**

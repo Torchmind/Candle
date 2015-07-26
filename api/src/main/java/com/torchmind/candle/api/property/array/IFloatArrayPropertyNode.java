@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property.array;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnegative;
@@ -27,12 +28,11 @@ import javax.annotation.Nonnull;
 public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
 
         /**
-         * Retrieves an array value.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
-        float[] array ();
+        @Override
+        IFloatArrayPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets an array value.
@@ -51,6 +51,14 @@ public interface IFloatArrayPropertyNode extends IArrayPropertyNode {
          */
         @Nonnull
         IFloatArrayPropertyNode array (@Nonnull Float[] array);
+
+        /**
+         * Retrieves an array value.
+         *
+         * @return The array.
+         */
+        @Nonnull
+        float[] array ();
 
         /**
          * {@inheritDoc}

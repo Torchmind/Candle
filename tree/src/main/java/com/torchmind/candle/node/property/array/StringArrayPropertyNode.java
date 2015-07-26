@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.array.IStringArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
@@ -42,8 +43,17 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode implement
          */
         @Nonnull
         @Override
-        public String[] array () {
-                return this.array;
+        public StringArrayPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitArray ();
+
+                for (String current : this.array ()) {
+                        visitor.visitString (current);
+                }
+
+                visitor.visitArrayEnd ();
+                return this;
         }
 
         /**
@@ -54,6 +64,15 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode implement
         public StringArrayPropertyNode array (@Nonnull String[] array) {
                 this.array = array;
                 return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public String[] array () {
+                return this.array;
         }
 
         /**

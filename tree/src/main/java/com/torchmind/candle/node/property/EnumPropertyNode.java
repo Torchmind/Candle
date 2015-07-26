@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IEnumPropertyNode;
 
 import javax.annotation.Nonnull;
@@ -46,8 +47,11 @@ public class EnumPropertyNode extends AbstractPropertyNode implements IEnumPrope
          */
         @Nonnull
         @Override
-        public String value () {
-                return this.value;
+        public EnumPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitEnum (this.value ());
+                return this;
         }
 
         /**
@@ -82,6 +86,15 @@ public class EnumPropertyNode extends AbstractPropertyNode implements IEnumPrope
         public EnumPropertyNode value (@Nonnull Enum value) {
                 this.value (value.name ());
                 return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public String value () {
+                return this.value;
         }
 
         /**

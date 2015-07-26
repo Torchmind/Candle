@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnegative;
@@ -29,6 +30,13 @@ import javax.annotation.Nonnull;
 public interface IFloatPropertyNode extends IPropertyNode {
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IFloatPropertyNode accept (@Nonnull IVisitor visitor);
+
+        /**
          * Retrieves an unsigned float value.
          *
          * @return The value.
@@ -39,6 +47,13 @@ public interface IFloatPropertyNode extends IPropertyNode {
         float unsignedValue () throws IllegalStateException;
 
         /**
+         * Retrieves a float value.
+         *
+         * @return The value.
+         */
+        float value ();
+
+        /**
          * Sets a float value.
          *
          * @param value The value.
@@ -46,13 +61,6 @@ public interface IFloatPropertyNode extends IPropertyNode {
          */
         @Nonnull
         IFloatPropertyNode value (float value);
-
-        /**
-         * Retrieves a float value.
-         *
-         * @return The value.
-         */
-        float value ();
 
         /**
          * {@inheritDoc}

@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IIntegerPropertyNode;
 
 import javax.annotation.Nonnegative;
@@ -39,6 +40,18 @@ public class IntegerPropertyNode extends AbstractPropertyNode implements IIntege
         /**
          * {@inheritDoc}
          */
+        @Nonnull
+        @Override
+        public IntegerPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitInteger (this.value ());
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         @Nonnegative
         public int unsignedValue () {
@@ -51,19 +64,19 @@ public class IntegerPropertyNode extends AbstractPropertyNode implements IIntege
         /**
          * {@inheritDoc}
          */
-        @Nonnull
         @Override
-        public IntegerPropertyNode value (int value) {
-                this.value = value;
-                return this;
+        public int value () {
+                return this.value;
         }
 
         /**
          * {@inheritDoc}
          */
+        @Nonnull
         @Override
-        public int value () {
-                return this.value;
+        public IntegerPropertyNode value (int value) {
+                this.value = value;
+                return this;
         }
 
         /**

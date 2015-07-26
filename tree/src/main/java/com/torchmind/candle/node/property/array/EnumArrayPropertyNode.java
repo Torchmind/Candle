@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.array.IEnumArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
@@ -49,8 +50,17 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode implements 
          */
         @Nonnull
         @Override
-        public String[] array () {
-                return this.array;
+        public EnumArrayPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitArray ();
+
+                for (String current : this.array ()) {
+                        visitor.visitEnum (current);
+                }
+
+                visitor.visitArrayEnd ();
+                return this;
         }
 
         /**
@@ -95,6 +105,15 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode implements 
                         convertedArray[i] = (array[i] != null ? array[i].name () : null);
                 }
                 return this.array (convertedArray);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public String[] array () {
+                return this.array;
         }
 
         /**

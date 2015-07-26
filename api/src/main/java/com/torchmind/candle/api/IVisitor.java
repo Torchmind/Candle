@@ -20,32 +20,10 @@ import javax.annotation.Nonnull;
 
 /**
  * Provides a visitor for Candle parsers and components.
+ *
  * @author Johannes Donath
  */
 public interface IVisitor {
-
-        /**
-         * Visits an object entry.
-         * @param name The object name.
-         */
-        void visitObject (@Nonnull String name);
-
-        /**
-         * Visits an object end.
-         */
-        void visitObjectEnd ();
-
-        /**
-         * Visits a property.
-         * @param name The name.
-         */
-        void visitProperty (@Nonnull String name);
-
-        /**
-         * Visits a comment.
-         * @param text The text.
-         */
-        void visitComment (@Nonnull String text);
 
         /**
          * Visits an array entry.
@@ -59,9 +37,17 @@ public interface IVisitor {
 
         /**
          * Visits a boolean value.
+         *
          * @param value The value.
          */
         void visitBoolean (boolean value);
+
+        /**
+         * Visits a comment.
+         *
+         * @param text The text.
+         */
+        void visitComment (@Nonnull String text);
 
         /**
          * Visits a default value.
@@ -70,18 +56,21 @@ public interface IVisitor {
 
         /**
          * Visits an enum value.
+         *
          * @param value The value.
          */
         void visitEnum (@Nonnull String value);
 
         /**
          * Visits a float value.
+         *
          * @param value The value.
          */
         void visitFloat (float value);
 
         /**
          * Visits an integer value.
+         *
          * @param value The value.
          */
         void visitInteger (int value);
@@ -92,7 +81,27 @@ public interface IVisitor {
         void visitNull ();
 
         /**
+         * Visits an object entry.
+         *
+         * @param name The object name.
+         */
+        void visitObject (@Nonnull String name);
+
+        /**
+         * Visits an object end.
+         */
+        void visitObjectEnd ();
+
+        /**
+         * Visits a property.
+         *
+         * @param name The name.
+         */
+        void visitProperty (@Nonnull String name);
+
+        /**
          * Visits a string value.
+         *
          * @param value The string.
          */
         void visitString (@Nonnull String value);

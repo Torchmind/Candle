@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -26,12 +27,11 @@ import javax.annotation.Nonnull;
 public interface IStringPropertyNode extends IPropertyNode {
 
         /**
-         * Retrieves a string value.
-         *
-         * @return The value.
+         * {@inheritDoc}
          */
         @Nonnull
-        String value ();
+        @Override
+        IStringPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets a string value.
@@ -41,6 +41,14 @@ public interface IStringPropertyNode extends IPropertyNode {
          */
         @Nonnull
         IStringPropertyNode value (@Nonnull String value);
+
+        /**
+         * Retrieves a string value.
+         *
+         * @return The value.
+         */
+        @Nonnull
+        String value ();
 
         /**
          * {@inheritDoc}

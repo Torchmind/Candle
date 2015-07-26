@@ -37,6 +37,25 @@ import java.util.stream.Stream;
 public interface IObjectNode extends INamedNode, Iterable<INode> {
 
         /**
+         * Visits (walks) the node tree.
+         *
+         * @param visitor The visitor.
+         * @return The node.
+         */
+        @Nonnull
+        IObjectNode accept (@Nonnull ITreeVisitor visitor);
+
+        /**
+         * Visits (walks) the node tree.
+         *
+         * @param visitor The visitor.
+         * @return The node.
+         */
+        @Nonnull
+        @Override
+        IObjectNode accept (@Nonnull IVisitor visitor);
+
+        /**
          * Appends a node to the tree.
          *
          * @param node The node.
@@ -755,21 +774,4 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
         default NodeType type () {
                 return NodeType.OBJECT;
         }
-
-        /**
-         * Visits (walks) the node tree.
-         *
-         * @param visitor The visitor.
-         * @return The node.
-         */
-        @Nonnull
-        IObjectNode accept (@Nonnull ITreeVisitor visitor);
-
-        /**
-         * Visits (walks) the node tree.
-         * @param visitor The visitor.
-         * @return The node.
-         */
-        @Nonnull
-        IObjectNode accept (@Nonnull IVisitor visitor);
 }

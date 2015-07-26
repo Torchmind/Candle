@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property.array;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -26,12 +27,11 @@ import javax.annotation.Nonnull;
 public interface IBooleanArrayPropertyNode extends IArrayPropertyNode {
 
         /**
-         * Retrieves an array value.
-         *
-         * @return The array.
+         * {@inheritDoc}
          */
         @Nonnull
-        boolean[] array ();
+        @Override
+        IBooleanArrayPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets an array value.
@@ -50,6 +50,14 @@ public interface IBooleanArrayPropertyNode extends IArrayPropertyNode {
          */
         @Nonnull
         IBooleanArrayPropertyNode array (@Nonnull Boolean[] array);
+
+        /**
+         * Retrieves an array value.
+         *
+         * @return The array.
+         */
+        @Nonnull
+        boolean[] array ();
 
         /**
          * {@inheritDoc}

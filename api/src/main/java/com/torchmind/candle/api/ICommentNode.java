@@ -26,11 +26,26 @@ import javax.annotation.Nonnull;
 public interface ICommentNode extends INode {
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        ICommentNode accept (@Nonnull IVisitor visitor);
+
+        /**
          * Checks whether the node represents a multiline comment.
          *
          * @return The comment.
          */
         boolean isMultiline ();
+
+        /**
+         * Retrieves the comment contents.
+         *
+         * @return The text.
+         */
+        @Nonnull
+        String text ();
 
         /**
          * Sets the comment contents.
@@ -40,14 +55,6 @@ public interface ICommentNode extends INode {
          */
         @Nonnull
         ICommentNode text (@Nonnull String text);
-
-        /**
-         * Retrieves the comment contents.
-         *
-         * @return The text.
-         */
-        @Nonnull
-        String text ();
 
         /**
          * {@inheritDoc}

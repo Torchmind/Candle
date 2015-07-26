@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IBooleanPropertyNode;
 
 import javax.annotation.Nonnull;
@@ -38,9 +39,13 @@ public class BooleanPropertyNode extends AbstractPropertyNode implements IBoolea
         /**
          * {@inheritDoc}
          */
+        @Nonnull
         @Override
-        public boolean value () {
-                return this.value;
+        public BooleanPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitBoolean (this.value ());
+                return this;
         }
 
         /**
@@ -51,6 +56,14 @@ public class BooleanPropertyNode extends AbstractPropertyNode implements IBoolea
         public BooleanPropertyNode value (boolean value) {
                 this.value = value;
                 return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean value () {
+                return this.value;
         }
 
         /**

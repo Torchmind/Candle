@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.array.IFloatArrayPropertyNode;
 
 import javax.annotation.Nonnegative;
@@ -48,8 +49,17 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode implements
          */
         @Nonnull
         @Override
-        public float[] array () {
-                return this.array;
+        public FloatArrayPropertyNode accept (@Nonnull IVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitArray ();
+
+                for (float current : this.array ()) {
+                        visitor.visitFloat (current);
+                }
+
+                visitor.visitArrayEnd ();
+                return this;
         }
 
         /**
@@ -71,6 +81,15 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode implements
                 float[] primitiveArray = new float[array.length];
                 for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
                 return this.array (primitiveArray);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public float[] array () {
+                return this.array;
         }
 
         /**

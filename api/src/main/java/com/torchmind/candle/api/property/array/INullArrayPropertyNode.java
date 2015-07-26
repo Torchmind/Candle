@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property.array;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -24,6 +25,13 @@ import javax.annotation.Nonnull;
  * @author Johannes Donath
  */
 public interface INullArrayPropertyNode extends IArrayPropertyNode {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        INullArrayPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * {@inheritDoc}

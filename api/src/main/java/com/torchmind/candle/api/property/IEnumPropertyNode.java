@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
 import javax.annotation.Nonnull;
@@ -28,12 +29,11 @@ import javax.annotation.Nonnull;
 public interface IEnumPropertyNode extends IPropertyNode {
 
         /**
-         * Retrieves the property value.
-         *
-         * @return The value.
+         * {@inheritDoc}
          */
         @Nonnull
-        String value ();
+        @Override
+        IEnumPropertyNode accept (@Nonnull IVisitor visitor);
 
         /**
          * Sets the raw property value.
@@ -64,6 +64,14 @@ public interface IEnumPropertyNode extends IPropertyNode {
          */
         @Nonnull
         IEnumPropertyNode value (@Nonnull Enum value);
+
+        /**
+         * Retrieves the property value.
+         *
+         * @return The value.
+         */
+        @Nonnull
+        String value ();
 
         /**
          * {@inheritDoc}
