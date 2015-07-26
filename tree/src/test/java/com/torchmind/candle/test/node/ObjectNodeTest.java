@@ -22,7 +22,6 @@ import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IPropertyNode;
 import com.torchmind.candle.api.property.array.IArrayPropertyNode;
-import com.torchmind.candle.api.property.array.IBooleanArrayPropertyNode;
 import com.torchmind.candle.node.CommentNode;
 import com.torchmind.candle.node.ObjectNode;
 import com.torchmind.candle.node.property.*;
@@ -232,151 +231,6 @@ public class ObjectNodeTest {
         }
 
         /**
-         * Tests {@link com.torchmind.candle.node.ObjectNode#accept(com.torchmind.candle.api.IVisitor)}.
-         */
-        @Test
-        public void testVisitor () {
-                Candle candle = new Candle ();
-                ObjectNode node = new ObjectNode (candle, "object1");
-
-                BooleanArrayPropertyNode propertyNode1 = new BooleanArrayPropertyNode (candle, "property1", new boolean[] { true, false, true, false });
-                EnumArrayPropertyNode propertyNode2 = new EnumArrayPropertyNode (candle, "property2", new String[] { "TEST1", "TEST2", "TEST3", "TEST4" });
-                FloatArrayPropertyNode propertyNode3 = new FloatArrayPropertyNode (candle, "property3", new float[] { 1.1f, 1.2f, 1.3f, 1.4f });
-                IntegerArrayPropertyNode propertyNode4 = new IntegerArrayPropertyNode (candle, "property4", new int[] { 1, 2, 3, 4 });
-                NullArrayPropertyNode propertyNode5 = new NullArrayPropertyNode (candle, "property5");
-                StringArrayPropertyNode propertyNode6 = new StringArrayPropertyNode (candle, "property6", new String[] { "Test 1", "Test 2", "Test 3", "Test 4" });
-                BooleanPropertyNode propertyNode7 = new BooleanPropertyNode (candle, "property7", true);
-                DefaultPropertyNode propertyNode8 = new DefaultPropertyNode (candle, "property8");
-                EnumPropertyNode propertyNode9 = new EnumPropertyNode (candle, "property9", "TEST1");
-                FloatPropertyNode propertyNode10 = new FloatPropertyNode (candle, "property10", 1.23f);
-                IntegerPropertyNode propertyNode11 = new IntegerPropertyNode (candle, "property11", 42);
-                NullPropertyNode propertyNode12 = new NullPropertyNode (candle, "property12");
-                StringPropertyNode propertyNode13 = new StringPropertyNode (candle, "property13", "Test 1");
-
-                node.append (propertyNode1);
-                node.append (propertyNode2);
-                node.append (propertyNode3);
-                node.append (propertyNode4);
-                node.append (propertyNode5);
-                node.append (propertyNode6);
-                node.append (propertyNode7);
-                node.append (propertyNode8);
-                node.append (propertyNode9);
-                node.append (propertyNode10);
-                node.append (propertyNode11);
-                node.append (propertyNode12);
-                node.append (propertyNode13);
-
-                node.accept (this.visitor);
-
-                // @formatter:off
-                {
-                        Mockito.verify (this.visitor, Mockito.times (6))
-                                .visitArray ();
-                        Mockito.verify (this.visitor, Mockito.times (6))
-                                .visitArrayEnd ();
-                }
-
-                {
-                        Mockito.verify (this.visitor, Mockito.times (3))
-                                .visitBoolean (true);
-                        Mockito.verify (this.visitor, Mockito.times (2))
-                                .visitBoolean (false);
-                }
-
-                {
-                        Mockito.verify (this.visitor, Mockito.times (2))
-                                .visitEnum ("TEST1");
-                        Mockito.verify (this.visitor)
-                                .visitEnum ("TEST2");
-                        Mockito.verify (this.visitor)
-                                .visitEnum ("TEST3");
-                        Mockito.verify (this.visitor)
-                                .visitEnum ("TEST4");
-                }
-
-                {
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property1");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property2");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property3");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property4");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property5");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property6");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property7");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property8");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property9");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property10");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property11");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property12");
-                        Mockito.verify (this.visitor)
-                                .visitProperty ("property13");
-                }
-
-                {
-                        Mockito.verify (this.visitor)
-                                .visitFloat (1.1f);
-                        Mockito.verify (this.visitor)
-                                .visitFloat (1.2f);
-                        Mockito.verify (this.visitor)
-                                .visitFloat (1.3f);
-                        Mockito.verify (this.visitor)
-                                .visitFloat (1.4f);
-                        Mockito.verify (this.visitor)
-                                .visitFloat (1.23f);
-                }
-
-                {
-                        Mockito.verify (this.visitor)
-                                .visitInteger (1);
-                        Mockito.verify (this.visitor)
-                                .visitInteger (2);
-                        Mockito.verify (this.visitor)
-                                .visitInteger (3);
-                        Mockito.verify (this.visitor)
-                                .visitInteger (4);
-                }
-
-                {
-                        Mockito.verify (this.visitor, Mockito.times (2))
-                                .visitString ("Test 1");
-                        Mockito.verify (this.visitor)
-                                .visitString ("Test 2");
-                        Mockito.verify (this.visitor)
-                                .visitString ("Test 3");
-                        Mockito.verify (this.visitor)
-                                .visitString ("Test 4");
-                }
-
-                {
-                        Mockito.verify (this.visitor)
-                                .visitDefault ();
-                }
-
-                {
-                        Mockito.verify (this.visitor)
-                                .visitInteger (42);
-                }
-
-                {
-                        Mockito.verify (this.visitor)
-                                .visitNull ();
-                }
-                // @formatter:on
-        }
-
-        /**
          * Tests {@link com.torchmind.candle.node.ObjectNode#accept(com.torchmind.candle.api.ITreeVisitor)}.
          */
         @Test
@@ -531,6 +385,151 @@ public class ObjectNodeTest {
                                 .visitPropertyNode (candle, propertyNode13);
                         Mockito.verify (this.treeVisitor)
                                 .visitPropertyNodeEnd (candle, propertyNode13);
+                }
+                // @formatter:on
+        }
+
+        /**
+         * Tests {@link com.torchmind.candle.node.ObjectNode#accept(com.torchmind.candle.api.IVisitor)}.
+         */
+        @Test
+        public void testVisitor () {
+                Candle candle = new Candle ();
+                ObjectNode node = new ObjectNode (candle, "object1");
+
+                BooleanArrayPropertyNode propertyNode1 = new BooleanArrayPropertyNode (candle, "property1", new boolean[] { true, false, true, false });
+                EnumArrayPropertyNode propertyNode2 = new EnumArrayPropertyNode (candle, "property2", new String[] { "TEST1", "TEST2", "TEST3", "TEST4" });
+                FloatArrayPropertyNode propertyNode3 = new FloatArrayPropertyNode (candle, "property3", new float[] { 1.1f, 1.2f, 1.3f, 1.4f });
+                IntegerArrayPropertyNode propertyNode4 = new IntegerArrayPropertyNode (candle, "property4", new int[] { 1, 2, 3, 4 });
+                NullArrayPropertyNode propertyNode5 = new NullArrayPropertyNode (candle, "property5");
+                StringArrayPropertyNode propertyNode6 = new StringArrayPropertyNode (candle, "property6", new String[] { "Test 1", "Test 2", "Test 3", "Test 4" });
+                BooleanPropertyNode propertyNode7 = new BooleanPropertyNode (candle, "property7", true);
+                DefaultPropertyNode propertyNode8 = new DefaultPropertyNode (candle, "property8");
+                EnumPropertyNode propertyNode9 = new EnumPropertyNode (candle, "property9", "TEST1");
+                FloatPropertyNode propertyNode10 = new FloatPropertyNode (candle, "property10", 1.23f);
+                IntegerPropertyNode propertyNode11 = new IntegerPropertyNode (candle, "property11", 42);
+                NullPropertyNode propertyNode12 = new NullPropertyNode (candle, "property12");
+                StringPropertyNode propertyNode13 = new StringPropertyNode (candle, "property13", "Test 1");
+
+                node.append (propertyNode1);
+                node.append (propertyNode2);
+                node.append (propertyNode3);
+                node.append (propertyNode4);
+                node.append (propertyNode5);
+                node.append (propertyNode6);
+                node.append (propertyNode7);
+                node.append (propertyNode8);
+                node.append (propertyNode9);
+                node.append (propertyNode10);
+                node.append (propertyNode11);
+                node.append (propertyNode12);
+                node.append (propertyNode13);
+
+                node.accept (this.visitor);
+
+                // @formatter:off
+                {
+                        Mockito.verify (this.visitor, Mockito.times (6))
+                                .visitArray ();
+                        Mockito.verify (this.visitor, Mockito.times (6))
+                                .visitArrayEnd ();
+                }
+
+                {
+                        Mockito.verify (this.visitor, Mockito.times (3))
+                                .visitBoolean (true);
+                        Mockito.verify (this.visitor, Mockito.times (2))
+                                .visitBoolean (false);
+                }
+
+                {
+                        Mockito.verify (this.visitor, Mockito.times (2))
+                                .visitEnum ("TEST1");
+                        Mockito.verify (this.visitor)
+                                .visitEnum ("TEST2");
+                        Mockito.verify (this.visitor)
+                                .visitEnum ("TEST3");
+                        Mockito.verify (this.visitor)
+                                .visitEnum ("TEST4");
+                }
+
+                {
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property1");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property2");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property3");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property4");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property5");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property6");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property7");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property8");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property9");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property10");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property11");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property12");
+                        Mockito.verify (this.visitor)
+                                .visitProperty ("property13");
+                }
+
+                {
+                        Mockito.verify (this.visitor)
+                                .visitFloat (1.1f);
+                        Mockito.verify (this.visitor)
+                                .visitFloat (1.2f);
+                        Mockito.verify (this.visitor)
+                                .visitFloat (1.3f);
+                        Mockito.verify (this.visitor)
+                                .visitFloat (1.4f);
+                        Mockito.verify (this.visitor)
+                                .visitFloat (1.23f);
+                }
+
+                {
+                        Mockito.verify (this.visitor)
+                                .visitInteger (1);
+                        Mockito.verify (this.visitor)
+                                .visitInteger (2);
+                        Mockito.verify (this.visitor)
+                                .visitInteger (3);
+                        Mockito.verify (this.visitor)
+                                .visitInteger (4);
+                }
+
+                {
+                        Mockito.verify (this.visitor, Mockito.times (2))
+                                .visitString ("Test 1");
+                        Mockito.verify (this.visitor)
+                                .visitString ("Test 2");
+                        Mockito.verify (this.visitor)
+                                .visitString ("Test 3");
+                        Mockito.verify (this.visitor)
+                                .visitString ("Test 4");
+                }
+
+                {
+                        Mockito.verify (this.visitor)
+                                .visitDefault ();
+                }
+
+                {
+                        Mockito.verify (this.visitor)
+                                .visitInteger (42);
+                }
+
+                {
+                        Mockito.verify (this.visitor)
+                                .visitNull ();
                 }
                 // @formatter:on
         }

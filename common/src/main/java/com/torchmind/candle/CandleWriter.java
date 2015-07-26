@@ -143,6 +143,14 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
+        public void visit (@Nonnull IObjectNode node) {
+                node.accept (this);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
         public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IArrayPropertyNode node) {
                 this.visitPropertyNode (document, ((IPropertyNode) node));
 
@@ -398,14 +406,6 @@ public class CandleWriter implements ITreeVisitor {
         @Override
         public void visitPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node) {
                 this.line ();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visit (@Nonnull IObjectNode node) {
-                node.accept (this);
         }
 
         /**
