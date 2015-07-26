@@ -42,6 +42,12 @@ public interface IVisitor {
         void visitProperty (@Nonnull String name);
 
         /**
+         * Visits a comment.
+         * @param text The text.
+         */
+        void visitComment (@Nonnull String text);
+
+        /**
          * Visits an array entry.
          */
         void visitArray ();
