@@ -17,6 +17,7 @@
 package com.torchmind.candle.api.property;
 
 import com.torchmind.candle.api.INamedNode;
+import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeType;
 import com.torchmind.candle.api.NodeValueType;
 
@@ -56,4 +57,12 @@ public interface IPropertyNode extends INamedNode {
          */
         @Nonnull
         NodeValueType valueType ();
+
+        /**
+         * Visits a property node.
+         * @param visitor The visitor.
+         * @return The node.
+         */
+        @Nonnull
+        IPropertyNode accept (@Nonnull IVisitor visitor);
 }
