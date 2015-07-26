@@ -703,66 +703,66 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
          */
         @Nonnull
         @Override
-        public IObjectNode walk (@Nonnull ITreeVisitor walker) {
+        public IObjectNode accept (@Nonnull ITreeVisitor visitor) {
                 this.stream ().forEach (n -> {
                         if (n instanceof IObjectNode) {
-                                walker.visitObjectNode (this.document (), ((IObjectNode) n));
-                                ((IObjectNode) n).walk (walker);
-                                walker.visitObjectNodeEnd (this.document (), ((IObjectNode) n));
+                                visitor.visitObjectNode (this.document (), ((IObjectNode) n));
+                                ((IObjectNode) n).accept (visitor);
+                                visitor.visitObjectNodeEnd (this.document (), ((IObjectNode) n));
 
                                 return;
                         }
 
                         if (n instanceof ICommentNode) {
-                                walker.visitCommentNode (this.document (), ((ICommentNode) n));
+                                visitor.visitCommentNode (this.document (), ((ICommentNode) n));
                                 return;
                         }
 
                         if (n instanceof IArrayPropertyNode) {
-                                walker.visitArrayPropertyNode (this.document (), ((IArrayPropertyNode) n));
+                                visitor.visitArrayPropertyNode (this.document (), ((IArrayPropertyNode) n));
 
                                 if (n instanceof IBooleanArrayPropertyNode) {
-                                        walker.visitArrayPropertyNode (this.document (), ((IBooleanArrayPropertyNode) n));
+                                        visitor.visitArrayPropertyNode (this.document (), ((IBooleanArrayPropertyNode) n));
                                 } else if (n instanceof IEnumArrayPropertyNode) {
-                                        walker.visitArrayPropertyNode (this.document (), ((IEnumArrayPropertyNode) n));
+                                        visitor.visitArrayPropertyNode (this.document (), ((IEnumArrayPropertyNode) n));
                                 } else if (n instanceof IFloatArrayPropertyNode) {
-                                        walker.visitArrayPropertyNode (this.document (), ((IFloatArrayPropertyNode) n));
+                                        visitor.visitArrayPropertyNode (this.document (), ((IFloatArrayPropertyNode) n));
                                 } else if (n instanceof IIntegerArrayPropertyNode) {
-                                        walker.visitArrayPropertyNode (this.document (), ((IIntegerArrayPropertyNode) n));
+                                        visitor.visitArrayPropertyNode (this.document (), ((IIntegerArrayPropertyNode) n));
                                 } else if (n instanceof INullArrayPropertyNode) {
-                                        walker.visitArrayPropertyNode (this.document (), ((INullArrayPropertyNode) n));
+                                        visitor.visitArrayPropertyNode (this.document (), ((INullArrayPropertyNode) n));
                                 } else if (n instanceof IStringArrayPropertyNode) {
-                                        walker.visitArrayPropertyNode (this.document (), ((IStringArrayPropertyNode) n));
+                                        visitor.visitArrayPropertyNode (this.document (), ((IStringArrayPropertyNode) n));
                                 } else {
                                         throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
                                 }
 
-                                walker.visitArrayPropertyNodeEnd (this.document (), ((IArrayPropertyNode) n));
+                                visitor.visitArrayPropertyNodeEnd (this.document (), ((IArrayPropertyNode) n));
                                 return;
                         }
 
                         if (n instanceof IPropertyNode) {
-                                walker.visitPropertyNode (this.document (), ((IPropertyNode) n));
+                                visitor.visitPropertyNode (this.document (), ((IPropertyNode) n));
 
                                 if (n instanceof IBooleanPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((IBooleanPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((IBooleanPropertyNode) n));
                                 } else if (n instanceof IDefaultPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((IDefaultPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((IDefaultPropertyNode) n));
                                 } else if (n instanceof IEnumPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((IEnumPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((IEnumPropertyNode) n));
                                 } else if (n instanceof IFloatPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((IFloatPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((IFloatPropertyNode) n));
                                 } else if (n instanceof IIntegerPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((IIntegerPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((IIntegerPropertyNode) n));
                                 } else if (n instanceof INullPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((INullPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((INullPropertyNode) n));
                                 } else if (n instanceof IStringPropertyNode) {
-                                        walker.visitPropertyNode (this.document (), ((IStringPropertyNode) n));
+                                        visitor.visitPropertyNode (this.document (), ((IStringPropertyNode) n));
                                 } else {
                                         throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
                                 }
 
-                                walker.visitPropertyNodeEnd (this.document (), ((IPropertyNode) n));
+                                visitor.visitPropertyNodeEnd (this.document (), ((IPropertyNode) n));
                                 return;
                         }
 

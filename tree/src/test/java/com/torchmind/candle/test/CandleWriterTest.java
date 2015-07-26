@@ -53,7 +53,7 @@ public class CandleWriterTest {
 
                 Candle candle = Candle.readFile (CandleWriterTest.class.getResourceAsStream ("/testSerialized.cndl"));
                 CandleWriter serializer = new CandleWriter ().newline ("\n");
-                candle.walk (serializer);
+                candle.accept (serializer);
 
                 Assert.assertEquals (expected.toString (), serializer.toString ());
         }

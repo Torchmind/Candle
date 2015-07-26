@@ -401,6 +401,14 @@ public class CandleWriter implements ITreeVisitor {
         }
 
         /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visit (@Nonnull IObjectNode node) {
+                node.accept (this);
+        }
+
+        /**
          * Writes an object tree.
          *
          * @param file The output file.
@@ -443,7 +451,7 @@ public class CandleWriter implements ITreeVisitor {
          */
         @Nonnull
         public CandleWriter write (@Nonnull Writer writer, @Nonnull IObjectNode node) throws IOException {
-                node.walk (this);
+                this.visit (node);
                 return this.write (writer);
         }
 

@@ -757,11 +757,11 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
         }
 
         /**
-         * Walks the node tree.
+         * Visits (walks) the node tree.
          *
-         * @param walker The walker.
+         * @param visitor The visitor.
          * @return The node.
          */
         @Nonnull
-        IObjectNode walk (@Nonnull ITreeVisitor walker);
+        IObjectNode accept (@Nonnull ITreeVisitor visitor);
 }

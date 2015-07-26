@@ -203,4 +203,10 @@ public interface ITreeVisitor {
          * @param node     The node.
          */
         void visitPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node);
+
+        /**
+         * Visits all elements within an object node.
+         * @param node The node.
+         */
+        void visit (@Nonnull IObjectNode node);
 }
