@@ -54,7 +54,7 @@ public class StringPropertyNode extends AbstractPropertyNode implements IStringP
          */
         @Nonnull
         @Override
-        public IStringPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+        public StringPropertyNode accept (@Nonnull ITreeVisitor visitor) {
                 super.accept (visitor);
 
                 visitor.visitPropertyNode (this.document (), this);

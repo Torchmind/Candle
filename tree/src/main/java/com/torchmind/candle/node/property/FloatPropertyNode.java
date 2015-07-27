@@ -55,7 +55,7 @@ public class FloatPropertyNode extends AbstractPropertyNode implements IFloatPro
          */
         @Nonnull
         @Override
-        public IFloatPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+        public FloatPropertyNode accept (@Nonnull ITreeVisitor visitor) {
                 super.accept (visitor);
 
                 visitor.visitPropertyNode (this.document (), this);
