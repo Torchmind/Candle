@@ -33,11 +33,12 @@ import java.io.*;
  *
  * @author Johannes Donath
  */
-public class CandleWriter implements ITreeVisitor {
+public class CandleWriter extends ValidationVisitor {
         public StringBuilder builder = new StringBuilder ();
         private String indentation = "\t";
         private String newline = System.lineSeparator ();
         private int currentLevel = 0;
+        private boolean inArray;
 
         /**
          * {@inheritDoc}
@@ -143,21 +144,15 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visit (@Nonnull IObjectNode node) {
-                node.accept (this);
-        }
+        public void visitArray () {
+                super.visitArray ();
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IArrayPropertyNode node) {
-                this.visitPropertyNode (document, ((IPropertyNode) node));
 
                 // [
                 this.builder.append ("[");
                 this.line ();
 
+                this.inArray = true;
                 this.currentLevel++;
         }
 
@@ -165,102 +160,12 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IBooleanArrayPropertyNode node) {
-                for (boolean current : node.array ()) {
-                        this.indent ();
+        public void visitArrayEnd () {
+                super.visitArrayEnd ();
 
-                        // <true|false>,
-                        this.builder.append (Boolean.toString (current));
-                        this.builder.append (",");
-
-                        this.line ();
-                }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IEnumArrayPropertyNode node) {
-                for (String current : node.array ()) {
-                        this.indent ();
-
-                        // ENUM_VALUE,
-                        if (current == null) { this.builder.append ("null"); } else { this.builder.append (current); }
-                        this.builder.append (",");
-
-                        this.line ();
-                }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IFloatArrayPropertyNode node) {
-                for (float current : node.array ()) {
-                        this.indent ();
-
-                        // 0.0f,
-                        this.builder.append (Float.toString (current));
-                        this.builder.append (",");
-
-                        this.line ();
-                }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IIntegerArrayPropertyNode node) {
-                for (int current : node.array ()) {
-                        this.indent ();
-
-                        // 0,
-                        this.builder.append (Integer.toString (current));
-                        this.builder.append (",");
-
-                        this.line ();
-                }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull INullArrayPropertyNode node) {
-                // NO-OP as [] is sufficient for a null array.
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNode (@Nonnull IDocumentNode document, @Nonnull IStringArrayPropertyNode node) {
-                for (String current : node.array ()) {
-                        this.indent ();
-
-                        // "<string>",
-                        if (current == null) { this.builder.append ("null"); } else {
-                                this.builder.append ("\"");
-                                this.builder.append (this.escapeString (current));
-                                this.builder.append ("\"");
-                        }
-                        this.builder.append (",");
-
-                        this.line ();
-                }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitArrayPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IArrayPropertyNode node) {
+                this.inArray = false;
                 this.currentLevel--;
 
-                // ]
                 this.indent ();
                 this.builder.append ("]");
                 this.line ();
@@ -270,20 +175,12 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visitCommentNode (@Nonnull IDocumentNode document, @Nonnull ICommentNode node) {
-                this.indent ();
+        public void visitBoolean (boolean value) {
+                super.visitBoolean (value);
 
-                if (node.isMultiline ()) {
-                        // /* <text> */
-                        this.builder.append ("/*");
-                        this.builder.append (node.text ());
-                        this.builder.append ("*/");
-                } else {
-                        // // <text>
-                        this.builder.append ("//");
-                        this.builder.append (node.text ());
-                }
-
+                if (this.inArray) this.indent ();
+                this.builder.append (Boolean.toString (value));
+                if (this.inArray) this.builder.append (",");
                 this.line ();
         }
 
@@ -291,26 +188,94 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visitDocumentNode (@Nonnull IDocumentNode node) {
-        }
+        public void visitComment (@Nonnull String text) {
+                super.visitComment (text);
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitDocumentNodeEnd (@Nonnull IDocumentNode document) {
-                this.currentLevel = 0;
-        }
+                if (text.contains ("\n")) {
+                        this.indent ();
+                        this.builder.append ("/*" + text + "*/");
+                        this.line ();
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitObjectNode (@Nonnull IDocumentNode document, @Nonnull IObjectNode node) {
+                        return;
+                }
+
                 this.indent ();
+                this.builder.append ("//" + text);
+                this.line ();
+        }
 
-                // <name> {
-                this.builder.append (node.name ());
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitDefault () {
+                super.visitDefault ();
+
+                this.builder.append ("default");
+                this.line ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitEnum (@Nonnull String value) {
+                super.visitEnum (value);
+
+                if (this.inArray) this.indent ();
+                this.builder.append (value);
+                if (this.inArray) this.builder.append (",");
+                this.line ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitFloat (float value) {
+                super.visitFloat (value);
+
+                if (this.inArray) this.indent ();
+                this.builder.append (Float.toString (value));
+                if (this.inArray) this.builder.append (",");
+                this.line ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitInteger (int value) {
+                super.visitInteger (value);
+
+                if (this.inArray) this.indent ();
+                this.builder.append (Integer.toString (value));
+                if (this.inArray) this.builder.append (",");
+                this.line ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitNull () {
+                super.visitNull ();
+
+                if (this.inArray) this.indent ();
+                this.builder.append ("null");
+                if (this.inArray) this.builder.append (",");
+                this.line ();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitObject (@Nonnull String name) {
+                super.visitObject (name);
+
+                this.indent ();
+                this.builder.append (name);
                 this.builder.append (" {");
                 this.line ();
 
@@ -321,11 +286,12 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visitObjectNodeEnd (@Nonnull IDocumentNode document, @Nonnull IObjectNode node) {
-                this.currentLevel--;
-                this.indent ();
+        public void visitObjectEnd () {
+                super.visitObjectEnd ();
 
-                // }
+                this.currentLevel--;
+
+                this.indent ();
                 this.builder.append ("}");
                 this.line ();
         }
@@ -334,11 +300,11 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node) {
-                this.indent ();
+        public void visitProperty (@Nonnull String name) {
+                super.visitProperty (name);
 
-                // property =
-                this.builder.append (node.name ());
+                this.indent ();
+                this.builder.append (name);
                 this.builder.append (" = ");
         }
 
@@ -346,65 +312,14 @@ public class CandleWriter implements ITreeVisitor {
          * {@inheritDoc}
          */
         @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IBooleanPropertyNode node) {
-                this.builder.append (Boolean.toString (node.value ()));
-        }
+        public void visitString (@Nonnull String value) {
+                super.visitString (value);
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IDefaultPropertyNode node) {
-                this.builder.append ("default");
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IEnumPropertyNode node) {
-                this.builder.append (node.value ());
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IFloatPropertyNode node) {
-                this.builder.append (Float.toString (node.value ()));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IIntegerPropertyNode node) {
-                this.builder.append (Integer.toString (node.value ()));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull INullPropertyNode node) {
-                this.builder.append ("null");
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNode (@Nonnull IDocumentNode document, @Nonnull IStringPropertyNode node) {
+                if (this.inArray) this.indent ();
                 this.builder.append ("\"");
-                this.builder.append (this.escapeString (node.value ()));
+                this.builder.append (this.escapeString (value));
                 this.builder.append ("\"");
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void visitPropertyNodeEnd (@Nonnull IDocumentNode document, @Nonnull IPropertyNode node) {
+                if (this.inArray) this.builder.append (",");
                 this.line ();
         }
 
@@ -451,7 +366,7 @@ public class CandleWriter implements ITreeVisitor {
          */
         @Nonnull
         public CandleWriter write (@Nonnull Writer writer, @Nonnull IObjectNode node) throws IOException {
-                this.visit (node);
+                node.accept (this);
                 return this.write (writer);
         }
 
