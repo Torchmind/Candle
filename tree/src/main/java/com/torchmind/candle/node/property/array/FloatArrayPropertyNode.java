@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.array.IFloatArrayPropertyNode;
 
@@ -67,8 +68,12 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode implements
          */
         @Nonnull
         @Override
-        public FloatArrayPropertyNode array (@Nonnull float[] array) {
-                this.array = array;
+        public FloatArrayPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitArrayPropertyNode (this.document (), this);
+                visitor.visitArrayPropertyNodeEnd (this.document (), this);
+
                 return this;
         }
 
@@ -81,6 +86,16 @@ public class FloatArrayPropertyNode extends AbstractArrayPropertyNode implements
                 float[] primitiveArray = new float[array.length];
                 for (int i = 0; i < primitiveArray.length; i++) { primitiveArray[i] = array[i]; }
                 return this.array (primitiveArray);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public FloatArrayPropertyNode array (@Nonnull float[] array) {
+                this.array = array;
+                return this;
         }
 
         /**

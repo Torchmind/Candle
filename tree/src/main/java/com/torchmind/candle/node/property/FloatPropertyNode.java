@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IFloatPropertyNode;
 
@@ -46,6 +47,20 @@ public class FloatPropertyNode extends AbstractPropertyNode implements IFloatPro
                 super.accept (visitor);
 
                 visitor.visitFloat (this.value ());
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public IFloatPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitPropertyNode (this.document (), this);
+                visitor.visitPropertyNodeEnd (this.document (), this);
+
                 return this;
         }
 

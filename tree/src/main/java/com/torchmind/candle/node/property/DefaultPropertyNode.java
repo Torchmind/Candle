@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.IDefaultPropertyNode;
@@ -43,6 +44,20 @@ public class DefaultPropertyNode extends AbstractPropertyNode implements IDefaul
                 super.accept (visitor);
 
                 visitor.visitDefault ();
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public DefaultPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitPropertyNode (this.document (), this);
+                visitor.visitPropertyNodeEnd (this.document (), this);
+
                 return this;
         }
 

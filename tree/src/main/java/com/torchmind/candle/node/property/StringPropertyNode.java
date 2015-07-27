@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.property.IStringPropertyNode;
 
@@ -45,6 +46,20 @@ public class StringPropertyNode extends AbstractPropertyNode implements IStringP
                 super.accept (visitor);
 
                 visitor.visitString (this.value ());
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public IStringPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+                super.accept (visitor);
+
+                visitor.visitPropertyNode (this.document (), this);
+                visitor.visitPropertyNodeEnd (this.document (), this);
+
                 return this;
         }
 

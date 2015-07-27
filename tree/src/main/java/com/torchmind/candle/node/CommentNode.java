@@ -18,6 +18,7 @@ package com.torchmind.candle.node;
 
 import com.torchmind.candle.api.ICommentNode;
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 
 import javax.annotation.Nonnull;
@@ -44,6 +45,16 @@ public class CommentNode extends AbstractNode implements ICommentNode {
         @Override
         public CommentNode accept (@Nonnull IVisitor visitor) {
                 visitor.visitComment (this.text ());
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public CommentNode accept (@Nonnull ITreeVisitor visitor) {
+                visitor.visitCommentNode (this.document (), this);
                 return this;
         }
 

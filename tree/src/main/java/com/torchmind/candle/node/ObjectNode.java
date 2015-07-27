@@ -58,60 +58,7 @@ public class ObjectNode extends AbstractNamedNode implements IObjectNode {
                                 return;
                         }
 
-                        if (n instanceof ICommentNode) {
-                                visitor.visitCommentNode (this.document (), ((ICommentNode) n));
-                                return;
-                        }
-
-                        if (n instanceof IArrayPropertyNode) {
-                                visitor.visitArrayPropertyNode (this.document (), ((IArrayPropertyNode) n));
-
-                                if (n instanceof IBooleanArrayPropertyNode) {
-                                        visitor.visitArrayPropertyNode (this.document (), ((IBooleanArrayPropertyNode) n));
-                                } else if (n instanceof IEnumArrayPropertyNode) {
-                                        visitor.visitArrayPropertyNode (this.document (), ((IEnumArrayPropertyNode) n));
-                                } else if (n instanceof IFloatArrayPropertyNode) {
-                                        visitor.visitArrayPropertyNode (this.document (), ((IFloatArrayPropertyNode) n));
-                                } else if (n instanceof IIntegerArrayPropertyNode) {
-                                        visitor.visitArrayPropertyNode (this.document (), ((IIntegerArrayPropertyNode) n));
-                                } else if (n instanceof INullArrayPropertyNode) {
-                                        visitor.visitArrayPropertyNode (this.document (), ((INullArrayPropertyNode) n));
-                                } else if (n instanceof IStringArrayPropertyNode) {
-                                        visitor.visitArrayPropertyNode (this.document (), ((IStringArrayPropertyNode) n));
-                                } else {
-                                        throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
-                                }
-
-                                visitor.visitArrayPropertyNodeEnd (this.document (), ((IArrayPropertyNode) n));
-                                return;
-                        }
-
-                        if (n instanceof IPropertyNode) {
-                                visitor.visitPropertyNode (this.document (), ((IPropertyNode) n));
-
-                                if (n instanceof IBooleanPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((IBooleanPropertyNode) n));
-                                } else if (n instanceof IDefaultPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((IDefaultPropertyNode) n));
-                                } else if (n instanceof IEnumPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((IEnumPropertyNode) n));
-                                } else if (n instanceof IFloatPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((IFloatPropertyNode) n));
-                                } else if (n instanceof IIntegerPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((IIntegerPropertyNode) n));
-                                } else if (n instanceof INullPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((INullPropertyNode) n));
-                                } else if (n instanceof IStringPropertyNode) {
-                                        visitor.visitPropertyNode (this.document (), ((IStringPropertyNode) n));
-                                } else {
-                                        throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
-                                }
-
-                                visitor.visitPropertyNodeEnd (this.document (), ((IPropertyNode) n));
-                                return;
-                        }
-
-                        throw new UnsupportedOperationException ("Cannot walk unknown node of type " + n.getClass ().getCanonicalName ());
+                        n.accept (visitor);
                 });
 
                 return this;

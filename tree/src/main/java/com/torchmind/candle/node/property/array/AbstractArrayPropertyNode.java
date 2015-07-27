@@ -17,6 +17,7 @@
 package com.torchmind.candle.node.property.array;
 
 import com.torchmind.candle.api.IDocumentNode;
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 import com.torchmind.candle.api.property.array.IArrayPropertyNode;
@@ -39,6 +40,16 @@ public abstract class AbstractArrayPropertyNode extends AbstractPropertyNode imp
         @Override
         public AbstractArrayPropertyNode accept (@Nonnull IVisitor visitor) {
                 super.accept (visitor);
+                return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        public AbstractArrayPropertyNode accept (@Nonnull ITreeVisitor visitor) {
+                visitor.visitArrayPropertyNode (this.document (), this);
                 return this;
         }
 
