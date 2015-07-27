@@ -16,12 +16,7 @@
  */
 package com.torchmind.candle;
 
-import com.torchmind.candle.api.ICommentNode;
-import com.torchmind.candle.api.IDocumentNode;
 import com.torchmind.candle.api.IObjectNode;
-import com.torchmind.candle.api.ITreeVisitor;
-import com.torchmind.candle.api.property.*;
-import com.torchmind.candle.api.property.array.*;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -178,9 +173,9 @@ public class CandleWriter extends ValidationVisitor {
         public void visitBoolean (boolean value) {
                 super.visitBoolean (value);
 
-                if (this.inArray) this.indent ();
+                if (this.inArray) { this.indent (); }
                 this.builder.append (Boolean.toString (value));
-                if (this.inArray) this.builder.append (",");
+                if (this.inArray) { this.builder.append (","); }
                 this.line ();
         }
 
@@ -222,9 +217,9 @@ public class CandleWriter extends ValidationVisitor {
         public void visitEnum (@Nonnull String value) {
                 super.visitEnum (value);
 
-                if (this.inArray) this.indent ();
+                if (this.inArray) { this.indent (); }
                 this.builder.append (value);
-                if (this.inArray) this.builder.append (",");
+                if (this.inArray) { this.builder.append (","); }
                 this.line ();
         }
 
@@ -235,9 +230,9 @@ public class CandleWriter extends ValidationVisitor {
         public void visitFloat (float value) {
                 super.visitFloat (value);
 
-                if (this.inArray) this.indent ();
+                if (this.inArray) { this.indent (); }
                 this.builder.append (Float.toString (value));
-                if (this.inArray) this.builder.append (",");
+                if (this.inArray) { this.builder.append (","); }
                 this.line ();
         }
 
@@ -248,9 +243,9 @@ public class CandleWriter extends ValidationVisitor {
         public void visitInteger (int value) {
                 super.visitInteger (value);
 
-                if (this.inArray) this.indent ();
+                if (this.inArray) { this.indent (); }
                 this.builder.append (Integer.toString (value));
-                if (this.inArray) this.builder.append (",");
+                if (this.inArray) { this.builder.append (","); }
                 this.line ();
         }
 
@@ -261,9 +256,9 @@ public class CandleWriter extends ValidationVisitor {
         public void visitNull () {
                 super.visitNull ();
 
-                if (this.inArray) this.indent ();
+                if (this.inArray) { this.indent (); }
                 this.builder.append ("null");
-                if (this.inArray) this.builder.append (",");
+                if (this.inArray) { this.builder.append (","); }
                 this.line ();
         }
 
@@ -315,11 +310,11 @@ public class CandleWriter extends ValidationVisitor {
         public void visitString (@Nonnull String value) {
                 super.visitString (value);
 
-                if (this.inArray) this.indent ();
+                if (this.inArray) { this.indent (); }
                 this.builder.append ("\"");
                 this.builder.append (this.escapeString (value));
                 this.builder.append ("\"");
-                if (this.inArray) this.builder.append (",");
+                if (this.inArray) { this.builder.append (","); }
                 this.line ();
         }
 
