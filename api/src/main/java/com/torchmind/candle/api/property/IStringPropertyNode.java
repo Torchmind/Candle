@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
@@ -32,6 +33,13 @@ public interface IStringPropertyNode extends IPropertyNode {
         @Nonnull
         @Override
         IStringPropertyNode accept (@Nonnull IVisitor visitor);
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IStringPropertyNode accept (@Nonnull ITreeVisitor visitor);
 
         /**
          * Sets a string value.

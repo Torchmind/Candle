@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property.array;
 
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
@@ -32,6 +33,10 @@ public interface INullArrayPropertyNode extends IArrayPropertyNode {
         @Nonnull
         @Override
         INullArrayPropertyNode accept (@Nonnull IVisitor visitor);
+
+        @Nonnull
+        @Override
+        INullArrayPropertyNode accept (@Nonnull ITreeVisitor visitor);
 
         /**
          * {@inheritDoc}

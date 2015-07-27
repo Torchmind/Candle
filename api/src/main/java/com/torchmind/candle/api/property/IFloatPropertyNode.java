@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
@@ -35,6 +36,13 @@ public interface IFloatPropertyNode extends IPropertyNode {
         @Nonnull
         @Override
         IFloatPropertyNode accept (@Nonnull IVisitor visitor);
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IFloatPropertyNode accept (@Nonnull ITreeVisitor visitor);
 
         /**
          * Retrieves an unsigned float value.

@@ -35,6 +35,15 @@ public interface INode {
         INode accept (@Nonnull IVisitor visitor);
 
         /**
+         * Visits a node.
+         *
+         * @param visitor The visitor.
+         * @return The node.
+         */
+        @Nonnull
+        INode accept (@Nonnull ITreeVisitor visitor);
+
+        /**
          * Retrieves the parent document node.
          *
          * @return The node.

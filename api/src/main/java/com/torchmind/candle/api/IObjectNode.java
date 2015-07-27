@@ -43,6 +43,7 @@ public interface IObjectNode extends INamedNode, Iterable<INode> {
          * @return The node.
          */
         @Nonnull
+        @Override
         IObjectNode accept (@Nonnull ITreeVisitor visitor);
 
         /**

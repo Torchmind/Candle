@@ -33,6 +33,13 @@ public interface ICommentNode extends INode {
         ICommentNode accept (@Nonnull IVisitor visitor);
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        ICommentNode accept (@Nonnull ITreeVisitor visitor);
+
+        /**
          * Checks whether the node represents a multiline comment.
          *
          * @return The comment.

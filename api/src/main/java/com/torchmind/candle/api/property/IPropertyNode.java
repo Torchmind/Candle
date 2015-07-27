@@ -16,10 +16,7 @@
  */
 package com.torchmind.candle.api.property;
 
-import com.torchmind.candle.api.INamedNode;
-import com.torchmind.candle.api.IVisitor;
-import com.torchmind.candle.api.NodeType;
-import com.torchmind.candle.api.NodeValueType;
+import com.torchmind.candle.api.*;
 
 import javax.annotation.Nonnull;
 
@@ -36,6 +33,13 @@ public interface IPropertyNode extends INamedNode {
         @Nonnull
         @Override
         IPropertyNode accept (@Nonnull IVisitor visitor);
+
+        /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        IPropertyNode accept (@Nonnull ITreeVisitor visitor);
 
         /**
          * Ensures that a node value consists of a certain type.

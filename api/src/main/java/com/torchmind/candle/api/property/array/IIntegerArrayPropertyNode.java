@@ -16,6 +16,7 @@
  */
 package com.torchmind.candle.api.property.array;
 
+import com.torchmind.candle.api.ITreeVisitor;
 import com.torchmind.candle.api.IVisitor;
 import com.torchmind.candle.api.NodeValueType;
 
@@ -33,6 +34,10 @@ public interface IIntegerArrayPropertyNode extends IArrayPropertyNode {
         @Nonnull
         @Override
         IIntegerArrayPropertyNode accept (@Nonnull IVisitor visitor);
+
+        @Nonnull
+        @Override
+        IIntegerArrayPropertyNode accept (@Nonnull ITreeVisitor visitor);
 
         /**
          * Sets an array value.

@@ -33,6 +33,13 @@ public interface INamedNode extends INode {
         INamedNode accept (@Nonnull IVisitor visitor);
 
         /**
+         * {@inheritDoc}
+         */
+        @Nonnull
+        @Override
+        INamedNode accept (@Nonnull ITreeVisitor visitor);
+
+        /**
          * Sets the node name.
          *
          * @param name The name.
