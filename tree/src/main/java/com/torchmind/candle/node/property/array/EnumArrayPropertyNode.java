@@ -57,7 +57,10 @@ public class EnumArrayPropertyNode extends AbstractArrayPropertyNode implements 
                 visitor.visitArray ();
 
                 for (String current : this.array ()) {
-                        visitor.visitEnum (current);
+                        if (current == null)
+                                visitor.visitNull ();
+                        else
+                                visitor.visitEnum (current);
                 }
 
                 visitor.visitArrayEnd ();

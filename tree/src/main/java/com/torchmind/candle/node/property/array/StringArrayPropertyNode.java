@@ -50,7 +50,10 @@ public class StringArrayPropertyNode extends AbstractArrayPropertyNode implement
                 visitor.visitArray ();
 
                 for (String current : this.array ()) {
-                        visitor.visitString (current);
+                        if (current == null)
+                                visitor.visitNull ();
+                        else
+                                visitor.visitString (current);
                 }
 
                 visitor.visitArrayEnd ();
