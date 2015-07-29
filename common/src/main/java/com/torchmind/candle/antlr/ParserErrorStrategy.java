@@ -53,4 +53,11 @@ public class ParserErrorStrategy extends BailErrorStrategy {
                         throw new RuntimeException (new CandleParserException (ex.getMessage (), ex));
                 }
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void reportError (Parser recognizer, RecognitionException e) {
+        }
 }
