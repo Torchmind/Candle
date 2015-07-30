@@ -255,5 +255,6 @@
                 <module>api</module>
                 <module>common</module>
                 <module>tree</module>
+                <module>mapper</module>
         </modules>
 </project>
