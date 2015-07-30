@@ -27,11 +27,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 
 import javax.annotation.Nonnull;
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
-import java.util.function.Function;
 
 /**
  * Provides a root document for the Candle Configuration File Format.
@@ -232,100 +228,16 @@ public class Candle extends ObjectNode implements IDocumentNode {
         /**
          * Provides a low-level visitor to the document.
          */
-        private static class Visitor extends ValidationVisitor {
+        private static class Visitor extends AbstractVisitor {
                 private final Candle document;
 
                 private Stack<IObjectNode> objectStack = new Stack<> ();
-                private List<Object> arrayContents = null;
                 private String identifier = null;
 
                 private Visitor (@Nonnull Candle document) {
                         this.document = document;
 
                         this.objectStack.push (document);
-                }
-
-                /**
-                 * Retrieves and converts array contents as a certain type.
-                 *
-                 * @param inputType  The input type.
-                 * @param outputType The output type.
-                 * @param function   The conversion method.
-                 * @param <I>        The input type.
-                 * @param <R>        The output type.
-                 * @return The array.
-                 *
-                 * @throws java.lang.IllegalStateException when one or more values within the array are invalid.
-                 */
-                @Nonnull
-                @SuppressWarnings ("unchecked")
-                private <I, R> R[] getArrayContent (@Nonnull Class<I> inputType, @Nonnull Class<R> outputType, @Nonnull Function<I, R> function) throws IllegalStateException {
-                        return this.arrayContents.stream ()
-                                                 .map ((i) -> {
-                                                         if (i == null) { return null; }
-                                                         return ((I) i);
-                                                 })
-                                                 .map (function)
-                                                 .toArray ((l) -> ((R[]) Array.newInstance (outputType, l)));
-                }
-
-                /**
-                 * Retrieves array contents as a certain type.
-                 *
-                 * @param outputType The output type.
-                 * @param <R>        The output type.
-                 * @return The array.
-                 *
-                 * @throws java.lang.IllegalStateException when one or more values within the array are invalid.
-                 */
-                @Nonnull
-                public <R> R[] getArrayContent (@Nonnull Class<R> outputType) throws IllegalStateException {
-                        return this.getArrayContent (outputType, outputType, (i) -> i);
-                }
-
-                /**
-                 * Retrieves the current array type.
-                 *
-                 * @return The array type.
-                 */
-                @Nonnull
-                private NodeValueType getArrayType () {
-                        // @formatter:off
-                        return this.arrayContents.stream ()
-                                .filter (i -> i != null)
-                                        .map (Object::getClass)
-                                                .findAny ()
-                                                        .filter (i -> (
-                                                                Boolean.class.isAssignableFrom (i) ||
-                                                                EnumWrapper.class.isAssignableFrom (i) ||
-                                                                Float.class.isAssignableFrom (i) ||
-                                                                Integer.class.isAssignableFrom (i) ||
-                                                                String.class.isAssignableFrom (i)
-                                                        ))
-                                                                .map (i -> {
-                                                                        if (Boolean.class.isAssignableFrom (i))
-                                                                                return NodeValueType.BOOLEAN;
-                                                                        if (EnumWrapper.class.isAssignableFrom (i))
-                                                                                return NodeValueType.ENUM;
-                                                                        if (Float.class.isAssignableFrom (i))
-                                                                                return NodeValueType.FLOAT;
-                                                                        if (Integer.class.isAssignableFrom (i))
-                                                                                return NodeValueType.INTEGER;
-
-                                                                        return NodeValueType.STRING;
-                                                                })
-                                                                        .orElse (NodeValueType.NULL);
-                        // @formatter:on
-                }
-
-                /**
-                 * {@inheritDoc}
-                 */
-                @Override
-                public void visitArray () {
-                        super.visitArray ();
-
-                        this.arrayContents = new ArrayList<> ();
                 }
 
                 /**
@@ -363,7 +275,6 @@ public class Candle extends ObjectNode implements IDocumentNode {
 
                         this.objectStack.peek ().append (propertyNode);
                         this.identifier = null;
-                        this.arrayContents = null;
                 }
 
                 /**
@@ -372,11 +283,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 @Override
                 public void visitBoolean (boolean value) {
                         super.visitBoolean (value);
-
-                        if (this.arrayContents != null) {
-                                this.arrayContents.add (value);
-                                return;
-                        }
+                        if (this.pushValue (value)) { return; }
 
                         this.objectStack.peek ().append (new BooleanPropertyNode (this.document, this.identifier, value));
                         this.identifier = null;
@@ -410,11 +317,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 @Override
                 public void visitEnum (@Nonnull String value) {
                         super.visitEnum (value);
-
-                        if (this.arrayContents != null) {
-                                this.arrayContents.add (new EnumWrapper (value));
-                                return;
-                        }
+                        if (this.pushValue (new EnumWrapper (value))) { return; }
 
                         this.objectStack.peek ().append (new EnumPropertyNode (this.document, this.identifier, value));
                         this.identifier = null;
@@ -426,11 +329,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 @Override
                 public void visitFloat (float value) {
                         super.visitFloat (value);
-
-                        if (this.arrayContents != null) {
-                                this.arrayContents.add (value);
-                                return;
-                        }
+                        if (this.pushValue (value)) { return; }
 
                         this.objectStack.peek ().append (new FloatPropertyNode (this.document, this.identifier, value));
                         this.identifier = null;
@@ -442,11 +341,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 @Override
                 public void visitInteger (int value) {
                         super.visitInteger (value);
-
-                        if (this.arrayContents != null) {
-                                this.arrayContents.add (value);
-                                return;
-                        }
+                        if (this.pushValue (value)) { return; }
 
                         this.objectStack.peek ().append (new IntegerPropertyNode (this.document, this.identifier, value));
                         this.identifier = null;
@@ -458,11 +353,7 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 @Override
                 public void visitNull () {
                         super.visitNull ();
-
-                        if (this.arrayContents != null) {
-                                this.arrayContents.add (null);
-                                return;
-                        }
+                        if (this.pushValue (null)) { return; }
 
                         this.objectStack.peek ().append (new NullPropertyNode (this.document, this.identifier));
                         this.identifier = null;
@@ -507,34 +398,10 @@ public class Candle extends ObjectNode implements IDocumentNode {
                 @Override
                 public void visitString (@Nonnull String value) {
                         super.visitString (value);
-
-                        if (this.arrayContents != null) {
-                                this.arrayContents.add (value);
-                                return;
-                        }
+                        if (this.pushValue (value)) { return; }
 
                         this.objectStack.peek ().append (new StringPropertyNode (this.document, this.identifier, value));
                         this.identifier = null;
-                }
-
-                /**
-                 * Provides a wrapper for enum values.
-                 */
-                private static class EnumWrapper {
-                        private String value;
-
-                        public EnumWrapper (String value) {
-                                this.value = value;
-                        }
-
-                        /**
-                         * Retrieves the wrapped value.
-                         *
-                         * @return The wrapped enum value.
-                         */
-                        public String value () {
-                                return this.value;
-                        }
                 }
         }
 }
